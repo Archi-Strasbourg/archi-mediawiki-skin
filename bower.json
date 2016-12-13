@@ -1,0 +1,14 @@
+{
+  "name": "ArchiWiki",
+  "description": "Theme for ArchiWiki",
+  "main": "",
+  "authors": [
+    "Mark Nightingale <hello@marknightingale.net>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "foundation-sites": "^6.2.4"
+  }
+}

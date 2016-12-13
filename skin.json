@@ -1,56 +1,50 @@
 {
-	"name": "Example",
+	"name": "ArchiWiki",
 	"version": "1.0",
-	"author": "...",
-	"url": "https://www.mediawiki.org/wiki/Skin:Example",
-	"descriptionmsg": "example-desc",
-	"namemsg": "skinname-example",
-	"license-name": "CC0-1.0",
+	"author": "Mark Nightingale",
+	"url": "https://github.com/Archi-Strasbourg/archi-mediawiki-skin",
+	"descriptionmsg": "Theme for 2016 rebuild of Archi-Strasbourg",
+	"namemsg": "skinname-archiwiki",
+	"license-name": "MIT",
 	"type": "skin",
 	"ValidSkinNames": {
-		"example": "Example"
+		"archiwiki": "ArchiWiki"
 	},
 	"MessagesDirs": {
-		"Example": [
+		"ArchiWiki": [
 			"i18n"
 		]
 	},
 	"ResourceModules": {
-		"skins.example": {
+		"skins.archiwiki": {
 			"class": "ResourceLoaderSkinModule",
 			"position": "top",
 			"styles": {
-				"resources/libraries/normalise.css": {
+				"dist/css/style.css": {
 					"media": "screen"
 				},
-				"resources/screen-common.less": {
-					"media": "screen"
-				},
-				"resources/screen-desktop.less": {
-					"media": "screen and (min-width: 751px)"
-				},
-				"resources/screen-mobile.less": {
-					"media": "screen and (max-width: 750px)"
-				},
-				"resources/print.css": {
+				"dist/css/print.css": {
 					"media": "print"
 				}
 			}
 		},
-		"skins.example.js": {
+		"skins.archiwiki.js": {
 			"position": "bottom",
 			"scripts": [
-				"resources/main.js"
+				"dist/js/foundation.js",
+				"dist/js/jquery.js",
+				"dist/js/scripts.js"
+
 			]
 		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
-		"remoteSkinPath": "Example"
+		"remoteSkinPath": "ArchiWiki"
 	},
 	"AutoloadClasses": {
-		"SkinExample": "Example.skin.php",
-		"ExampleTemplate": "ExampleTemplate.php"
+		"SkinArchiWiki": "ArchiWiki.skin.php",
+		"ArchiWikiTemplate": "ArchiWikiTemplate.php"
 	},
 	"manifest_version": 1
 }

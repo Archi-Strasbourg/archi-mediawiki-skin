@@ -4,7 +4,7 @@
  *
  * @ingroup Skins
  */
-class ExampleTemplate extends BaseTemplate {
+class ArchiWikiTemplate extends BaseTemplate {
 	/**
 	 * Outputs the entire contents of the page
 	 */
