@@ -32,9 +32,7 @@
 			"position": "bottom",
 			"scripts": [
 				"dist/js/foundation.js",
-				"dist/js/jquery.js",
 				"dist/js/scripts.js"
-
 			]
 		}
 	},
