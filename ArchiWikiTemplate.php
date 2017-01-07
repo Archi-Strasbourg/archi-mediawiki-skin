@@ -483,4 +483,33 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private function clear() {
 		echo '<div class="visualClear"></div>';
 	}
+
+	/**
+	 * Get the current user avatar
+	 * @param  int $width Desired width in pixels
+	 * @return string|null Relative URL
+	 */
+	private function getUserAvatar($width) {
+		global $wgUser, $wgRequest;
+		$userPagename = 'Utilisateur:'.$wgUser->getName();
+		$userTitle = Title::newFromText($userPagename);
+		$api = new \ApiMain(
+			new \DerivativeRequest(
+				$wgRequest,
+				array(
+					'action'=>'ask',
+					'query'=>'[['.$userPagename.']]|?Avatar'
+				)
+			)
+		);
+		$api->execute();
+		$results = $api->getResult()->getResultData();
+		if (isset($results['query']['results'][$userPagename]['printouts']['Avatar'][0])) {
+			$avatar = $results['query']['results'][$userPagename]['printouts']['Avatar'][0];
+			$avatarTitle = Title::newFromText($avatar['fulltext']);
+			$avatarFile = wfFindFile($avatarTitle->getText());
+
+			return $avatarFile->createThumb($width);
+		}
+	}
 }
