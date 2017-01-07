@@ -3,5 +3,7 @@
 		"authors": [ "..." ]
 	},
 	"skinname-example": "Example",
-	"example-desc": "An example skin showcasing the best practices"
+	"example-desc": "An example skin showcasing the best practices",
+	"menu": "Menu"
+	
 }

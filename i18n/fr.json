@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [ "Mark Nightingale" ]
+	},
+	"skinname-example": "Example",
+	"example-desc": "An example skin showcasing the best practices",
+	"menu": "Menu",
+	"association": "Association",
+	"contribuer": "Contribuer",
+	"get-page-history":"Consulter l'historique de la page",
+	"create-page":"Créer une nouvelle page",
+	"edit-page":"Modifier la page courante",
+	"edit-page-code":"Modifier le code de la page",
+	"profile":"Votre compte",
+	"followed-list":"Liste de pages suivies",
+	"contribs-list":"Liste de vos contributions",
+	"user-sandbox":"Brouillon de l'utilisateur",
+	"user-discussion":"Page de discussion",
+	"your-prefs":"Vos préférences", 
+	"your-profile":"Votre profile",
+	"log-out":"Se déconnecter"
+}

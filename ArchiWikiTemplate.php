@@ -11,7 +11,12 @@ class ArchiWikiTemplate extends BaseTemplate {
 	public function execute() {
 		$this->html( 'headelement' );
 		?>
-		<div id="mw-wrapper">
+		<div class="wrapper">
+			
+			<!-- Menu -->
+
+			<?php $this->getHeaderBar(); ?>
+
 			<div class="mw-body" role="main">
 				<?php
 				if ( $this->data['sitenotice'] ) {
@@ -236,6 +241,14 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 		return $html;
 	}
+	private function getThisTitle() {
+		return Title::newFromText($this->data['thispage']);
+	}
+
+	private function getThisPageURL() {
+		$title = $this->getThisTitle();
+		return $title->getFullURL();
+	}
 
 	/**
 	 * Generates the search form
@@ -287,6 +300,84 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 		return $html;
 	}
+	
+	
+	/**
+	 * Generates the top header bar
+	 * @return string html
+	 */
+	private function getHeaderBar(){
+		?>
+			<!-- Title Bar -->
+			<div class="title-bar" data-responsive-toggle="main-navigation" data-hide-for="medium">
+				<div class="title-bar-title title-bar-logo"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki-white.png' )?>/"></div>
+				<button class="" type="button" data-toggle><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></button>
+			</div>
+			
+			<div class="show-for-small-only">
+				<?php $this->getNavigation( true ); ?>
+			</div>
+			<div class="show-for-medium">
+				<?php $this->getNavigation( false ); ?>
+			</div>
+
+
+
+		<?php
+	}
+
+	private function getNavigation( $mobile = false ) {
+
+		global $wgOut;
+		global $wgUser;
+		global $wgTitle;
+
+		?>
+			
+			<!-- Navigation -->
+			<nav class="main-navigation mega-menu" id="main-navigation">
+				<div class="row">
+					<div class="column small-12 medium-3">
+						<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
+							<li>
+								<a href="#"><?php echo $this->getMsg( 'association' ); ?></a>
+								<?php echo $wgOut->parse('{{MenuAssociation}}'); ?>
+							</li>
+						</ul>
+					</div>
+					<div class="column small-12 medium-4">
+						<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
+							<li>
+								<a href="#"><?php echo $this->getMsg( 'contribuer' ); ?></a>
+								<?php $this->getContributionMenu(); ?>
+							</li>
+						</ul>
+					</div>
+					<div class="column small-12 medium-3">
+						<?php if ($wgUser->mId > 0) :?>
+							<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
+								<li>
+									<a href="#"><?php echo $this->getMsg( 'profile' ); ?></a>
+									<?php $this->getProfileMenu( ); ?>
+								</li>
+							</ul>
+						<?php endif; ?>
+					</div>
+					<div class="column small-12 medium-2">
+						<?php if ($wgUser->mId > 0) :?>
+							<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
+								<li>
+									<?php $this->getProfile( ); ?>
+								</li>
+							</ul>
+						<?php endif; ?>
+					</div>
+				</div>
+			</nav>
+
+		<?php
+	}
+
 
 	/**
 	 * Generates page-related tools/links
@@ -315,6 +406,63 @@ class ArchiWikiTemplate extends BaseTemplate {
 		) );
 
 		return $html;
+	}
+
+	private function getSiteURL() {
+		return $this->data['serverurl'] . $this->data['scriptpath'];
+	}
+	
+
+	private function getContributionMenu() {
+		
+		global $wgOut;
+		global $wgUser;
+
+		?> 
+		<ul class="menu vertical">
+			<?php if ( in_array( 'createpage', $wgUser->mRights )) :?>
+				<li><a href="<?php echo Title::newFromText('Spécial:AjouterPage')->getFullURL(); ?>"><?php echo $this->getMsg('create-page');?></a></li>
+			<?php endif;?>
+			<?php if ( in_array( 'createpage', $wgUser->mRights )) :?>
+				<li><a href="<?php echo wfAppendQuery($this->getThisPageURL(), ['action'=>'vedit']) ?>"><?php echo $this->getMsg('edit-page');?></a></li>
+				<li><a href="<?php echo wfAppendQuery($this->getThisPageURL(), ['action'=>'edit']) ?>"><?php echo $this->getMsg('edit-page-code');?></a></li>
+			<?php endif;?>
+			<li><a href="<?php echo wfAppendQuery($this->getThisPageURL(), ['action'=>'history']) ?>"><?php echo $this->getMsg('get-page-history');?></a></li>
+			<?php $contribution_title = Title::newFromText('Aide à la contribution');?>
+			<li><a href="<?php echo $contribution_title->getFullURL();?>"><?php echo $contribution_title->getText();?></a></li>
+		</ul>
+
+		<?php
+	}
+
+	private function getProfileMenu() {
+		global $wgUser;
+
+		?>
+		<ul class="menu vertical">
+			<li><a href="<?php echo Title::newFromText('Spécial:Liste_de_suivi')->getFullURL();?>"><?php echo $this->getMsg('followed-list');?></a></li>
+			<li><a href="<?php echo $this->getPersonalTools()['mycontris']['links'][0]['href']; ?>"><?php echo $this->getMsg('contribs-list');?></a></li>
+			<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName.'/Brouillon')->getFullURL(); ?>"><?php echo $this->getMsg('user-sandbox');?></a></li>
+			<li><a href="<?php echo Title::newFromText('Discussion_utilisateur:'.$wgUser->mName)->getFullURL(); ?>"><?php echo $this->getMsg('user-discussion');?></a></li>
+			<li><a href="<?php echo $this->getPersonalTools()['preferences']['links'][0]['href']; ?>"><?php echo $this->getMsg('your-prefs');?></a></li>
+		</ul>
+
+		<?php
+	}
+
+	private function getProfile() {
+		global $wgUser;
+		
+		?>
+		<div class="profile-box">
+			<img class="profile-box-image profile-image" src="http://placehold.it/115x115" width=115 height=115>
+			<ul class="menu vertical">
+				<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName)->getFullURL();?>"><?php echo $this->getMsg('your-profile');?></a></li>
+				<li><a href="<?php echo $this->getPersonalTools()['logout']['links'][0]['href']; ?>"><?php echo $this->getMsg('log-out');?></a></li>
+			</ul>
+		</div>
+		<?php
+
 	}
 
 	/**

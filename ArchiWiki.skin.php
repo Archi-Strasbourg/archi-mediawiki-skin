@@ -22,8 +22,11 @@ class SkinArchiWiki extends SkinTemplate {
 			// 'mediawiki.skinning.content.externallinks',
 			'skins.archiwiki'
 		) );
+		// Google Fonts 
 		$out->addStyle( "//fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,400i,600" );
-		$out->addModules( array(
+		$out->addStyle( "//fonts.googleapis.com/icon?family=Material+Icons" );
+
+		$out->addModuleScripts( array(
 			'skins.archiwiki.js'
 		) );
 	}
