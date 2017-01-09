@@ -83,26 +83,71 @@ HEADER STYLES
 /*********************
 NAVIGATION STYLES
 *********************/
+$menu-breakpoint: large;
+
 .main-navigation {
 	background-color: transparentize($slate, 0.05);
-	@include breakpoint(large) {
+	@include breakpoint($menu-breakpoint) {
 		background-color: $slate;
 	}
 	padding: 0 1rem ;
 	ul.menu {
 		&>li{
+			color: $white-three;
+			padding-left: 0.5rem;
+			padding-right: 0.5rem;
+			padding-top: 1rem;
+
 			&>a {
 				border-bottom: 1px solid $white-three;
-				padding-left: 0.5rem;
-				padding-right: 0.5rem;
-				padding-top: 1rem;
+				padding-left: 0;
+				padding-right: 0;
+				padding-top: 0;
 			}
 
-			ul.submenu.is-accordion-submenu {
+			ul.menu {
 				padding-left: 1rem;
 				&>li{
+					border-bottom: 1px solid transparentize($white-three, .5);
+					padding-bottom: 0.7rem;
+
 					&>a {
-						border-bottom: 1px solid transparentize($white-three, .5);
+						border-bottom: none;
+						padding-bottom: 0;
+					}
+				}
+			}
+		}
+
+		@include breakpoint($menu-breakpoint) {
+			margin-bottom: 2.5rem;
+			margin-top: 2.5rem;
+
+			&>li {
+				font-weight: $header-font-weight;
+				font-family: $header-font-family;
+				border-bottom: none !important;
+				padding-left: 0;
+				padding-right: 0;
+				padding-top: 0;
+				padding-bottom: 0;
+				&>a {
+					border-bottom: none !important;
+					padding: $menu-item-padding;
+					padding-bottom: 1rem;
+				}
+				ul.menu {
+					padding-left: 0;
+					margin: 0;
+					&>li {
+						font-weight: normal;
+						font-family: $body-font-family;
+						border-bottom: 0;
+						padding-bottom: 0;
+						&>a {
+							padding-bottom: 0.5rem;
+							padding-top: 0.5rem;
+						}
 					}
 				}
 			}
@@ -126,6 +171,66 @@ NAVIGATION STYLES
 	.title-area {
 		z-index: 1;
 	}
+	background-color: $white;
+	a, button {
+		color: $slate;
+	}
+	ul.menu {
+		background-color: transparent;
+		&>li {
+			text-transform: uppercase;
+			height: 9.375rem; 
+			padding-left: 1rem;
+			padding-right: 1rem;
+
+			&>a {
+				padding: 0;
+				text-transform: uppercase;
+				color: $charcoal-grey;
+			}
+		}
+	}
+	.top-bar-right {
+		// Search and menu buttons
+		ul.menu {
+			&>li {
+				padding: 0;
+				&>a {
+					height: 100%;
+					padding-top: 2.3rem;
+					width: 8.3125rem;
+
+					&.search-button {
+						padding-top: 2.5rem
+					}
+				}
+			}
+
+		}
+	}
+
+
+	.site-logo {
+		padding: 1rem;
+		padding-top: 2rem;
+		img {height: 63px; margin-bottom: 0.75rem;}
+		.site-slogan {
+			font-size: 0.75rem;
+			color: rgba(70, 87, 99, 0.85);
+			margin-bottom: 0;
+		}
+	}
+	.menu-button, .search-button {
+		i {
+			display: block;
+			margin: auto;
+			font-size: 1.9rem;
+		}
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		text-align: center;
+	}
+
 } 
 
 .off-canvas-list {
@@ -142,28 +247,58 @@ NAVIGATION STYLES
 	}
 }
 
+// Language trigger
+.uls-trigger {
+	background: none !important;
+}
 /***
 Profile box
 	*****/
 .profile-box {
 	text-align: center;
+	img {
+		display: none;
+		@include breakpoint($menu-breakpoint) {
+			display: block;
+			margin: auto;
+			border-radius: 300px;
+			border: 3px solid $white-three;
+		}
+	}
 	ul.menu {
 		@include grid-row;
 	    margin-left: -0.83333333rem;
 	    margin-right: -0.83333333rem;
 
 		&>li {
+		    border-bottom: none !important;
 			@include grid-column(6);
 			text-align: left;
+			@include breakpoint($menu-breakpoint) {
+				text-align: center;
+			}
 			&:last-child {
 				text-align: right;
+				@include breakpoint($menu-breakpoint) {
+					text-align: center; 
+				}
 			}
-			@include breakpoint(large) {
+			@include breakpoint($menu-breakpoint) {
 				text-align: center;
 				@include grid-column(12);
 			}
 			&>a {
 				border-bottom: none !important;
+			}
+		}
+
+		@include breakpoint($menu-breakpoint) {
+			margin-top: 2.0625rem !important;
+			&>li {
+				padding: 0;
+				&>a {
+					padding: 0.7rem 0;
+				}
 			}
 		}
 	}

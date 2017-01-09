@@ -4,9 +4,10 @@
 	},
 	"skinname-example": "Example",
 	"example-desc": "An example skin showcasing the best practices",
+	"site-slogan": "Partageons la ville, ses bâtiments, ses lieux…",
 	"menu": "Menu",
-	"association": "Association",
-	"contribuer": "Contribuer",
+	"association": "L'association",
+	"contribuer": "Contribuer au site",
 	"get-page-history":"Consulter l'historique de la page",
 	"create-page":"Créer une nouvelle page",
 	"edit-page":"Modifier la page courante",
@@ -18,5 +19,10 @@
 	"user-discussion":"Page de discussion",
 	"your-prefs":"Vos préférences", 
 	"your-profile":"Votre profile",
-	"log-out":"Se déconnecter"
+	"log-out":"Se déconnecter",
+	"create-account":"S'inscrire",
+	"log-in":"Se connecter",
+	"open-data":"Open Data",
+	"donate":"Faire un don", 
+	"change-language": "Langues"
 }

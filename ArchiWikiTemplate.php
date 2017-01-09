@@ -307,10 +307,11 @@ class ArchiWikiTemplate extends BaseTemplate {
 	 * @return string html
 	 */
 	private function getHeaderBar(){
+		global $wgOut;
 		?>
 			<!-- Title Bar -->
 			<div class="title-bar" data-responsive-toggle="main-navigation" data-hide-for="large">
-				<div class="title-bar-title title-bar-logo"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki-white.png' )?>/"></div>
+				<div class="title-bar-title title-bar-logo"><a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki-white.png' )?>"/></a></div>
 				<button class="" type="button" data-toggle><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></button>
 			</div>
 			
@@ -318,6 +319,27 @@ class ArchiWikiTemplate extends BaseTemplate {
 				<?php $this->getNavigation( true ); ?>
 			</div>
 			<div class="show-for-large">
+				<div class="top-bar top-bar-inverted">
+					<div class="top-bar-left">
+						<div class="site-logo">
+							<a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki.png' )?>"/></a>
+							<p class="site-slogan"><?php echo $this->getMsg('site-slogan');?></p>
+						</div>
+					</div>
+					<div class="top-bar-left">
+						<ul class="menu">
+							<?php echo $wgOut->parse('{{MenuQuickLinks}}'); ?>
+							<li><a href="#" class="uls-trigger"><?php echo $this->getMsg('change-language');?></a></li>
+						</ul>
+					</div>
+					<div class="top-bar-right">
+						<ul class="menu">
+							<li><a class="search-button"><i class="material-icons">search</i></a></li>
+							<li><a class="menu-button" data-toggle="main-navigation"><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></a></li>
+						</ul>
+					</div>
+				</div>
+
 				<?php $this->getNavigation( false ); ?>
 			</div>
 
@@ -335,7 +357,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		?>
 			
 			<!-- Navigation -->
-			<nav class="main-navigation mega-menu" id="main-navigation">
+			<nav class="main-navigation mega-menu hide" id="main-navigation" data-toggler=".hide">
 				<div class="row">
 					<div class="column small-12 large-3">
 						<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
@@ -363,14 +385,21 @@ class ArchiWikiTemplate extends BaseTemplate {
 							</ul>
 						<?php endif; ?>
 					</div>
+					<!-- Mobile only items -->
+					<div class="columns small-12 hide-for-large">
+						<ul class="menu vertical">
+							<li><a href="<?php echo Title::newFromText('Open Data')->getFullURL(); ?>"><?php echo $this->getMsg('open-data');?></a></li>
+							<li><a href="<?php echo Title::newFromText('Faire un don')->getFullURL(); ?>"><?php echo $this->getMsg('donate');?></a></li>
+							<li><a href="#" class="uls-trigger"><?php echo $this->getMsg('change-language');?></a></li>
+						</ul>
+					</div>
+					<!-- /Mobile Only Items -->
 					<div class="column small-12 large-2">
-						<?php if ($wgUser->mId > 0) :?>
-							<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
-								<li>
-									<?php $this->getProfile( ); ?>
-								</li>
-							</ul>
-						<?php endif; ?>
+						<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
+							<li>
+								<?php $this->getProfile(); ?>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</nav>
@@ -455,11 +484,16 @@ class ArchiWikiTemplate extends BaseTemplate {
 		
 		?>
 		<div class="profile-box">
-			<img class="profile-box-image profile-image show-for-large" src="http://placehold.it/115x115" width=115 height=115>
-			<ul class="menu vertical">
-				<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName)->getFullURL();?>"><?php echo $this->getMsg('your-profile');?></a></li>
-				<li><a href="<?php echo $this->getPersonalTools()['logout']['links'][0]['href']; ?>"><?php echo $this->getMsg('log-out');?></a></li>
-			</ul>
+				<img class="profile-box-image profile-image show-for-large" src="http://placehold.it/115x115" width=115 height=115>
+				<ul class="menu vertical">
+					<?php if ($wgUser->mId > 0) : ?> 
+						<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName)->getFullURL();?>"><?php echo $this->getMsg('your-profile');?></a></li>
+						<li><a href="<?php echo $this->getPersonalTools()['logout']['links'][0]['href']; ?>"><?php echo $this->getMsg('log-out');?></a></li>
+					<?php else : ?>
+						<li><a href="<?php echo $this->getPersonalTools()['createaccount']['links'][0]['href']; ?>"><?php echo $this->getMsg('create-account');?></a></li>
+						<li><a href="<?php echo $this->getPersonalTools()['login']['links'][0]['href']; ?>"><?php echo $this->getMsg('log-in');?></a></li>
+					<?php endif; ?>
+				</ul>
 		</div>
 		<?php
 
