@@ -167,11 +167,17 @@ $menu-breakpoint: large;
 	}
 }
 
+.title-bar {
+	@include breakpoint(large) {
+		display: none;
+	}
+}
+
 .top-bar {
 	.title-area {
 		z-index: 1;
 	}
-	background-color: $white;
+	background-color: transparent;
 	a, button {
 		color: $slate;
 	}
@@ -195,13 +201,24 @@ $menu-breakpoint: large;
 		ul.menu {
 			&>li {
 				padding: 0;
+				display: inline-block;
 				&>a {
 					height: 100%;
-					padding-top: 2.3rem;
-					width: 8.3125rem;
-
+					padding-top: 3.3rem;
+					width: 3.7rem;
+					@include breakpoint(1124px) {
+						width: 6.3125rem; 
+						@include breakpoint(1195px) {
+							width: 7.3125rem;
+						}
+	
+					}
+					&.toggled {
+						color: $white;
+					}
+					
 					&.search-button {
-						padding-top: 2.5rem
+						padding-top: 3.5rem
 					}
 				}
 			}
@@ -305,6 +322,69 @@ Profile box
 
 }
 
+/********************
+Search modal
+********************/
+.search-modal {
+	@include placeholder {
+		color: $slate;
+		font-style: italic;
+	}
+	.advanced-search-link {
+		text-decoration: underline;
+		padding-top: 0.25rem;
+	}
+	.search-title {
+		font-size: 1.563rem;
+	}
+	.input-group {
+		.search-input {
+			border: 0.125rem solid $dark-peach;
+		}
+		.input-group-button {
+			a {
+				height: 2.2rem;
+				line-height: 2.9rem;
+				padding: 0 0.7rem;
+				border: 0.125rem solid $dark-peach;
+				border-left: 0;
+				margin-left: -1px;
+
+			}
+		}
+	}
+	padding-bottom: 2rem;
+}
+
+/*********************
+COLOR PANELS 
+**********************/
+
+.color-panel {
+	background-color: $primary-color;
+	padding-top: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	@include breakpoint(medium) {
+		padding-top: 2rem;
+	}
+	color: $white;
+	overflow: hidden;
+
+	label, p, h1, h2, h3, h4, h5, h6 {
+		color: $white;
+	}
+	button, a.button {
+		background-color: $white;
+		color: $primary-color;
+		&:hover {
+			background-color: mix($primary-color, $white, 15%);
+		}
+	}
+	
+	@include color-panel(earth, $earth);
+	
+}
 /*********************
 POSTS & CONTENT STYLES
 *********************/

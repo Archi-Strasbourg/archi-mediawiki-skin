@@ -309,8 +309,9 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private function getHeaderBar(){
 		global $wgOut;
 		?>
+		<header class="site-header" id="site-header" data-openclose-context>
 			<!-- Title Bar -->
-			<div class="title-bar" data-responsive-toggle="main-navigation" data-hide-for="large">
+			<div class="title-bar" data-responsive-toggle="main-navigation-mobile" data-hide-for="large">
 				<div class="title-bar-title title-bar-logo"><a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki-white.png' )?>"/></a></div>
 				<button class="" type="button" data-toggle><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></button>
 			</div>
@@ -318,30 +319,38 @@ class ArchiWikiTemplate extends BaseTemplate {
 			<div class="hide-for-large">
 				<?php $this->getNavigation( true ); ?>
 			</div>
+
+			<!-- Desktop nav -->
 			<div class="show-for-large">
 				<div class="top-bar top-bar-inverted">
-					<div class="top-bar-left">
-						<div class="site-logo">
-							<a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki.png' )?>"/></a>
-							<p class="site-slogan"><?php echo $this->getMsg('site-slogan');?></p>
+					<div class="row column">
+						
+						<div class="top-bar-left">
+							<div class="site-logo">
+								<a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki.png' )?>"/></a>
+								<p class="site-slogan"><?php echo $this->getMsg('site-slogan');?></p>
+							</div>
 						</div>
-					</div>
-					<div class="top-bar-left">
-						<ul class="menu">
-							<?php echo $wgOut->parse('{{MenuQuickLinks}}'); ?>
-							<li><a href="#" class="uls-trigger"><?php echo $this->getMsg('change-language');?></a></li>
-						</ul>
-					</div>
-					<div class="top-bar-right">
-						<ul class="menu">
-							<li><a class="search-button"><i class="material-icons">search</i></a></li>
-							<li><a class="menu-button" data-toggle="main-navigation"><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></a></li>
-						</ul>
+						<div class="top-bar-left">
+							<ul class="menu">
+								<?php echo $wgOut->parse('{{MenuQuickLinks}}'); ?>
+								<li><a href="#" class="uls-trigger"><?php echo $this->getMsg('change-language');?></a></li>
+							</ul>
+						</div>
+						<div class="top-bar-right">
+							<ul class="menu">
+								<li><a class="search-button" data-openclose data-target="#search-modal" data-openclose-colorchange="true"><i class="material-icons">search</i></a></li>
+								<li><a class="menu-button" data-openclose data-target="#main-navigation" data-openclose-colorchange="true"><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 
 				<?php $this->getNavigation( false ); ?>
+
+				<?php $this->getSearchModal();?>
 			</div>
+		</header>
 
 
 
@@ -357,7 +366,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		?>
 			
 			<!-- Navigation -->
-			<nav class="main-navigation mega-menu hide" id="main-navigation" data-toggler=".hide">
+			<nav class="main-navigation mega-menu hide" id="main-navigation<?php echo ($mobile ? '-mobile' : ''); ?>">
 				<div class="row">
 					<div class="column small-12 large-3">
 						<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
@@ -400,6 +409,39 @@ class ArchiWikiTemplate extends BaseTemplate {
 								<?php $this->getProfile(); ?>
 							</li>
 						</ul>
+					</div>
+				</div>
+			</nav>
+
+		<?php
+	}
+
+	private function getSearchModal( $startHidden = true ) {
+
+		?>
+			
+			<!-- Navigation -->
+			<nav class="search-modal color-panel color-panel-earth <?php echo ($startHidden ? 'hide' : '');?>" id="search-modal">
+				<div class="row">
+					<div class="column">
+						<h3 class="text-center search-title">
+							<?php echo $this->getMsg('search-title');?>
+						</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column large-7 large-offset-2">
+						<div class="input-group">
+							<input type="search" class="search-input input-group-field" placeholder="<?php echo $this->getMsg('search-placeholder');?>">
+							<div class="input-group-button">
+								<a class="button">
+									<i class="material-icons">search</i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="column large-2 end">
+						<a href="<?php echo wfAppendQuery(Title::newFromText('Spécial:Recherche')->getFullURL(), array('profile' => 'advanced')) ;?>" class="advanced-search-link"><?php echo $this->getMsg('advanced-search');?></a>
 					</div>
 				</div>
 			</nav>
