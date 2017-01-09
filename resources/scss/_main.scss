@@ -85,7 +85,7 @@ NAVIGATION STYLES
 *********************/
 .main-navigation {
 	background-color: transparentize($slate, 0.05);
-	@include breakpoint(medium) {
+	@include breakpoint(large) {
 		background-color: $slate;
 	}
 	padding: 0 1rem ;
@@ -142,6 +142,33 @@ NAVIGATION STYLES
 	}
 }
 
+/***
+Profile box
+	*****/
+.profile-box {
+	text-align: center;
+	ul.menu {
+		@include grid-row;
+	    margin-left: -0.83333333rem;
+	    margin-right: -0.83333333rem;
+
+		&>li {
+			@include grid-column(6);
+			text-align: left;
+			&:last-child {
+				text-align: right;
+			}
+			@include breakpoint(large) {
+				text-align: center;
+				@include grid-column(12);
+			}
+			&>a {
+				border-bottom: none !important;
+			}
+		}
+	}
+
+}
 
 /*********************
 POSTS & CONTENT STYLES

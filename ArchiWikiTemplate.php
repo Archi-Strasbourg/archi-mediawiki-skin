@@ -309,15 +309,15 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private function getHeaderBar(){
 		?>
 			<!-- Title Bar -->
-			<div class="title-bar" data-responsive-toggle="main-navigation" data-hide-for="medium">
+			<div class="title-bar" data-responsive-toggle="main-navigation" data-hide-for="large">
 				<div class="title-bar-title title-bar-logo"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki-white.png' )?>/"></div>
 				<button class="" type="button" data-toggle><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></button>
 			</div>
 			
-			<div class="show-for-small-only">
+			<div class="hide-for-large">
 				<?php $this->getNavigation( true ); ?>
 			</div>
-			<div class="show-for-medium">
+			<div class="show-for-large">
 				<?php $this->getNavigation( false ); ?>
 			</div>
 
@@ -337,7 +337,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 			<!-- Navigation -->
 			<nav class="main-navigation mega-menu" id="main-navigation">
 				<div class="row">
-					<div class="column small-12 medium-3">
+					<div class="column small-12 large-3">
 						<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
 							<li>
 								<a href="#"><?php echo $this->getMsg( 'association' ); ?></a>
@@ -345,7 +345,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 							</li>
 						</ul>
 					</div>
-					<div class="column small-12 medium-4">
+					<div class="column small-12 large-4">
 						<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
 							<li>
 								<a href="#"><?php echo $this->getMsg( 'contribuer' ); ?></a>
@@ -353,7 +353,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 							</li>
 						</ul>
 					</div>
-					<div class="column small-12 medium-3">
+					<div class="column small-12 large-3">
 						<?php if ($wgUser->mId > 0) :?>
 							<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
 								<li>
@@ -363,7 +363,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 							</ul>
 						<?php endif; ?>
 					</div>
-					<div class="column small-12 medium-2">
+					<div class="column small-12 large-2">
 						<?php if ($wgUser->mId > 0) :?>
 							<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
 								<li>
@@ -455,7 +455,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		
 		?>
 		<div class="profile-box">
-			<img class="profile-box-image profile-image" src="http://placehold.it/115x115" width=115 height=115>
+			<img class="profile-box-image profile-image show-for-large" src="http://placehold.it/115x115" width=115 height=115>
 			<ul class="menu vertical">
 				<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName)->getFullURL();?>"><?php echo $this->getMsg('your-profile');?></a></li>
 				<li><a href="<?php echo $this->getPersonalTools()['logout']['links'][0]['href']; ?>"><?php echo $this->getMsg('log-out');?></a></li>
