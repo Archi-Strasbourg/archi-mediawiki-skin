@@ -2,6 +2,7 @@
   "name": "archi-strasbourg/archi-wiki-skin",
   "description": "MediaWiki skin used on archi-wiki.org",
   "type": "mediawiki-skin",
+  "license": "GPL-3.0",
   "authors": [
     {
       "name": "Damien Senger",

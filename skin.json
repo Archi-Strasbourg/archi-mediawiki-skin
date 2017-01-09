@@ -5,7 +5,7 @@
 	"url": "https://github.com/Archi-Strasbourg/archi-mediawiki-skin",
 	"descriptionmsg": "Theme for 2016 rebuild of Archi-Strasbourg",
 	"namemsg": "skinname-archiwiki",
-	"license-name": "MIT",
+	"license-name": "GPL-3.0",
 	"type": "skin",
 	"ValidSkinNames": {
 		"archiwiki": "ArchiWiki"
