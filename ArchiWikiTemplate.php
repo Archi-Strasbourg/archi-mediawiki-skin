@@ -5,13 +5,24 @@
  * @ingroup Skins
  */
 class ArchiWikiTemplate extends BaseTemplate {
+
+	/**
+	 * Available langauges to display on website
+	 * @var array
+	 */
+	private $availableLanguages = array(
+			"Français"		=> "fr",
+			"English" 		=> "en",
+			"Detusch" 		=> "de"
+		);
+
 	/**
 	 * Outputs the entire contents of the page
 	 */
 	public function execute() {
 		$this->html( 'headelement' );
 		?>
-		<div class="wrapper">
+		<div class="wrapper row column">
 			
 			<!-- Menu -->
 
@@ -245,7 +256,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		return Title::newFromText($this->data['thispage']);
 	}
 
-	private function getThisPageURL() {
+	private function getThisPageUrl() {
 		$title = $this->getThisTitle();
 		return $title->getFullURL();
 	}
@@ -300,6 +311,32 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 		return $html;
 	}
+
+	/**
+	 * Returns an array of active languages except the current language
+	 * @return array other languages
+	 */
+	private function getOtherLanguages() {
+		$other_languages = array_filter($this->availableLanguages, function($value){
+			return $value !== $this->data['lang'];
+		});
+
+		return $other_languages;	
+	}
+
+	/**
+	 * Displays the language menu chooser <li> items
+	 * @return string html
+	 */
+	private function getLanguageMenuItems() {
+		$html = '';
+		foreach ($this->getOtherLanguages() as $language_name => $language_code) {
+			$url = wfAppendQuery($this->getThisPageUrl(), array( 'uselang' => $language_code ) );
+			$html .= "<li><a href='$url' data-set-language='$language_code'>$language_name</a></li>";
+		}
+
+		return $html;	
+	}
 	
 	
 	/**
@@ -334,7 +371,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 						<div class="top-bar-left">
 							<ul class="menu">
 								<?php echo $wgOut->parse('{{MenuQuickLinks}}'); ?>
-								<li><a href="#" class="uls-trigger"><?php echo $this->getMsg('change-language');?></a></li>
+								<?php echo $this->getLanguageMenuItems();?>
 							</ul>
 						</div>
 						<div class="top-bar-right">
@@ -366,7 +403,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		?>
 			
 			<!-- Navigation -->
-			<nav class="main-navigation mega-menu hide" id="main-navigation<?php echo ($mobile ? '-mobile' : ''); ?>">
+			<nav class="main-navigation mega-menu <?php echo ($mobile ? '' : 'hide'); ?> " id="main-navigation<?php echo ($mobile ? '-mobile' : ''); ?>">
 				<div class="row">
 					<div class="column small-12 large-3">
 						<ul class="menu vertical" <?php echo ($mobile ? 'data-accordion-menu': '' );?> >
@@ -495,10 +532,10 @@ class ArchiWikiTemplate extends BaseTemplate {
 				<li><a href="<?php echo Title::newFromText('Spécial:AjouterPage')->getFullURL(); ?>"><?php echo $this->getMsg('create-page');?></a></li>
 			<?php endif;?>
 			<?php if ( in_array( 'createpage', $wgUser->mRights )) :?>
-				<li><a href="<?php echo wfAppendQuery($this->getThisPageURL(), ['action'=>'vedit']) ?>"><?php echo $this->getMsg('edit-page');?></a></li>
-				<li><a href="<?php echo wfAppendQuery($this->getThisPageURL(), ['action'=>'edit']) ?>"><?php echo $this->getMsg('edit-page-code');?></a></li>
+				<li><a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['action'=>'vedit']) ?>"><?php echo $this->getMsg('edit-page');?></a></li>
+				<li><a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['action'=>'edit']) ?>"><?php echo $this->getMsg('edit-page-code');?></a></li>
 			<?php endif;?>
-			<li><a href="<?php echo wfAppendQuery($this->getThisPageURL(), ['action'=>'history']) ?>"><?php echo $this->getMsg('get-page-history');?></a></li>
+			<li><a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['action'=>'history']) ?>"><?php echo $this->getMsg('get-page-history');?></a></li>
 			<?php $contribution_title = Title::newFromText('Aide à la contribution');?>
 			<li><a href="<?php echo $contribution_title->getFullURL();?>"><?php echo $contribution_title->getText();?></a></li>
 		</ul>
@@ -523,10 +560,21 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 	private function getProfile() {
 		global $wgUser;
+		global $wgOut;
 		
 		?>
+
 		<div class="profile-box">
-				<img class="profile-box-image profile-image show-for-large" src="http://placehold.it/115x115" width=115 height=115>
+			<?php if ($wgUser->mId > 0) : ?> 
+				<?php $avatar_url = $this->getUserAvatar(115); ?>
+				<?php if ($avatar_url) : ?>
+					<img src="<?php echo $avatar_url ?>" alt="Avatar <?php echo $wgUser->mRealName; ?>" />
+				<?php else : ?>
+					<i class="material-icons">account_circle</i>
+				<?php endif;?>
+			<?php else : ?>
+				<i class="material-icons">account_circle</i>
+			<?php endif; ?>
 				<ul class="menu vertical">
 					<?php if ($wgUser->mId > 0) : ?> 
 						<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName)->getFullURL();?>"><?php echo $this->getMsg('your-profile');?></a></li>

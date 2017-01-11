@@ -51,276 +51,6 @@ h5, .h5 {
 
 }
 
-/*********************
-HEADER STYLES
-*********************/
-.header {
-	ul.off-canvas-list li {
-		list-style: none;
-	}
-}
-
-.title-bar {
-	background-color: $slate;
-	padding: 1.2rem 2rem;
-	.title-bar-logo {
-		max-width: 112px; 
-		height: auto;
-
-	}
-	&>button {
-		float: right;
-		font-size: 0.6rem;
-		text-transform: uppercase;
-
-		&>i {
-			display: block;
-			margin: auto;
-		}
-	}
-}
-    
-/*********************
-NAVIGATION STYLES
-*********************/
-$menu-breakpoint: large;
-
-.main-navigation {
-	background-color: transparentize($slate, 0.05);
-	@include breakpoint($menu-breakpoint) {
-		background-color: $slate;
-	}
-	padding: 0 1rem ;
-	ul.menu {
-		&>li{
-			color: $white-three;
-			padding-left: 0.5rem;
-			padding-right: 0.5rem;
-			padding-top: 1rem;
-
-			&>a {
-				border-bottom: 1px solid $white-three;
-				padding-left: 0;
-				padding-right: 0;
-				padding-top: 0;
-			}
-
-			ul.menu {
-				padding-left: 1rem;
-				&>li{
-					border-bottom: 1px solid transparentize($white-three, .5);
-					padding-bottom: 0.7rem;
-
-					&>a {
-						border-bottom: none;
-						padding-bottom: 0;
-					}
-				}
-			}
-		}
-
-		@include breakpoint($menu-breakpoint) {
-			margin-bottom: 2.5rem;
-			margin-top: 2.5rem;
-
-			&>li {
-				font-weight: $header-font-weight;
-				font-family: $header-font-family;
-				border-bottom: none !important;
-				padding-left: 0;
-				padding-right: 0;
-				padding-top: 0;
-				padding-bottom: 0;
-				&>a {
-					border-bottom: none !important;
-					padding: $menu-item-padding;
-					padding-bottom: 1rem;
-				}
-				ul.menu {
-					padding-left: 0;
-					margin: 0;
-					&>li {
-						font-weight: normal;
-						font-family: $body-font-family;
-						border-bottom: 0;
-						padding-bottom: 0;
-						&>a {
-							padding-bottom: 0.5rem;
-							padding-top: 0.5rem;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-
-.main-navigation, .title-bar {
-	ul.menu>li>a {
-		color: $white-three;
-	}
-	.is-accordion-submenu-parent {
-		a::after {
-			border-color: $white-three transparent transparent;
-		}
-	}
-}
-
-.title-bar {
-	@include breakpoint(large) {
-		display: none;
-	}
-}
-
-.top-bar {
-	.title-area {
-		z-index: 1;
-	}
-	background-color: transparent;
-	a, button {
-		color: $slate;
-	}
-	ul.menu {
-		background-color: transparent;
-		&>li {
-			text-transform: uppercase;
-			height: 9.375rem; 
-			padding-left: 1rem;
-			padding-right: 1rem;
-
-			&>a {
-				padding: 0;
-				text-transform: uppercase;
-				color: $charcoal-grey;
-			}
-		}
-	}
-	.top-bar-right {
-		// Search and menu buttons
-		ul.menu {
-			&>li {
-				padding: 0;
-				display: inline-block;
-				&>a {
-					height: 100%;
-					padding-top: 3.3rem;
-					width: 3.7rem;
-					@include breakpoint(1124px) {
-						width: 6.3125rem; 
-						@include breakpoint(1195px) {
-							width: 7.3125rem;
-						}
-	
-					}
-					&.toggled {
-						color: $white;
-					}
-					
-					&.search-button {
-						padding-top: 3.5rem
-					}
-				}
-			}
-
-		}
-	}
-
-
-	.site-logo {
-		padding: 1rem;
-		padding-top: 2rem;
-		img {height: 63px; margin-bottom: 0.75rem;}
-		.site-slogan {
-			font-size: 0.75rem;
-			color: rgba(70, 87, 99, 0.85);
-			margin-bottom: 0;
-		}
-	}
-	.menu-button, .search-button {
-		i {
-			display: block;
-			margin: auto;
-			font-size: 1.9rem;
-		}
-		font-size: 0.9rem;
-		text-transform: uppercase;
-		text-align: center;
-	}
-
-} 
-
-.off-canvas-list {
-	ul {
-		margin-left: 0;
-		li {
-			a {
-				border-bottom: 0px;
-			}
-		}
-		.dropdown {
-			margin-left: 20px;
-		}
-	}
-}
-
-// Language trigger
-.uls-trigger {
-	background: none !important;
-}
-/***
-Profile box
-	*****/
-.profile-box {
-	text-align: center;
-	img {
-		display: none;
-		@include breakpoint($menu-breakpoint) {
-			display: block;
-			margin: auto;
-			border-radius: 300px;
-			border: 3px solid $white-three;
-		}
-	}
-	ul.menu {
-		@include grid-row;
-	    margin-left: -0.83333333rem;
-	    margin-right: -0.83333333rem;
-
-		&>li {
-		    border-bottom: none !important;
-			@include grid-column(6);
-			text-align: left;
-			@include breakpoint($menu-breakpoint) {
-				text-align: center;
-			}
-			&:last-child {
-				text-align: right;
-				@include breakpoint($menu-breakpoint) {
-					text-align: center; 
-				}
-			}
-			@include breakpoint($menu-breakpoint) {
-				text-align: center;
-				@include grid-column(12);
-			}
-			&>a {
-				border-bottom: none !important;
-			}
-		}
-
-		@include breakpoint($menu-breakpoint) {
-			margin-top: 2.0625rem !important;
-			&>li {
-				padding: 0;
-				&>a {
-					padding: 0.7rem 0;
-				}
-			}
-		}
-	}
-
-}
 
 /********************
 Search modal
@@ -385,6 +115,331 @@ COLOR PANELS
 	@include color-panel(earth, $earth);
 	
 }
+
+
+
+
+    
+/*********************
+NAVIGATION STYLES
+*********************/
+$menu-breakpoint: large;
+
+
+// Main navigation general
+.main-navigation {
+	background-color: transparentize($slate, 0.05);
+	@include breakpoint($menu-breakpoint) {
+		background-color: $slate;
+	}
+	padding: 0 1rem ;
+	ul.menu {
+		&>li{
+			color: $white-three;
+			padding-left: 0.5rem;
+			padding-right: 0.5rem;
+			padding-top: 1rem;
+
+			&>a {
+				border-bottom: 1px solid $white-three;
+				padding-left: 0;
+				padding-right: 0;
+				padding-top: 0;
+			}
+
+			ul.menu {
+				padding-left: 1rem;
+				&>li{
+					border-bottom: 1px solid transparentize($white-three, .5);
+					padding-bottom: 0.7rem;
+
+					&>a {
+						border-bottom: none;
+						padding-bottom: 0;
+					}
+				}
+			}
+		}
+
+		// Desktop menu
+		@include breakpoint($menu-breakpoint) {
+			
+			margin-bottom: 2.5rem;
+			margin-top: 2.5rem;
+			padding: 0 1rem;
+
+			&>li {
+				font-weight: $header-font-weight;
+				font-family: $header-font-family;
+				border-bottom: none !important;
+				padding-left: 0;
+				padding-right: 0;
+				padding-top: 0;
+				padding-bottom: 0;
+				// padding: $menu-item-padding;
+				padding-bottom: 1rem;
+				&>a {
+					border-bottom: none !important;
+					padding-left: 0;
+					padding-right: 0;
+					padding-top: 0;
+					padding-bottom: 0;
+				}
+				ul.menu {
+					padding-left: 0;
+					padding-right: 0;
+					padding-top: 1.5rem;
+					margin: 0;
+					&>li {
+						font-weight: normal;
+						font-family: $body-font-family;
+						border-bottom: 0;
+						padding: $menu-item-padding;
+						padding-bottom: 0;
+						padding-left: 0;
+						padding-right: 0;
+						&>a, &>.selflink {
+							padding-bottom: 0.5rem;
+							line-height: 1;
+							display: block;
+							padding-left: 0;
+							padding-right: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.main-navigation, .title-bar {
+	ul.menu>li>a {
+		color: $white-three;
+	}
+	.is-accordion-submenu-parent {
+		a::after {
+			border-color: $white-three transparent transparent;
+		}
+	}
+}
+
+.title-bar {
+	@include breakpoint(large) {
+		display: none;
+	}
+}
+
+// TopBar (desktop only)
+.top-bar {
+	.title-area {
+		z-index: 1;
+	}
+	background-color: transparent;
+	a, button {
+		color: $slate;
+	}
+	ul.menu {
+		background-color: transparent;
+		&>li {
+			text-transform: uppercase;
+			height: 9.375rem; 
+			padding-left: 0.5rem;
+			padding-right: 0.5rem; 
+			font-size: 0.9rem;
+			@include breakpoint (1058px) {
+				padding-left: 0.7rem;
+				padding-right: 0.7rem; 
+				font-size: 1rem;
+			}
+
+			&>a {
+				padding: 0;
+				text-transform: uppercase;
+				color: $charcoal-grey;
+			}
+		}
+	}
+	.top-bar-right {
+		// Search and menu buttons
+		ul.menu {
+			&>li {
+				padding: 0;
+				display: inline-block;
+				&>a {
+					height: 100%;
+					padding-top: 3.3rem;
+					width: 3.7rem;
+					@include breakpoint(1124px) {
+						width: 5.3125rem; 
+						@include breakpoint(1195px) {
+							width: 7.3125rem;
+						}
+	
+					}
+					&.toggled {
+						color: $white;
+					}
+					
+					&.search-button {
+						padding-top: 3.5rem
+					}
+				}
+			}
+
+		}
+	}
+
+
+	.site-logo {
+		padding: 2rem 0 1rem 1rem;
+		img {height: 63px; margin-bottom: 0.75rem;}
+		.site-slogan {
+			font-size: 0.667rem; 
+			color: rgba(70, 87, 99, 0.85);
+			margin-bottom: 0;
+		}
+	}
+	.menu-button, .search-button {
+		i {
+			display: block;
+			margin: auto;
+			font-size: 1.9rem;
+		}
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	
+
+} 
+
+.off-canvas-list {
+	ul {
+		margin-left: 0;
+		li {
+			a {
+				border-bottom: 0px;
+			}
+		}
+		.dropdown {
+			margin-left: 20px;
+		}
+	}
+}
+
+// Language trigger
+.uls-trigger {
+	background: none !important;
+}
+/***
+Profile box
+	*****/
+.profile-box {
+	text-align: center;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+	img {
+		display: none;
+		@include breakpoint($menu-breakpoint) {
+			display: block;
+			margin: auto;
+			border-radius: 300px;
+			border: 3px solid $white-three;
+		}
+	}
+	&>i {
+		font-size: 6rem;
+		color: $white-one;
+		border-radius: 300px;
+	}
+	ul.menu {
+		@include grid-row;
+	    margin-left: -0.83333333rem;
+	    margin-right: -0.83333333rem;
+
+		&>li {
+		    border-bottom: none !important;
+			@include grid-column(6);
+			text-align: left;
+			@include breakpoint($menu-breakpoint) {
+				text-align: center;
+			}
+			&:last-child {
+				text-align: right;
+				@include breakpoint($menu-breakpoint) {
+					text-align: center; 
+				}
+			}
+			@include breakpoint($menu-breakpoint) {
+				text-align: center;
+				@include grid-column(12);
+			}
+			&>a {
+				border-bottom: none !important;
+			}
+		}
+
+		@include breakpoint($menu-breakpoint) {
+			margin-top: 0 !important;
+			&>li {
+				padding: 0;
+				&>a {
+					padding: 0 !important;
+					padding-top: 0.5rem;
+				}
+			}
+		}
+	}
+
+}
+
+/*********************
+HEADER STYLES
+*********************/
+.header {
+	ul.off-canvas-list li {
+		list-style: none;
+	}
+}
+
+.title-bar {
+	background-color: $slate;
+	padding: 1.2rem 2rem;
+	.title-bar-logo {
+		max-width: 112px; 
+		height: auto;
+
+	}
+	&>button {
+		float: right;
+		font-size: 0.6rem;
+		text-transform: uppercase;
+
+		&>i {
+			display: block;
+			margin: auto;
+		}
+	}
+}
+
+.site-header {
+	// Specifics for search-modal when in top-bar
+	position: relative;
+	.search-modal {
+		position: absolute;
+	}
+	// Specifics for mega-menu when in top-bar
+	.mega-menu {
+		@include breakpoint ($menu-breakpoint) {
+			position: absolute;
+			left: 0;
+			right:0;
+		}
+	}
+}
+
 /*********************
 POSTS & CONTENT STYLES
 *********************/

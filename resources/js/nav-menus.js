@@ -37,5 +37,13 @@
  	// Close on blur from header
  	$('[data-openclose-context]').blur(function(){
  		$(this).find('[data-openclose].toggled').click();
- 	})
+ 	});
+
+
+ 	// Set language module
+ 	$('[data-set-language]').click(function(){
+		var language_code = $(this).attr('data-set-language');
+		mw.uls.changeLanguage(language_code);
+		return false;
+ 	});
  });
