@@ -440,6 +440,21 @@ HEADER STYLES
 	}
 }
 
+.header-image-continer{
+
+	display: block;
+	height: 190px;
+	background-size: cover;
+	background-position: center center;
+	@include breakpoint(medium) {
+		height: 300px;
+		border-bottom: 2px solid $dark-peach;
+		@include breakpoint(large){
+			height: 550px;
+		}
+	}
+}
+
 /*********************
 POSTS & CONTENT STYLES
 *********************/

@@ -28,6 +28,10 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 			<?php $this->getHeaderBar(); ?>
 
+			<!-- Header image is inserted with Javascript -->
+			<div class="header-image-continer hide" id="header-image" style="background-image:url('http://placehold.it/1899x900');">
+			</div>
+		
 			<div class="mw-body" role="main">
 				<?php
 				if ( $this->data['sitenotice'] ) {
