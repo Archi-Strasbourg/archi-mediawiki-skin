@@ -36,7 +36,7 @@ h1, .h1 {
 }
 
 h2, .h2 {
-
+	
 }
 
 h3, .h3 {
@@ -65,7 +65,7 @@ Search modal
 		padding-top: 0.25rem;
 	}
 	.search-title {
-		font-size: 1.563rem;
+		font-size: 1.7rem;
 	}
 	.input-group {
 		.search-input {
@@ -73,7 +73,7 @@ Search modal
 		}
 		.input-group-button {
 			a {
-				height: 2.2rem;
+				height: 2.5rem;
 				line-height: 2.9rem;
 				padding: 0 0.7rem;
 				border: 0.125rem solid $dark-peach;
@@ -269,7 +269,7 @@ $menu-breakpoint: large;
 				&>a {
 					height: 100%;
 					padding-top: 3.3rem;
-					width: 3.7rem;
+					width: 4.7rem;
 					@include breakpoint(1124px) {
 						width: 5.3125rem; 
 						@include breakpoint(1195px) {
@@ -295,7 +295,7 @@ $menu-breakpoint: large;
 		padding: 2rem 0 1rem 1rem;
 		img {height: 63px; margin-bottom: 0.75rem;}
 		.site-slogan {
-			font-size: 0.667rem; 
+			font-size: 0.778rem; 
 			color: rgba(70, 87, 99, 0.85);
 			margin-bottom: 0;
 		}
@@ -456,129 +456,228 @@ HEADER STYLES
 }
 
 /*********************
-POSTS & CONTENT STYLES
+CONTENT STYLES
 *********************/
-#content {
-	#inner-content {
-		padding: 1rem 0rem;
+
+// Left column on fiches
+.mw-body {
+	@include grid-row;
+	.mw-info-column {
+		@include grid-column
+		@include breakpoint(medium) {
+			@include grid-column(4);
+		}
+	}
+	.mw-content-column {
+		@include grid-column
+		@include breakpoint(medium) {
+			@include grid-column(8);
+		}
 	}
 }
 
-.single-title,
-.page-title {
-	
-}
 
-.single-title {
-	
-}
+// Map info box 
+.infobox {
+	font-size: 0.778rem;
 
-.page-title {
-	
-	// Remove Foundation vcard styling from author page titles
-	.vcard {
-		border: 0px;
-		padding: 0px;
+	@include breakpoint(medium) {
+		margin-top: -150px;
 	}
+	border-collapse: separate;
+	tr:first-child {
+		td {
+			padding: 0;
+			border: 0;
+
+			.maps-map {
+				width: 100% !important;
+			}
+		}
+	}
+	tr:nth-child(2) {
+		display: none;
+	}
+
+	tr{
+
+		&>th {
+			width: 50% !important;
+			text-align: left;
+			font-weight: normal;
+		}
+		&>td {
+			text-align: right;
+			font-weight: $global-weight-bold;
+			font-size: 0.8rem;
+		}
+	}
+
 }
 
-.archive-title {
 
-}
-
-// Post meta  
-.byline {
-	color: #999;
-	time {}
-}
 
 // Entry content  
-.entry-content {
-	
-	img {
-		max-width: 100%;
-		height: auto;
+// .thumb {
+// 	display:none;
+// }
+
+// Breadcrumb
+#category-bread-crumbs {
+	font-size: 0.778rem;
+	a {
+		text-decoration: underline;
+		padding: 0 0.4rem;
+	}
+}
+
+h1.firstHeading {
+	font-size: 1.778rem;
+}
+
+#siteSub {
+	display: none;
+}
+
+.mw-pt-translate-header {
+	display:none;
+}
+
+#mw-content-text {
+
+	padding-top: 1rem;
+
+	hr {
+		display: none;
 	}
 
-	.alignleft, img.alignleft { 
-		margin-right: 1.5em; 
-		display: inline; 
-		float: left; 
+	a {
+		text-decoration: underline;
 	}
-	.alignright, img.alignright { 
-		margin-left: 1.5em; 
-		display: inline; 
-		float: right; 
-	}
-	.aligncenter, img.aligncenter { 
-		margin-right: auto; 
-		margin-left: auto; 
-		display: block; 
-		clear: both; 
-	}
-			
-	video, object {
-		max-width: 100%;
-		height: auto;
+
+	h2 {
+		padding-bottom: 0.5rem;
+		border-bottom: 3px solid $dark-peach;
+		margin-bottom: 1.2rem;
+
+		.mw-editsection {
+			float: right;
+			margin-top: 1rem;
+			font-weight: normal;
+			font-family: $body-font-family;
 		}
-
-	pre {
-		background: #eee;
-		border: 1px solid #cecece;
-		padding: 10px;
+		a {
+			font-weight: normal;
 		}
-
-} 
-
-.wp-caption {
-	max-width: 100%;
-	background: #eee;
-	padding: 5px;
-
-	// Images inside wp-caption  
-	img {
-		max-width: 100%;
-		margin-bottom: 0;
-		width: 100%;
 	}
 
-	p.wp-caption-text {
-		font-size: 0.85em;
-		margin: 4px 0 7px;
-		text-align: center;
+}
+
+// Summary / TOC
+#toc {
+	font-size: 0.9rem;
+	background-color: $white;
+	overflow: hidden;
+	#toctitle {
+		h2 {
+			font-size: 1rem;
+			margin-bottom: 0;
+		}
+		border-bottom: 1px solid $dark-peach;
+		padding: 0.6rem 0.7rem;
 	}
-} 
+
+	ul {
+		margin: 0.5rem 0.7rem !important;
+		li {
+			list-style-type: none;
+			position: relative;
+			margin: 0.25rem 0;
+			a {
+				color: $slate;
+				line-height: 1.8;
+				font-size: 0.9rem;
+				.tocnumber {
+					text-decoration: underline;
+				}
+				.toctext {
+					text-decoration: underline;
+					position: absolute;
+					left: 11%;
+				}
+				sup {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
 
 // Add Foundation styling to password protect button
 .post-password-form input[type="submit"] {
 	@include button;
 }
 
+
+table {
+	border-top: 3px solid $dark-peach;
+	tbody {
+		tr {
+			background-color: white !important;
+			th, td {
+				padding: 0.6rem 0.7rem 0.7rem;
+				border-bottom: 1px solid transparentize($greyish, 0.7);
+			}
+			th:first-child, td:first-child {
+				margin-left: 10px;
+			}
+			td:last-child {
+				margin-right: 10px;
+			}
+		}
+	}
+}
+
+.gallery {
+	margin: 0 !important;
+	text-align: center;
+}
+// Gallery boxes
+li.gallerybox {
+	background-color: $white;
+	border: 0;
+	border-bottom: 1px solid $dark-peach;
+	width: 180px !important;
+	margin: 1rem;
+	&>* {
+		width: 100% !important;
+	}
+	div.thumb {
+		border: 0;
+		background-color: $white;
+		width: 100% !important;
+		margin: 0;
+		&>div {
+			margin: 0 !important;
+			img {width: 100% !important;}
+		}
+	}
+	.gallerytext {
+		text-align: center;
+		padding: 0;
+		color: $slate;
+		font-size: 0.9rem;
+		p {
+			margin: 0.5rem 0.3rem;
+		}
+	}
+}
+
 /*********************
 IMAGE GALLERY STYLES
 *********************/
-	.gallery {
 
-		dl {
-
-			a {}
-
-			img {}
-
-		}
-
-		dt {}
-
-		dd {}
-
-} 
-
-// Gallery caption styles
-.gallery-caption {}
-.size-full {}
-.size-large {}
-.size-medium {}
-.size-thumbnail {}
 
 /*********************
 PAGE NAVI STYLES

@@ -22,19 +22,3 @@ $('form').each(function(){
 });
 
 
-/**
- * Set up header image
- */
-$(document).ready(function(){
-	// Generic article page
-	var featuredThumbUrl = $('#mw-content-text').find('a.image>img').first().attr('src');
-	if (typeof featuredThumbUrl != 'undefined') {
-		featuredThumbUrl = featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('/'));
-		var featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
-		$('#header-image').css({
-			backgroundImage: 'url(' + featuredImageUrl + ')'
-		}).removeClass('hide');
-	}
-
-
-});

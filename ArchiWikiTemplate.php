@@ -13,7 +13,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private $availableLanguages = array(
 			"Français"		=> "fr",
 			"English" 		=> "en",
-			"Detusch" 		=> "de"
+			"Deutsch" 		=> "de"
 		);
 
 	/**
@@ -639,5 +639,9 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 			return $avatarFile->createThumb($width);
 		}
+	}
+
+	private function getTranslations($width) {
+		
 	}
 }
