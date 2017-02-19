@@ -5,7 +5,7 @@
  * @ingroup Skins
  */
 class SkinArchiWiki extends SkinTemplate {
-	public $skinname = 'archiwiki', $stylename = 'ArchiWiki',
+	public $skinname = 'archiwiki', $stylename = 'archi-wiki',
 		$template = 'ArchiWikiTemplate', $useHeadElement = true;
 
 	/**
