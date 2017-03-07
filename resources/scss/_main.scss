@@ -19,6 +19,9 @@ a, a:visited {
 		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
 	}
 }
+.site-button {
+	@extend .button;
+}
 
 /*********************
 H1, H2, H3, H4, H5 P STYLES
@@ -429,6 +432,7 @@ HEADER STYLES
 	position: relative;
 	.search-modal {
 		position: absolute;
+		z-index: 9999;
 	}
 	// Specifics for mega-menu when in top-bar
 	.mega-menu {
@@ -436,6 +440,7 @@ HEADER STYLES
 			position: absolute;
 			left: 0;
 			right:0;
+			z-index: 9999;
 		}
 	}
 }
@@ -476,13 +481,51 @@ CONTENT STYLES
 	}
 }
 
+// General infobox styling 
+.columnbox {
+	background-color: $white;
+	font-size: 0.9rem;
+	background-color: $white;
+	overflow: hidden;
+	margin-top: 16px;
+	a, a.new {
+		color: $slate; 
+		text-decoration:underline;
+	}
+
+	.columnbox-title {
+		font-size: 1rem;
+		margin-bottom: 0;
+		border-bottom: 1px solid $dark-peach;
+		padding: 0.6rem 0.7rem;
+	}
+
+	ul {
+		margin-top:11px;
+		margin-left:11px;
+		margin-bottom:11px;
+		li {
+			list-style:none;
+			margin-bottom:5px;
+		}
+	}
+	
+}
+
 
 // Map info box 
 .infobox {
-	font-size: 0.778rem;
+	@extend .columnbox;
 
+	font-size: 0.778rem;
 	@include breakpoint(medium) {
 		margin-top: -150px;
+		&.no-header-image {
+			margin-top: 0;
+		}
+	}
+	a, a.new {
+		text-decoration:none;
 	}
 	border-collapse: separate;
 	tr:first-child {
@@ -498,6 +541,9 @@ CONTENT STYLES
 	tr:nth-child(2) {
 		display: none;
 	}
+	tr:last-child {
+		border-bottom:none;
+	}
 
 	tr{
 
@@ -510,12 +556,68 @@ CONTENT STYLES
 			text-align: right;
 			font-weight: $global-weight-bold;
 			font-size: 0.8rem;
+
+			&[colspan="2"] {
+				text-align:center;
+			}
+
+
+		}
+
+		&.end-section {
+			td, th {border-bottom-width: 1px; border-bottom-color: $greyish;}
+		}
+	}
+}
+
+// Summary / TOC
+#toc {
+	@extend .columnbox;
+
+	#toctitle {
+		h2 {
+			@extend .columnbox-title;
 		}
 	}
 
+	ul {
+		margin: 0.5rem 0.7rem !important;
+		li {
+			list-style-type: none;
+			position: relative;
+			margin: 0.25rem 0;
+			a {
+				color: $slate;
+				line-height: 1.8;
+				font-size: 0.9rem;
+				text-decoration:none; 
+				.tocnumber {
+					// text-decoration: underline;
+
+					&::after {
+						content:'.';
+					}
+				}
+				.toctext {
+					text-decoration: underline;
+					position: absolute;
+					left: 11%;
+				}
+				sup {
+					text-decoration: none;
+				}
+			}
+		}
+	}
 }
 
+.translations {
+	@extend .columnbox;
 
+	.translations-title {
+		@extend .columnbox-title;
+	}
+}
 
 // Entry content  
 // .thumb {
@@ -546,7 +648,7 @@ h1.firstHeading {
 #mw-content-text {
 
 	padding-top: 1rem;
-
+	padding-bottom: 2rem;
 	hr {
 		display: none;
 	}
@@ -559,6 +661,7 @@ h1.firstHeading {
 		padding-bottom: 0.5rem;
 		border-bottom: 3px solid $dark-peach;
 		margin-bottom: 1.2rem;
+		clear:both;
 
 		.mw-editsection {
 			float: right;
@@ -573,45 +676,7 @@ h1.firstHeading {
 
 }
 
-// Summary / TOC
-#toc {
-	font-size: 0.9rem;
-	background-color: $white;
-	overflow: hidden;
-	#toctitle {
-		h2 {
-			font-size: 1rem;
-			margin-bottom: 0;
-		}
-		border-bottom: 1px solid $dark-peach;
-		padding: 0.6rem 0.7rem;
-	}
 
-	ul {
-		margin: 0.5rem 0.7rem !important;
-		li {
-			list-style-type: none;
-			position: relative;
-			margin: 0.25rem 0;
-			a {
-				color: $slate;
-				line-height: 1.8;
-				font-size: 0.9rem;
-				.tocnumber {
-					text-decoration: underline;
-				}
-				.toctext {
-					text-decoration: underline;
-					position: absolute;
-					left: 11%;
-				}
-				sup {
-					text-decoration: none;
-				}
-			}
-		}
-	}
-}
 
 
 // Add Foundation styling to password protect button
@@ -675,6 +740,204 @@ li.gallerybox {
 }
 
 /*********************
+REFERENCES 
+*********************/
+.mw-content-ltr ol.references, .mw-content-rtl .mw-content-ltr ol.references {
+	@include breakpoint(small only) {
+		margin-left:1rem;
+	}
+}
+
+/*********************
+CATEGORIES 
+*********************/
+
+.mw-normal-catlinks {
+	padding: 10px 15px;
+	border: 1px solid $white-one;
+	font-size: 16px;
+	 a {
+	 	color: $charcoal-grey;
+	 	text-decoration: underline;
+	 }
+}
+
+/*********************
+ARTICLE PRE-COMMENTS FOOTER  
+*********************/
+
+#mw-data-after-content {
+	// Contribuer line
+	&>p:first-child {
+		text-align: center;
+		font-size: rem-calc(14px);
+		padding:2rem 0;
+		a {
+			color: $slate;
+
+			&::before {
+				content: '+';
+				margin-right:1rem;
+				border:1px solid $slate;
+				border-radius: 500px;
+				width: 20px;
+				display: inline-block;
+				height: 20px;
+				line-height: 17px;
+			}
+		}
+	}
+
+	// Prev / Next line 
+	&>div.noexcerpt {
+		font-size: 0.5rem;
+		a {
+			font-size: rem-calc(14px);
+			text-decoration: underline;
+			color: $slate;
+			margin: 0 0.5rem;
+			display: inline-block;
+		}
+	}
+}
+
+/********************
+Comments 
+*********************/
+
+#mw-data-after-content {
+	&>div.noexcerpt+h2 {
+		border-bottom: 3px solid $greeny-blue;
+		padding-bottom:5px;
+		#Commentaires {
+			& + .mw-editsection {
+				display:none;
+			}
+		}
+	}
+	.comments-body {
+		.c-order {
+			display:none;
+		}
+		a {
+			color: $sea;
+		}
+		// Comment 
+		.c-item {
+			@include grid-row(12);
+			margin-left:-0.975rem;
+			margin-right:-0.975rem;
+			margin-bottom: 30px;
+
+			&.reply {
+				margin-left:7%;
+			}
+			.c-avatar {
+				@include grid-column(2);
+				text-align: center;
+				&>img {
+					width:80px;
+					height:auto; 
+					border-radius:100px;
+					border: 3px solid $greeny-blue;
+				}
+			}
+			.c-container {
+				@include grid-column(10);
+
+				.c-user {
+					overflow:hidden;
+					margin-bottom: 10px;
+					p {
+						font-weight:bold;
+						float:left;
+						margin-bottom:0;
+					}
+					.c-time {
+						float:left;
+						color: $sea;
+						font-style:italic;
+						margin-left:10px;
+						font-size: rem-calc(14px);
+
+					}
+					.c-score {
+						display:none;
+					}
+				}
+				.c-comment {
+					margin-bottom:10px;
+				}
+				.c-actions {
+					font-size: rem-calc(14px);
+					p {
+						display: flex;
+						flex-direction: row-reverse;
+						justify-content: flex-end;
+						visibility: hidden;
+					}
+					a {
+						visibility:visible;
+						font-style:italic;
+						color: $greyish;
+
+						&.comments-reply-to {
+							color: $sea;
+							font-style:normal;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.showhide-comments {
+		color: $slate !important;
+		display:block;
+		text-align:center;
+		font-size:rem-calc(14px);
+		margin-bottom:2rem;
+
+		&::before {
+			content: '+';
+			margin-right:1rem;
+			border:1px solid $slate;
+			border-radius: 500px;
+			width: 20px;
+			display: inline-block;
+			height: 20px;
+			line-height: 17px;
+		}
+
+	}
+
+	form[name="commentForm"] {
+		.c-form-title {
+			font-family: $header-font-family;
+			font-weight: $header-font-weight;
+			border-bottom: 3px solid $greeny-blue;
+			padding-bottom: 5px;
+			font-size: 1.3rem;
+			margin-bottom: 0.5rem;
+		}
+		textarea {
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
+		}
+		.site-button {
+			background-color: $greeny-blue;
+			&:hover {
+				background-color: darken($greeny-blue, 5%);
+			}
+		}
+	}
+
+	.comment-form {
+		display:none;
+	}
+}
+
+/*********************
 IMAGE GALLERY STYLES
 *********************/
 
@@ -684,254 +947,6 @@ PAGE NAVI STYLES
 *********************/
 .page-navigation {
 	margin-top: 1rem;
-}
-
-/*********************
-COMMENT STYLES
-*********************/
-#comments {
-	.commentlist {
-		margin-left: 0px;
-	}
-}
-
-#respond {
-	ul {
-		margin-left: 0px;
-	}
-}
-
-.commentlist {
-	li {
-		position: relative;
-		clear: both;
-		overflow: hidden;
-		list-style-type: none;
-		margin-bottom: 1.5em;
-		padding: 0.7335em 10px;
-
-		&:last-child {
-			margin-bottom: 0;
-		}
-
-		ul.children {
-			margin: 0;
-
-			li {}
-
-			.comment {}
-			.alt {}
-			.odd {}
-			.even {}
-			.depth-1 {}           // Change number for different depth  
-			.byuser {}
-			.bypostauthor {}
-			.comment-author-admin {}
-
-		}
-	}
-
-	li[class*=depth-] {
-		margin-top: 1.1em;
-	}
-
-	li.depth-1 {
-		margin-left: 0;
-		margin-top: 0;
-	}
-
-	li:not(.depth-1) {
-		margin-left: 10px;
-		margin-top: 0;
-		padding-bottom: 0;
-	}
-
-	li.depth-2 {}
-	li.depth-3 {
-	}
-	li.depth-4 {}
-	li.depth-5 {}
-
-	// General comment classes  
-	.alt {}
-	.odd {
-	}
-	.even {
-	}
-	.parent {}
-	.comment {}
-	.children {}
-	.pingback {}
-	.bypostauthor {}
-	.comment-author {}
-	.comment-author-admin {}
-	.thread-alt {}
-	.thread-odd {}
-	.thread-even {}
-
-	// vcard  
-	.vcard {
-		margin-left: 50px;
-
-		cite.fn {
-			font-weight: 700;
-			font-style: normal;
-
-			a.url {}
-
-		}
-
-		time {
-			float: right;
-
-			a {
-				color: #999;
-				text-decoration: none;
-
-				&:hover {
-					text-decoration: underline;
-				}
-
-			}
-
-		}
-
-		img.photo {}
-
-		img.avatar {
-			position: absolute;
-			left: 10px;
-			padding: 2px;
-			border: 1px solid #cecece;
-			background: #fff;
-		}
-
-	} // end .commentlist .vcard  
-
-
-	// comment meta  
-	.comment-meta {
-
-		a {}
-
-	}
-
-	.commentmetadata {
-
-		a {}
-
-	}
-
-	// comment content  
-	.comment_content {
-
-		p {
-			margin: 0.7335em 0 1.5em;
-			font-size: 1em;
-			line-height: 1.5em;
-		}
-
-	} // end .commentlist .comment_content  
-
-	// comment reply link  
-	.comment-reply-link {
-		float: right;
-
-		&:hover,
-		&:focus {
-		
-		}
-
-	} // end .commentlist .comment-reply-link  
-
-} // end .commentlist  
-
-/*********************
-COMMENT FORM STYLES
-*********************/
-.respond-form {
-	margin: 1.5em 10px;
-	padding-bottom: 2.2em;
-
-	form {
-		margin: 0.75em 0;
-
-		li {
-			list-style-type: none;
-			clear: both;
-			margin-bottom: 0.7335em;
-
-			label,
-			small {
-				display: none;
-			}
-		}
-
-		input[type=text],
-		input[type=email],
-		input[type=url],
-		textarea {
-			padding: 3px 6px;
-			background: #efefef;
-			border: 2px solid #cecece;
-			line-height: 1.5em;
-
-			&:focus {
-				background: #fff;
-			}
-
-			// form validation  
-			&:invalid {
-				outline: none;
-				border-color: #fbc2c4;
-				background-color: #f6e7eb;
-				-webkit-box-shadow: none;
-				   -moz-box-shadow: none;
-				    -ms-box-shadow: none;
-						box-shadow: none;
-			}
-		}
-
-		input[type=text],
-		input[type=email],
-		input[type=url] {
-			max-width: 400px;
-			min-width: 250px;
-		}
-
-		textarea {
-			resize: none;
-			width: 97.3%;
-			height: 150px;
-		}
-
-	}
-}
-
-// comment submit button  
-#submit {}
-
-// comment form title  
-#comment-form-title {
-	margin: 0 0 1.1em;
-}
-
-// cancel comment reply link  
-#cancel-comment-reply {
-	a {}
-}
-
-// logged in comments  
-.comments-logged-in-as {}
-
-// allowed tags  
-#allowed_tags {
-	margin: 1.5em 10px 0.7335em 0;
-}
-
-// No comments  
-.nocomments {
-	margin: 0 20px 1.1em;
 }
 
 /*********************
@@ -968,9 +983,52 @@ SIDEBARS & ASIDES
 /*********************
 FOOTER STYLES
 *********************/
-.footer {
+#mw-footer {
 	clear: both;
 	margin-top: 1em;
+	padding: 3rem 0;
+	background-color: $charcoal-grey;
+	color: $white;
+	a {
+		color: $white;
+	}
+	ul {
+		margin:0;
+		margin-top: 15px;
+		font-size: rem-calc(14px);
+		li {
+			list-style: none;
+			margin-bottom: 10px;
+		}
+	}
+	h2 {
+		font-size: rem-calc(12px);
+		font-weight: bold;
+		margin-top:30px;
+	}
+
+	.partners {
+		a {
+			display:inline-block;
+			margin-left:15px;
+			margin-bottom: 20px;
+		}
+
+	}
+	.button.hollow {
+		border-width:3px;
+		border-color:$white;
+		font-weight: $global-weight-bold;
+		position:relative;
+		i.icon {
+			font-size:1.6em;
+			margin-top: -1rem;
+			display: inline-block;
+			position: relative;
+			top: 5px;
+			right: 9px;
+		}
+	}
 }
 	
 /*********************

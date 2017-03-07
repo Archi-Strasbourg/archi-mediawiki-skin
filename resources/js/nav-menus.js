@@ -46,4 +46,9 @@
 		mw.uls.changeLanguage(language_code);
 		return false;
  	});
+
+ 	// Submit search form 
+ 	$('.form-submit').click(function(){
+ 		$(this).closest('form').submit();
+ 	});
  });

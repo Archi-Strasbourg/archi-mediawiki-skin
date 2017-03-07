@@ -25,6 +25,7 @@ class SkinArchiWiki extends SkinTemplate {
 		// Google Fonts 
 		$out->addStyle( "//fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,400i,600" );
 		$out->addStyle( "//fonts.googleapis.com/icon?family=Material+Icons" );
+		$out->addStyle( "//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" );
 
 		$out->addModuleScripts( array(
 			'skins.archiwiki.js'

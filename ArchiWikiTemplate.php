@@ -17,9 +17,33 @@ class ArchiWikiTemplate extends BaseTemplate {
 		);
 
 	/**
+	 * Social networks
+	 */
+	private $socialNetworks = array(
+		"twitter" 	=> array(
+			'handle' 	=> '@ArchiStrasbourg',
+			'url' 		=> 'https://twitter.com/ArchiStrasbourg',
+			'icon'		=> '<i class="icon ion-social-twitter"></i>',
+		),
+		"facebook" 	=> array(
+			'handle' 	=> 'Archi.Strasbourg',
+			'url' 		=> 'https://fr-fr.facebook.com/Archi.Strasbourg/',
+			'icon'		=> '<i class="icon ion-social-facebook"></i>',
+		),
+		"instagram" 	=> array(
+			'handle' 	=> 'archi_strasbourg',
+			'url' 		=> 'https://www.instagram.com/archi_strasbourg/',
+			'icon'		=> '<i class="icon ion-social-instagram"></i>',
+		)
+	);
+
+	/**
 	 * Outputs the entire contents of the page
 	 */
 	public function execute() {
+
+		global $wgOut;
+
 		$this->html( 'headelement' );
 		?>
 		<div class="wrapper row column">
@@ -99,83 +123,80 @@ class ArchiWikiTemplate extends BaseTemplate {
 			</div>
 
 			<div id="mw-navigation">
-				<?php
-				echo Html::rawElement(
-					'h2',
-					[],
-					$this->getMsg( 'navigation-heading' )->parse()
-				);
 
-				echo $this->getLogo();
-				echo $this->getSearch();
+				<?php echo $this->getTranslations(); ?>
+				<?php
+				// echo Html::rawElement(
+				// 	'h2',
+				// 	[],
+				// 	$this->getMsg( 'navigation-heading' )->parse()
+				// );
+
+				// echo $this->getLogo();
+				// echo $this->getSearch();
 
 				// User profile links
-				echo Html::rawElement(
-					'div',
-					array( 'id' => 'user-tools' ),
-					$this->getUserLinks()
-				);
+				// echo Html::rawElement(
+				// 	'div',
+				// 	array( 'id' => 'user-tools' ),
+				// 	$this->getUserLinks()
+				// );
 
 				// Page editing and tools
-				echo Html::rawElement(
-					'div',
-					array( 'id' => 'page-tools' ),
-					$this->getPageLinks()
-				);
+				// echo Html::rawElement(
+				// 	'div',
+				// 	array( 'id' => 'page-tools' ),
+				// 	$this->getPageLinks()
+				// );
 
 				// Site navigation/sidebar
-				echo Html::rawElement(
-					'div',
-					array( 'id' => 'site-navigation' ),
-					$this->getSiteNavigation()
-				);
+				// echo Html::rawElement(
+				// 	'div',
+				// 	array( 'id' => 'site-navigation' ),
+				// 	$this->getSiteNavigation()
+				// );
 				?>
 			</div>
 
-			<div id="mw-footer">
-				<?php
-				echo Html::openElement(
-					'ul',
-					array(
-						'id' => 'footer-icons',
-						'role' => 'contentinfo'
-					)
-				);
-				foreach ( $this->getFooterIcons( 'icononly' ) as $blockName => $footerIcons ) {
-					echo Html::openElement(
-						'li',
-						array(
-							'id' => 'footer-' . Sanitizer::escapeId( $blockName ) . 'ico'
-						)
-					);
-					foreach ( $footerIcons as $icon ) {
-						echo $this->getSkin()->makeFooterIcon( $icon );
-					}
-					echo Html::closeElement( 'li' );
-				}
-				echo Html::closeElement( 'ul' );
+		</div>
 
-				foreach ( $this->getFooterLinks() as $category => $links ) {
-					echo Html::openElement(
-						'ul',
-						array(
-							'id' => 'footer-' . Sanitizer::escapeId( $category ),
-							'role' => 'contentinfo'
-						)
-					);
-					foreach ( $links as $key ) {
-						echo Html::rawElement(
-							'li',
+
+		<div id="mw-footer">
+			<div class="row">
+				<div class="small-12 medium-3 large-3 text-center columns">
+					<a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki-white.png' )?>"/></a>
+					<?php foreach ( $this->getFooterLinks() as $category => $links ) {
+						echo Html::openElement(
+							'ul',
 							array(
-								'id' => 'footer-' . Sanitizer::escapeId( $category . '-' . $key )
-							),
-							$this->get( $key )
+								'id' => 'footer-' . Sanitizer::escapeId( $category ),
+								'role' => 'contentinfo'
+							)
 						);
-					}
-					echo Html::closeElement( 'ul' );
-				}
-				$this->clear();
-				?>
+						foreach ( $links as $key ) {
+							echo Html::rawElement(
+								'li',
+								array(
+									'id' => 'footer-' . Sanitizer::escapeId( $category . '-' . $key )
+								),
+								$this->get( $key )
+							);
+						}
+						echo Html::closeElement( 'ul' );
+					} ?>
+				</div>
+				<div class="small-12 medium-6 large-6 text-center columns">
+					<h2><?php echo $this->getMsg('partner-contributions-title'); ?></h2>
+					<div class="partners">
+						<?php echo $wgOut->parse('{{Partenaire_logos}}'); ?>
+					</div>
+
+				</div>
+				<div class="small-12 medium-3 large-3 columns">
+					<?php foreach ($this->socialNetworks as $network) : ?>
+						<a href="<?php echo $network['url'];?>" target="_blank" class="button expanded large hollow"><?php echo $network['icon'];?> <?php echo $network['handle'];?></a>
+					<?php endforeach; ?>
+				</div>
 			</div>
 		</div>
 
@@ -379,6 +400,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 							</ul>
 						</div>
 						<div class="top-bar-right">
+							
 							<ul class="menu">
 								<li><a class="search-button" data-openclose data-target="#search-modal" data-openclose-colorchange="true"><i class="material-icons">search</i></a></li>
 								<li><a class="menu-button" data-openclose data-target="#main-navigation" data-openclose-colorchange="true"><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></a></li>
@@ -472,14 +494,16 @@ class ArchiWikiTemplate extends BaseTemplate {
 				</div>
 				<div class="row">
 					<div class="column large-7 large-offset-2">
-						<div class="input-group">
-							<input type="search" class="search-input input-group-field" placeholder="<?php echo $this->getMsg('search-placeholder');?>">
-							<div class="input-group-button">
-								<a class="button">
-									<i class="material-icons">search</i>
-								</a>
+						<form action="<?php echo $this->get( 'wgScript' ) ?>">
+							<div class="input-group">
+								<input type="search" class="search-input input-group-field" placeholder="<?php echo $this->getMsg('search-placeholder');?>" name="search">
+								<div class="input-group-button">
+									<a class="button" class="form-submit">
+										<i class="material-icons">search</i>
+									</a>
+								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 					<div class="column large-2 end">
 						<a href="<?php echo wfAppendQuery(Title::newFromText('Spécial:Recherche')->getFullURL(), array('profile' => 'advanced')) ;?>" class="advanced-search-link"><?php echo $this->getMsg('advanced-search');?></a>
@@ -641,7 +665,42 @@ class ArchiWikiTemplate extends BaseTemplate {
 		}
 	}
 
-	private function getTranslations($width) {
+	private function getTranslations() {
+		if ($this->getThisTitle()->mNamespace >= 0) {
+			$translationsHTML = '';
+			foreach ($this->availableLanguages as $language => $code) {
+				$translationsHTML .= Html::rawElement('li', array(), 
+						Html::rawElement('a', array(
+								'href'		=> $this->getThisPageUrl().'/'.$code
+							),
+							$language)
+					);
+			}
+			// echo $translationsHTML;
+			$listHTML = Html::rawElement(
+				'ul',
+				array(
+					'class' 	=> 'translations-list'
+					),
+				$translationsHTML);
+			$html = Html::rawElement( 
+				'div',
+				array( 'class' => 'translations' ),
+				Html::rawElement(
+					'h2',
+					array('class' => 'translations-title'),
+					$this->getMsg('translations-title')
+					)
+				.$listHTML
+			);
+		} else {
+			$html = '';
+		}
+		
+
+		
+
+		return $html;
 		
 	}
 }
