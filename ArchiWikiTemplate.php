@@ -163,7 +163,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 		<div id="mw-footer">
 			<div class="row">
-				<div class="small-12 medium-3 large-3 text-center columns">
+				<div class="small-12 medium-12 large-3 text-center columns">
 					<a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki-white.png' )?>"/></a>
 					<?php foreach ( $this->getFooterLinks() as $category => $links ) {
 						echo Html::openElement(
@@ -185,14 +185,14 @@ class ArchiWikiTemplate extends BaseTemplate {
 						echo Html::closeElement( 'ul' );
 					} ?>
 				</div>
-				<div class="small-12 medium-6 large-6 text-center columns">
+				<div class="small-12 medium-12 large-6 text-center columns">
 					<h2><?php echo $this->getMsg('partner-contributions-title'); ?></h2>
 					<div class="partners">
 						<?php echo $wgOut->parse('{{Partenaire_logos}}'); ?>
 					</div>
 
 				</div>
-				<div class="small-12 medium-3 large-3 columns">
+				<div class="small-12 medium-12 large-3 columns">
 					<?php foreach ($this->socialNetworks as $network) : ?>
 						<a href="<?php echo $network['url'];?>" target="_blank" class="button expanded large hollow"><?php echo $network['icon'];?> <?php echo $network['handle'];?></a>
 					<?php endforeach; ?>

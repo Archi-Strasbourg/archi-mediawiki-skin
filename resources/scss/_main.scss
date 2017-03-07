@@ -7,6 +7,9 @@ Stylesheet: Main Stylesheet
 /*********************
 GENERAL STYLES
 *********************/
+body {
+	overflow-x:hidden;
+}
 
 /*********************
 LINK STYLES
@@ -430,6 +433,14 @@ HEADER STYLES
 .site-header {
 	// Specifics for search-modal when in top-bar
 	position: relative;
+	@include breakpoint(medium down) {
+		margin-left: -0.625rem;
+		margin-right: -0.625rem; 
+		@include breakpoint(medium) {
+			margin-left: -0.9375rem;
+			margin-right: -0.9375rem; 
+		}
+	}
 	.search-modal {
 		position: absolute;
 		z-index: 9999;
@@ -451,6 +462,8 @@ HEADER STYLES
 	height: 190px;
 	background-size: cover;
 	background-position: center center;
+	@include grid-row-nest();
+
 	@include breakpoint(medium) {
 		height: 300px;
 		border-bottom: 2px solid $dark-peach;
@@ -467,6 +480,8 @@ CONTENT STYLES
 // Left column on fiches
 .mw-body {
 	@include grid-row;
+	margin-left: -0.625rem;
+	margin-right: -0.625rem;
 	.mw-info-column {
 		@include grid-column
 		@include breakpoint(medium) {
@@ -825,13 +840,10 @@ Comments
 		// Comment 
 		.c-item {
 			@include grid-row(12);
-			margin-left:-0.975rem;
-			margin-right:-0.975rem;
+			@include grid-row-nest();
 			margin-bottom: 30px;
 
-			&.reply {
-				margin-left:7%;
-			}
+			
 			.c-avatar {
 				@include grid-column(2);
 				text-align: center;
@@ -842,6 +854,7 @@ Comments
 					border: 3px solid $greeny-blue;
 				}
 			}
+
 			.c-container {
 				@include grid-column(10);
 
@@ -886,6 +899,15 @@ Comments
 							font-style:normal;
 						}
 					}
+				}
+			}
+			&.reply {
+				.c-avatar {
+					@include grid-column(2);
+					@include grid-column-offset(2);
+				}
+				.c-container {
+					@include grid-column(8);
 				}
 			}
 		}
@@ -1028,6 +1050,50 @@ FOOTER STYLES
 			top: 5px;
 			right: 9px;
 		}
+	}
+}
+
+/********************
+HOMEPAGE 
+*********************/
+.mw-special-ArchiHome {
+	.firstHeading {
+		display:none;
+	}
+	.mw-body-content {
+		@include grid-column-row(40);
+
+		.spotlight-on {
+			margin-bottom: 50px;
+			margin-top:-70px;
+			background-color: $white;
+			padding: 15px;
+			font-size: rem-calc(14px);
+
+			h2 {
+				border-bottom: none !important;
+				font-size: rem-calc(12px);
+				margin-bottom: 0 !important;
+				padding-bottom: 0 !important;
+			}
+			h3 {
+				margin-bottom: 0 !important;
+			}
+			.breadcrumb {
+				font-size: rem-calc(12px);
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+			p:last-of-type {
+				margin-bottom:0;
+				a {
+					&::after {
+						content: ' >';
+					}
+				}
+			}
+		}
+		
 	}
 }
 	

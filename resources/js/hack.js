@@ -68,6 +68,11 @@ $(document).ready(function(){
 			$(this).closest('.comment-form').siblings('.showhide-comments').click(function(){
 				$(this).next().slideToggle();
 			});
-		});
+	});
+
+	/**
+	 * HOMEPAGE things 
+	 */
+	// $('.mw-special-ArchiHome').find('#mw-content-text').find('h2').first().addBack().nextUntil('a:contains(Discover), a:contains(Découvrir), a:contains(Entdecken)').wrapAll('<div class="spotlight-on"></div>');
 
 });
