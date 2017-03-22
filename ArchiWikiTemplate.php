@@ -90,6 +90,9 @@ class ArchiWikiTemplate extends BaseTemplate {
 				?>
 
 				<div class="mw-body-content">
+
+					<?php echo $this->getArchiWikiToolbox(); ?>
+
 					<?php
 					echo Html::openElement(
 						'div',
@@ -143,11 +146,11 @@ class ArchiWikiTemplate extends BaseTemplate {
 				// );
 
 				// Page editing and tools
-				// echo Html::rawElement(
-				// 	'div',
-				// 	array( 'id' => 'page-tools' ),
-				// 	$this->getPageLinks()
-				// );
+				echo Html::rawElement(
+					'div',
+					array( 'id' => 'page-tools' ),
+					$this->getPageLinks()
+				);
 
 				// Site navigation/sidebar
 				// echo Html::rawElement(
@@ -207,6 +210,100 @@ class ArchiWikiTemplate extends BaseTemplate {
 		<?php
 	}
 
+
+	/**
+	 * Generates the side floating toolbox of buttons for changing the article
+	 * @return string html
+	 */
+	private function getArchiWikiToolbox() {
+
+		$toolBoxItems = array(
+			've-edit' => array(
+				'icon' => '<i class="material-icons">mode_edit</i>'
+			),
+			'watch' => array(
+				'icon' => '<i class="material-icons">star_border</i>'
+			),
+			'more'	=> array(
+				'history' => array(
+					'icon'	=> '<i class="material-icons">timer</i>'
+				),
+				'edit' => array(
+					'icon'	=> '<i class="material-icons">code</i>'
+				),
+				'print' => array(
+					'icon'	=> '<i class="material-icons">print</i>'
+				)
+			)
+		);
+
+		$moreToolBoxData = array(
+			'more' 	=> array(
+				'href'	=> '#',
+				'class'	=> 'archiwiki-toolbox-more',
+				'id'	=> 'archiwiki-toolbox-more',
+				'text'	=> $this->getMsg('more-message')->text()
+			)
+		);
+		$printToolBoxData = array(
+			'print'	=> array(
+				'href'	=> $this->getThisPageUrl() . '&printable=yes',
+				'class'	=> 'archiwiki-toolbox-print',
+				'id'	=> 'archiwiki-toolbox-print',
+				'text'	=> $this->getMsg('Print')->text()
+			)
+		);
+		$toolboxData = array_merge($this->data['content_navigation']['views'], $this->data['content_navigation']['actions'], $printToolBoxData);
+		$innerHTML = '';
+		foreach( $toolBoxItems as $key => $item ) {
+			if ( $key === 'more' ) {
+				$moreInfo = array(
+					'icon'	=> '<i class="material-icons">settings</i>'
+				);
+				$innerHTML .= $this->buildToolBoxItem( 'more' , $moreInfo, $moreToolBoxData);
+				foreach ( $item as $moreItemKey => $moreItem ) {
+					$moreHTML .= $this->buildToolBoxItem( $moreItemKey, $moreItem, $toolboxData );
+				}
+				$innerHTML .= Html::rawElement('ul', array('class' => 'archiwiki-toolbox-submenu'), $moreHTML);
+			} else {
+				$innerHTML .= $this->buildToolBoxItem( $key, $item, $toolboxData);
+			}
+			
+		}
+		if (!empty($innerHTML)) {
+			$html = Html::rawElement(
+			'ul',
+			array(
+					'class' 	=> 'archiwiki-toolbox'
+				),
+			$innerHTML);
+		}
+
+		return $html;
+	}
+
+	private function buildToolBoxItem( $key, $item, $toolboxData ){
+		if (isset($toolboxData[$key]) && !empty($toolboxData[$key])) {
+			$itemData = $toolboxData[$key];
+			return Html::rawElement(
+				'li',
+				array(
+					'class'	=> 'archiwiki-toolbox-item'
+				),
+				Html::rawElement(
+					'a',
+					array(
+						'href'	=> $itemData['href'],
+						'class' => $itemData['class'],
+						'id'	=> $itemData['id']
+					),
+					Html::rawElement('span', [], $itemData['text'] ). ' ' . $item['icon']
+				)
+			);
+		} else {
+			return '';
+		}
+	} 
 	/**
 	 * Generates a single sidebar portlet of any kind
 	 * @return string html

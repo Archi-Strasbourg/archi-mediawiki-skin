@@ -23,7 +23,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	
 	// Wrap all content html in a nice div
-	if (!$('body').hasClass('ns--1') && !$('body').hasClass('ns-4')) {
+	if (!$('body').is('.ns-4, .ns--1, .ns-14') ) {
 
 		$('.mw-body').each(function(){
 			$(this).wrapInner('<div class="mw-content-column"></div>');

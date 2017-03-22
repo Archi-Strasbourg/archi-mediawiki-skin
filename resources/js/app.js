@@ -21,4 +21,20 @@ $('form').each(function(){
 	});
 });
 
+/**
+ * Toolbox 
+ */
+$(document).ready(function(){
+	$('.archiwiki-toolbox #archiwiki-toolbox-more').click(function(e){
+		$(this).closest('.archiwiki-toolbox').find(' .archiwiki-toolbox-submenu').slideToggle();
+		return false;
+	});
+	$('.archiwiki-toolbox-submenu').click(function(e){
+	e.stopPropagation();
+	});
+});
+
+$(window).click(function(){
+	$('.archiwiki-toolbox-submenu').slideUp();
+});
 

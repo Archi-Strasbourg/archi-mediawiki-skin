@@ -494,6 +494,9 @@ CONTENT STYLES
 			@include grid-column(8);
 		}
 	}
+	.mw-body-content {
+		position:relative;
+	}
 }
 
 // General infobox styling 
@@ -583,6 +586,12 @@ CONTENT STYLES
 			td, th {border-bottom-width: 1px; border-bottom-color: $greyish;}
 		}
 	}
+
+
+}
+
+.smwtticon.warning {
+	display:none !important;
 }
 
 // Summary / TOC
@@ -683,6 +692,13 @@ h1.firstHeading {
 			margin-top: 1rem;
 			font-weight: normal;
 			font-family: $body-font-family;
+
+			.mw-editsection-bracket {
+				display: none;
+			}
+			a {
+				text-decoration:none;
+			}
 		}
 		a {
 			font-weight: normal;
@@ -1002,6 +1018,79 @@ SIDEBARS & ASIDES
 		}
 	}
 }
+
+.archiwiki-toolbox {
+	margin:0;
+	position:absolute;
+	right:0;
+	li.archiwiki-toolbox-item {
+		list-style:none;
+		text-align:right;
+		position:relative;
+		&>a {
+			border:1px solid $greyish; 
+			display:inline-block;
+			border-radius:50px;
+			font-size:16px; 
+			position:relative;
+			height:30px;
+			white-space: nowrap;
+			min-width:30px;
+			padding-left: 0;
+			padding-right:28px;
+			transition: padding 0.3s;
+			color: $slate;
+
+			
+			&>span{
+				display:inline-block;
+				max-width:0;
+				transition:max-width 0.3s;
+				overflow:hidden;
+				white-space: nowrap;
+
+				
+			}
+			&>.material-icons {
+				font-size:18px;
+				height:30px;
+				width:30px;
+				border:1px solid $greyish;
+				border-radius:50px;
+			    text-align: center;
+			    line-height: 30px;
+			    position:absolute;
+				right:-1px;
+				top: -1px;
+				transition: border-color 0.5s;
+				color: $slate;
+			}
+		}
+
+		&:hover {
+			&>a {
+				max-width: none; 
+				border:1px solid $greyish;
+				padding-left: 15px;
+			    padding-right: 35px;
+				
+				&>span {
+					max-width:300px;
+				}
+				&>.material-icons {
+					border-color: $primary-color;
+					color:$primary-color;
+				}
+
+			}
+		}
+
+	}
+	ul.archiwiki-toolbox-submenu {
+		display:none;
+		
+	}
+}
 /*********************
 FOOTER STYLES
 *********************/
@@ -1096,6 +1185,21 @@ HOMEPAGE
 		
 	}
 }
+
+
+/*********************
+CATEGORIES STYLES
+*********************/
+.mw-category-generated {
+	h3 {
+
+	}
+	ul {
+		margin-bottom:1rem !important;
+	}
+}
+
+
 	
 /*********************
 FOUNDATION STYLES
