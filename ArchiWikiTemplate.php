@@ -57,6 +57,11 @@ class ArchiWikiTemplate extends BaseTemplate {
 			</div>
 		
 			<div class="mw-body" role="main">
+
+				<div id="loading">
+				  <img id="loading-image" src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/ajax-loader.gif' );?>" alt="Loading..." />
+				</div>
+
 				<?php
 				if ( $this->data['sitenotice'] ) {
 					echo Html::rawElement(
@@ -261,6 +266,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 					'icon'	=> '<i class="material-icons">settings</i>'
 				);
 				$innerHTML .= $this->buildToolBoxItem( 'more' , $moreInfo, $moreToolBoxData);
+				$moreHTML = '';
 				foreach ( $item as $moreItemKey => $moreItem ) {
 					$moreHTML .= $this->buildToolBoxItem( $moreItemKey, $moreItem, $toolboxData );
 				}

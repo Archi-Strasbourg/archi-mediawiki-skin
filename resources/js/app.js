@@ -38,3 +38,10 @@ $(window).click(function(){
 	$('.archiwiki-toolbox-submenu').slideUp();
 });
 
+/**
+ * Loader 
+ */
+$(window).load(function(){
+	$('#loading').fadeOut(800);
+});
+
