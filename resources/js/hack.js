@@ -2,18 +2,27 @@
 /**
  * HACKY THINGS
  */
-// Set up header image
-$(document).ready(function(){
-	// Generic article page
-	var $featuredThumb = $('#mw-content-text').find('a.image>img').first()
+
+function setupHeaderImage( $featuredImage, $container ) {
+	var $featuredThumb = $featuredImage;
 	var featuredThumbUrl = $featuredThumb.attr('src');
 	if (typeof featuredThumbUrl != 'undefined') {
 		featuredThumbUrl = featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('/'));
 		var featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
-		$('#header-image').css({
+		$container.css({
 			backgroundImage: 'url(' + featuredImageUrl + ')'
 		}).removeClass('hide');
 		$featuredThumb.parents('.thumb').hide();
+		return true;
+	} else {
+		return false;
+	}
+}
+// Set up header image
+$(document).ready(function(){
+	// Generic article page
+	if ( setupHeaderImage($('#mw-content-text').find('a.image>img').first(), $('#header-image') ) ) {
+		return;
 	} else {
 		// There is no image, add the no-image class to infobox 
 		$('.infobox').addClass('no-header-image');
@@ -73,6 +82,11 @@ $(document).ready(function(){
 	/**
 	 * HOMEPAGE things 
 	 */
-	// $('.mw-special-ArchiHome').find('#mw-content-text').find('h2').first().addBack().nextUntil('a:contains(Discover), a:contains(Découvrir), a:contains(Entdecken)').wrapAll('<div class="spotlight-on"></div>');
-
+	// Setup header image on Latest-changes
+	 $('.latest-changes .latest-changes-recent-change').each(function(){
+	 	var $headerImage = $(this).find('a.image>img').first();
+	 	$(this).prepend('<div class="header-image hide"></div>').find('.header-image').each(function(){
+	 		setupHeaderImage($headerImage, $(this));
+	 	});
+	 });
 });

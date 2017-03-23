@@ -151,11 +151,11 @@ class ArchiWikiTemplate extends BaseTemplate {
 				// );
 
 				// Page editing and tools
-				echo Html::rawElement(
-					'div',
-					array( 'id' => 'page-tools' ),
-					$this->getPageLinks()
-				);
+				// echo Html::rawElement(
+				// 	'div',
+				// 	array( 'id' => 'page-tools' ),
+				// 	$this->getPageLinks()
+				// );
 
 				// Site navigation/sidebar
 				// echo Html::rawElement(
@@ -221,6 +221,17 @@ class ArchiWikiTemplate extends BaseTemplate {
 	 * @return string html
 	 */
 	private function getArchiWikiToolbox() {
+
+		$showOnNamespaces = array(
+			4000, // Address 
+			4100, // Address News 
+			4004, // News 
+			4006 // Person 
+		);
+
+		if ( !in_array($this->getThisTitle()->mNamespace, $showOnNamespaces) ) {
+			return '';
+		}
 
 		$toolBoxItems = array(
 			've-edit' => array(
@@ -584,14 +595,16 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 	private function getSearchModal( $startHidden = true ) {
 
+		global $wgOut;
+
 		?>
 			
-			<!-- Navigation -->
-			<nav class="search-modal color-panel color-panel-earth <?php echo ($startHidden ? 'hide' : '');?>" id="search-modal">
+			<!-- Navigation --> 
+			<nav class="search-modal search-box color-panel color-panel-earth <?php echo ($startHidden ? 'hide' : '');?>" id="search-modal">
 				<div class="row">
 					<div class="column">
 						<h3 class="text-center search-title">
-							<?php echo $this->getMsg('search-title');?>
+							<?php printf($this->getMsg('search-title') , strip_tags($wgOut->parse('{{PAGESINNAMESPACE:'.NS_ADDRESS.'}}')) , strip_tags($wgOut->parse('{{PAGESINNAMESPACE:6}}') ) );?>
 						</h3>
 					</div>
 				</div>

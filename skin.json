@@ -38,7 +38,7 @@
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
-		"remoteSkinPath": "ArchiWiki"
+		"remoteSkinPath": "archi-wiki"
 	},
 	"AutoloadClasses": {
 		"SkinArchiWiki": "ArchiWiki.skin.php",

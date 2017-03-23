@@ -25,7 +25,7 @@
 	"open-data":"Open Data",
 	"donate":"Faire un don",
 	"change-language": "Langues",
-	"search-title": "Recherchez à travers nos 11 257 adresses et 61 652 photos :",
+	"search-title": "Recherchez à travers nos %s adresses et %s photos :",
 	"search-placeholder":"indiquez une adresse, un nom de rue ou de bâtiment",
 	"advanced-search":"recherche avancée",
 	"translations-title":"Cette page dans d'autres langues",
