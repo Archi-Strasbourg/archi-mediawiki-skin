@@ -10,17 +10,23 @@ GENERAL STYLES
 body {
 	overflow-x:hidden;
 }
-
+.wrapper {
+	overflow:hidden;
+}
 .MediaTransformError {
 	display:none !important;
 }
 
 .cancel-global-padding {
-	margin-left:-1.25rem;
-	margin-right:-1.25rem;
+	margin-left:-$global-padding;
+	margin-right:-$global-padding;
+}
+.small-cancel-global-padding {
+	margin-left: -#{map_get($grid-column-gutter, 'small')/2};
+	margin-right: -#{map_get($grid-column-gutter, 'small')/2};
 	@include breakpoint(medium) {
-		margin-left:-1.54rem;
-		margin-right:-1.54rem;
+		margin-left:0;
+		margin-right:0;
 	}
 }
 
@@ -101,7 +107,7 @@ LOADING
 Search modal
 ********************/
 .search-box {
-	@extend .cancel-global-padding;
+	// @extend .cancel-global-padding;
 
 	padding-bottom: 0 !important;
 	@include breakpoint(medium) {
@@ -488,8 +494,8 @@ HEADER STYLES
 		margin-left: -0.625rem;
 		margin-right: -0.625rem; 
 		@include breakpoint(medium) {
-			margin-left: -0.9375rem;
-			margin-right: -0.9375rem; 
+			// margin-left: -0.9375rem;
+			// margin-right: -0.9375rem; 
 		}
 	}
 	.search-modal {
@@ -507,13 +513,12 @@ HEADER STYLES
 	}
 }
 
-.header-image-continer{
+#header-image{
 
 	display: block;
 	height: 190px;
 	background-size: cover;
 	background-position: center center;
-	@include grid-row-nest();
 
 	@include breakpoint(medium) {
 		height: 300px;
@@ -1085,6 +1090,7 @@ SIDEBARS & ASIDES
 			border:1px solid $greyish; 
 			display:inline-block;
 			border-radius:50px;
+			background-color: $body-background;
 			font-size:16px; 
 			position:relative;
 			height:30px;
@@ -1185,6 +1191,7 @@ FOOTER STYLES
 		border-color:$white;
 		font-weight: $global-weight-bold;
 		position:relative;
+		text-transform:none;
 		i.icon {
 			font-size:1.6em;
 			margin-top: -1rem;
@@ -1199,52 +1206,218 @@ FOOTER STYLES
 /********************
 HOMEPAGE 
 *********************/
+
+/**
+ * Layout 
+ */
+
+
 .mw-special-ArchiHome {
 	.firstHeading {
 		display:none;
 	}
 	.mw-body-content {
-		@include grid-column-row(40);
 
-		h2, h3, h4, h5, h6 {
-			border-bottom: none !important;
-		}
+		#mw-content-text {
 
-		.spotlight-on {
-			margin-bottom: 50px;
-			margin-top:-70px;
-			background-color: $white;
-			padding: 15px;
-			font-size: rem-calc(14px);
-
-			h2 {
+			h2, h3, h4, h5, h6 {
 				border-bottom: none !important;
-				font-size: rem-calc(12px);
-				margin-bottom: 0 !important;
-				padding-bottom: 0 !important;
 			}
-			h3 {
-				border-bottom: none !important;
-				margin-bottom: 0 !important;
+			.header-row {
+				@include grid-row();
+
+				.header-image-continer {
+					@include grid-column(12);
+					@extend .small-cancel-global-padding;
+					margin-top: -2rem;
+					width: auto;
+					float: none;
+					@include breakpoint(medium) {
+						@include grid-column(7); 
+						margin-left:0;
+						margin-right:0;
+						margin-top: 0;
+						padding-right:0 !important;
+					}
+					#header-image {
+						width: auto;
+						float: none;
+						@include breakpoint(medium){
+							border-bottom: none;
+							height:400px;
+						}
+					}
+				}
+				.spotlight-container {
+					@include grid-column(12);
+					@include breakpoint(medium) {
+						@include grid-column(5);
+						padding-left:0 !important;
+						
+					}
+					.spotlight-on {
+						@include breakpoint(medium) {
+							margin-top:0;
+						}
+						margin-bottom: 50px;
+						margin-top:-70px;
+						background-color: $white;
+						padding: 15px;
+						@include breakpoint(medium) {
+							padding-top:0px;
+							height:400px;
+							margin-bottom:0;
+						}
+						font-size: rem-calc(14px);
+						.spotlight-header {
+							@include breakpoint(medium) {
+								width: auto;
+							    background-color: $white;
+							    padding: 30px;
+							    margin-left: -110px;
+							}
+						}
+						h2 {
+							border-bottom: none !important;
+							font-size: rem-calc(12px);
+							@include breakpoint(medium) {
+								font-size: rem-calc(16px);
+							}
+							margin-bottom: 0 !important;
+							padding-bottom: 0 !important;
+						}
+						h3 {
+							border-bottom: none !important;
+							margin-bottom: 0 !important;
+							@include breakpoint(medium) {
+								font-size: rem-calc(25px);
+							}
+							
+						}
+						.breadcrumb {
+							font-size: rem-calc(12px);
+							margin-bottom: 5px;
+							margin-top: 5px;
+						}
+						p:last-of-type {
+							margin-bottom:0;
+							a {
+								&::after {
+									content: ' >';
+								}
+							}
+						}
+					}
+				}
 			}
-			.breadcrumb {
-				font-size: rem-calc(12px);
-				margin-bottom: 5px;
-				margin-top: 5px;
+			.search-box-row {
+				@include grid-row();
+				
+				.search-box-container {
+					@include grid-column(12)
+					@extend .small-cancel-global-padding;
+					width: auto;
+					float: none;
+					@include breakpoint(medium) {
+						@include grid-column(12);
+					}
+					
+					.search-box {
+					}
+				}
 			}
-			p:last-of-type {
-				margin-bottom:0;
-				a {
-					&::after {
-						content: ' >';
+
+			.association-block {
+				@include grid-row(0);
+				.archiwiki-intro-holder {
+					@include grid-column(12);
+					@include breakpoint(medium) {
+						@include grid-column(5);
+						padding-right:0 !important;
+					}
+				}
+				.latest-news-holder {
+					@extend .archiwiki-intro-holder;
+					@include breakpoint(medium) {
+						@include grid-column(7);
+						padding-left:0 !important;
+						padding-right: $global-padding !important;
+					}
+				}
+			}
+			.latest-block {
+				@include grid-row();
+				.latest-changes-container {
+					@include grid-column(12);
+					@include breakpoint(medium) {
+						@include grid-column(8);
+					}
+					
+					.latest-changes {
+						@include grid-row();
+						@include grid-row-nest();
+						&>h2 {
+							@include grid-column(12);
+
+						}
+						&>p {
+							@include grid-column(12);
+							@include breakpoint(medium) {
+								text-align: center;
+							}
+						}
+						.latest-changes-recent-change-container {
+							@include grid-column(12);
+						}
+						@include breakpoint(medium) {
+							.latest-changes-recent-change-container {
+								@include grid-column(6);
+								&:nth-child(2n+1) {
+									clear:both;
+								}
+
+								.latest-changes-recent-change {
+									overflow: hidden;
+
+								}
+							}
+							h2+.latest-changes-recent-change-container {
+								@include grid-column(12);
+								.latest-changes-recent-change {
+									overflow: hidden;
+									.header-image {
+										float: left;
+										width: 45%;
+										height:350px;
+										margin-right:30px;
+										margin-bottom: -10px
+									}
+									&>h3 {
+										margin-top: 30px;
+									}
+									&::before {
+										top: 32px;
+										left: 37.3%;
+										transform: rotate(-90deg);
+									}
+
+								}
+							}
+						}
+					}
+				}
+				.latest-comments-container {
+					@include breakpoint(medium) {
+						@include grid-column(4);
+						.latest-comments-recent-comment-container {
+							// @include grid-column(12);
+						}
+					}
+					.latest-comments {
 					}
 				}
 			}
 		}
-		
-
-
-		
 	}
 
 
@@ -1257,8 +1430,12 @@ HOMEPAGE
 .archiwiki-intro {
 	@extend .color-panel;
 	@extend .color-panel-white-two;
-	@extend .cancel-global-padding;
+	@extend .small-cancel-global-padding;
 	background-color: $white-two;
+}
+.latest-news {
+	@extend .archiwiki-intro;
+	background-color: $white;
 }
 
 
@@ -1280,6 +1457,10 @@ HOMEPAGE
 		margin-top:30px;
 		margin-bottom:20px;
 		text-align:center;
+		@include breakpoint(medium) {
+			text-align: left;
+			font-size: 1.875rem;
+		}
 	}
 	&>p>a {
 		@extend .button;
@@ -1289,12 +1470,15 @@ HOMEPAGE
 	}
 	.latest-changes-recent-change {
 		position:relative;
-		@extend .cancel-global-padding;
+		@extend .small-cancel-global-padding;
 		padding-left: $global-padding;
 		padding-right: $global-padding;
 		padding-bottom: 10px;
 		background-color: $white;
 		margin-bottom: 5px;
+		@include breakpoint(medium) {
+			margin-bottom:30px;
+		}
 
 	
 		&::before {
@@ -1306,7 +1490,7 @@ HOMEPAGE
 			width:0;
 			height:0;
 			position: absolute;
-			top:192px;
+			top:194px;
 			left:10px;
 		}
 		font-size: 14px;
@@ -1317,18 +1501,29 @@ HOMEPAGE
 			color: $dark;
 		}
 		.header-image {
-
+			@extend .cancel-global-padding;
 		}
 		h3 {
 			margin-top:20px;
+			@include breakpoint(medium) {
+				font-size: 1.5625rem;
+			}
 		}
+
+
 	}
 }
 
 
 .latest-comments {
 	@extend .latest-changes;
-
+	&>p {
+		text-align:center;
+		@include grid-column(12);
+	}
+	.latest-comments-recent-comment-container {
+		@extend .latest-changes-recent-change-container;
+	}
 	.latest-comments-recent-comment {
 		@extend .latest-changes-recent-change;
 		padding-top: 20px;
@@ -1343,9 +1538,19 @@ HOMEPAGE
 			position: absolute;
 			opacity: 0.05;
 			top: 35px;
+			@include breakpoint(medium) {
+				top: 25px;
+
+			}
 			font-size: 109px;
 			transform: rotate(-4deg) scaleX(-1);
 
+		}
+		h3 {
+			@include breakpoint(medium) {
+				font-size: 1.25rem;
+				margin-top: 0;
+			}
 		}
 	}
 }

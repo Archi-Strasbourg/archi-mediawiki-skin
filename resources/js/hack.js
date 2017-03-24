@@ -7,8 +7,13 @@ function setupHeaderImage( $featuredImage, $container ) {
 	var $featuredThumb = $featuredImage;
 	var featuredThumbUrl = $featuredThumb.attr('src');
 	if (typeof featuredThumbUrl != 'undefined') {
-		featuredThumbUrl = featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('/'));
-		var featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
+
+		if (featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('thumb') >= 0)) {
+			featuredThumbUrl = featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('/'));
+			var featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
+		} else {
+			var featuredImageUrl = featuredThumbUrl;
+		}
 		$container.css({
 			backgroundImage: 'url(' + featuredImageUrl + ')'
 		}).removeClass('hide');
@@ -21,7 +26,7 @@ function setupHeaderImage( $featuredImage, $container ) {
 // Set up header image
 $(document).ready(function(){
 	// Generic article page
-	if ( setupHeaderImage($('#mw-content-text').find('a.image>img').first(), $('#header-image') ) ) {
+	if ( setupHeaderImage($('#mw-content-text').find('img').first(), $('#header-image') ) ) {
 		return;
 	} else {
 		// There is no image, add the no-image class to infobox 
@@ -88,5 +93,10 @@ $(document).ready(function(){
 	 	$(this).prepend('<div class="header-image hide"></div>').find('.header-image').each(function(){
 	 		setupHeaderImage($headerImage, $(this));
 	 	});
+	 });
+
+	 $('.mw-special-ArchiHome').each(function(){
+	 	$(this).find('#mw-content-text .header-row').prepend('<div class="header-image-continer" style=""><div id="header-image" class="hide"></div></div>');
+	 	setupHeaderImage( $(this).find('#mw-content-text').find('a.image>img').first(), $(this).find('#header-image') ); 
 	 });
 });
