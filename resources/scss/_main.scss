@@ -549,12 +549,15 @@ CONTENT STYLES
 	margin-right: -0.625rem;
 	.mw-info-column {
 		@include grid-column
+		padding: 0 1rem; 
+
 		@include breakpoint(medium) {
 			@include grid-column(4);
 		}
-	}
+	} 
 	.mw-content-column {
-		@include grid-column
+		@include grid-column;
+		padding: 0 1rem; 
 		@include breakpoint(medium) {
 			@include grid-column(8);
 		}
@@ -567,6 +570,25 @@ CONTENT STYLES
 	position:relative;
 }
 
+
+// General notice styles 
+.notice {
+	margin-top: 0;
+	margin-bottom:1rem;
+	background-color: transparentize($primary-color, 0.8);
+	padding-left:1em;
+	padding-right:1em;
+	padding-top:1em;
+	padding-bottom:1em;
+	font-size: rem-calc(14px);
+	i.material-icons {
+		font-size: 1rem;
+		color:$dark-peach;
+	}
+}
+h2+.notice {
+	margin-top:-19px;
+}
 // General infobox styling 
 .columnbox {
 	background-color: $white;
@@ -604,6 +626,7 @@ CONTENT STYLES
 	@extend .columnbox;
 
 	font-size: 0.778rem;
+	margin-top:-35px;
 	@include breakpoint(medium) {
 		margin-top: -150px;
 		&.no-header-image {
