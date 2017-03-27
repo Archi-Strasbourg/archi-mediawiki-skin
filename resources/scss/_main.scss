@@ -12,9 +12,18 @@ body {
 }
 .wrapper {
 	overflow:hidden;
+	@include breakpoint(medium) {
+	    min-height: 500px
+	}
 }
 .MediaTransformError {
 	display:none !important;
+}
+input[type='submit'] {
+	@extend .button;
+}
+input:not([type]) {
+	@extend [type='text'];
 }
 
 .cancel-global-padding {
@@ -534,7 +543,7 @@ CONTENT STYLES
 *********************/
 
 // Left column on fiches
-.mw-body {
+.mw-body.has-archi-columns {
 	@include grid-row;
 	margin-left: -0.625rem;
 	margin-right: -0.625rem;
@@ -553,6 +562,9 @@ CONTENT STYLES
 	.mw-body-content {
 		position:relative;
 	}
+}
+.mw-body {
+	position:relative;
 }
 
 // General infobox styling 
@@ -1078,9 +1090,12 @@ SIDEBARS & ASIDES
 .archiwiki-toolbox {
 	margin:0;
 	position:absolute;
-	right:-20px;
+	right:-15px;
+	z-index:999;
 	@include breakpoint(medium down) {
 		right: 0px;
+	    top: 10px;
+
 	}
 	li.archiwiki-toolbox-item {
 		list-style:none;
@@ -1253,6 +1268,10 @@ HOMEPAGE
 					@include breakpoint(medium) {
 						@include grid-column(5);
 						padding-left:0 !important;
+
+						p {
+							font-size: 16px;
+						}
 						
 					}
 					.spotlight-on {
@@ -1432,10 +1451,58 @@ HOMEPAGE
 	@extend .color-panel-white-two;
 	@extend .small-cancel-global-padding;
 	background-color: $white-two;
+	p {
+		font-size:16px;
+	}
 }
 .latest-news {
 	@extend .archiwiki-intro;
 	background-color: $white;
+	display:flex;
+	flex-direction:column;
+	.content-row {
+		display:flex;
+		flex-direction:column;
+		flex-grow:1;
+		align-items: stretch;
+		@include breakpoint(medium) {
+			flex-wrap: nowrap;
+			margin-right:0;
+			@include breakpoint(large) {
+				flex-direction: row;
+				margin-left:-1rem;
+				margin-right:-1rem;
+			}
+
+		}
+
+		&>.thumb {
+			align-self: flex-start;
+			margin-right:0.5rem;
+			@include breakpoint(medium only) {
+				text-align:center;
+				align-self: stretch;
+				.thumbinner {
+					display:inline-block;
+				}
+			}
+			@include breakpoint(small only) {
+				margin-right:0;
+				width:100%;
+				.thumbinner {
+					width:100%;
+					img {
+						width:100%
+					}
+				}
+			}
+		}
+		&>.latest-news-text {
+			margin-left:0.5rem;
+		}
+		
+	}
+
 }
 
 
@@ -1568,7 +1635,23 @@ CATEGORIES STYLES
 	}
 }
 
+/***********************
+HISTORY AND DIFFS
+***********************/
+#pagehistory {
+	input[type=radio] {
+		margin: 0 5px;
+	}
+}
 
+
+/*********************
+LOGIN 
+**********************/
+
+#userloginForm form {
+	margin: 0 auto;
+}
 	
 /*********************
 FOUNDATION STYLES
@@ -1581,4 +1664,16 @@ PLUGIN STYLES
 .gform_body ul {
     list-style: none outside none;
     margin: 0;
+}
+
+/********************
+Full width movile namespaces 
+**********************/
+
+.ns--1,
+.ns-4000,
+.ns-4006 {
+	.wrapper {
+		@include grid-column-collapse(); 
+	}
 }

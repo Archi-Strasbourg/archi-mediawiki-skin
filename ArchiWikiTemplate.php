@@ -16,6 +16,19 @@ class ArchiWikiTemplate extends BaseTemplate {
 			"Deutsch" 		=> "de"
 		);
 
+	private $translatableNamespaces = array(
+			4000,
+			4100,
+			4002,
+			4004,
+			4006
+		);
+	private $untranslatableActions = array(
+		'edit',
+		'vedit',
+		'history'
+		);
+
 	/**
 	 * Social networks
 	 */
@@ -788,7 +801,12 @@ class ArchiWikiTemplate extends BaseTemplate {
 	}
 
 	private function getTranslations() {
-		if ($this->getThisTitle()->mNamespace >= 0) {
+		if (isset($_GET['action'])) {
+			$action = $_GET['action'];
+		} else {
+			$action = '';
+		}
+		if ( in_array($this->getThisTitle()->mNamespace, $this->translatableNamespaces) && !in_array($action, $this->untranslatableActions) ) {
 			$translationsHTML = '';
 			foreach ($this->availableLanguages as $language => $code) {
 				$translationsHTML .= Html::rawElement('li', array(), 
