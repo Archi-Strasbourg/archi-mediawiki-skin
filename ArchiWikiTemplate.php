@@ -60,7 +60,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		$this->html( 'headelement' );
 		?>
 		<div class="wrapper row column">
-			
+
 			<!-- Menu -->
 
 			<?php $this->getHeaderBar(); ?>
@@ -70,16 +70,16 @@ class ArchiWikiTemplate extends BaseTemplate {
 			<div class="header-image-continer hide" id="header-image" style="">
 			</div>
 			<?php endif;?>
-		
+
 			<div class="mw-body" role="main">
 
 				<div id="loading">
 				  <img id="loading-image" src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/ajax-loader.gif' );?>" alt="Loading..." />
 				</div>
 
-				
 
-				
+
+
 
 				<?php
 				if ( $this->data['sitenotice'] ) {
@@ -242,10 +242,10 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private function getArchiWikiToolbox() {
 
 		$showOnNamespaces = array(
-			4000, // Address 
-			4100, // Address News 
-			4004, // News 
-			4006 // Person 
+			4000, // Address
+			4100, // Address News
+			4004, // News
+			4006 // Person
 		);
 
 		if ( !in_array($this->getThisTitle()->mNamespace, $showOnNamespaces) ) {
@@ -304,7 +304,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 			} else {
 				$innerHTML .= $this->buildToolBoxItem( $key, $item, $toolboxData);
 			}
-			
+
 		}
 		if (!empty($innerHTML)) {
 			$html = Html::rawElement(
@@ -339,7 +339,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		} else {
 			return '';
 		}
-	} 
+	}
 	/**
 	 * Generates a single sidebar portlet of any kind
 	 * @return string html
@@ -479,7 +479,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 			return $value !== $this->data['lang'];
 		});
 
-		return $other_languages;	
+		return $other_languages;
 	}
 
 	/**
@@ -493,10 +493,10 @@ class ArchiWikiTemplate extends BaseTemplate {
 			$html .= "<li><a href='$url' data-set-language='$language_code'>$language_name</a></li>";
 		}
 
-		return $html;	
+		return $html;
 	}
-	
-	
+
+
 	/**
 	 * Generates the top header bar
 	 * @return string html
@@ -510,7 +510,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 				<div class="title-bar-title title-bar-logo"><a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki-white.png' )?>"/></a></div>
 				<button class="" type="button" data-toggle><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></button>
 			</div>
-			
+
 			<div class="hide-for-large">
 				<?php $this->getNavigation( true ); ?>
 			</div>
@@ -519,7 +519,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 			<div class="show-for-large">
 				<div class="top-bar top-bar-inverted">
 					<div class="row column">
-						
+
 						<div class="top-bar-left">
 							<div class="site-logo">
 								<a href="<?php echo $this->getSiteUrl();?>"><img src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/logo_archi_wiki.png' )?>"/></a>
@@ -533,7 +533,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 							</ul>
 						</div>
 						<div class="top-bar-right">
-							
+
 							<ul class="menu">
 								<li><a class="search-button" data-openclose data-target="#search-modal" data-openclose-colorchange="true"><i class="material-icons">search</i></a></li>
 								<li><a class="menu-button" data-openclose data-target="#main-navigation" data-openclose-colorchange="true"><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></a></li>
@@ -560,7 +560,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		global $wgTitle;
 
 		?>
-			
+
 			<!-- Navigation -->
 			<nav class="main-navigation mega-menu <?php echo ($mobile ? '' : 'hide'); ?> " id="main-navigation<?php echo ($mobile ? '-mobile' : ''); ?>">
 				<div class="row">
@@ -617,8 +617,8 @@ class ArchiWikiTemplate extends BaseTemplate {
 		global $wgOut;
 
 		?>
-			
-			<!-- Navigation --> 
+
+			<!-- Navigation -->
 			<nav class="search-modal search-box color-panel color-panel-earth <?php echo ($startHidden ? 'hide' : '');?>" id="search-modal">
 				<div class="row">
 					<div class="column">
@@ -682,14 +682,14 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private function getSiteURL() {
 		return $this->data['serverurl'] . $this->data['scriptpath'];
 	}
-	
+
 
 	private function getContributionMenu() {
-		
+
 		global $wgOut;
 		global $wgUser;
 
-		?> 
+		?>
 		<ul class="menu vertical">
 			<?php if ( in_array( 'createpage', $wgUser->mRights )) :?>
 				<li><a href="<?php echo Title::newFromText('Spécial:AjouterPage')->getFullURL(); ?>"><?php echo $this->getMsg('create-page');?></a></li>
@@ -724,11 +724,11 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private function getProfile() {
 		global $wgUser;
 		global $wgOut;
-		
+
 		?>
 
 		<div class="profile-box">
-			<?php if ($wgUser->mId > 0) : ?> 
+			<?php if ($wgUser->mId > 0) : ?>
 				<?php $avatar_url = $this->getUserAvatar(115); ?>
 				<?php if ($avatar_url) : ?>
 					<img src="<?php echo $avatar_url ?>" alt="Avatar <?php echo $wgUser->mRealName; ?>" />
@@ -739,7 +739,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 				<i class="material-icons">account_circle</i>
 			<?php endif; ?>
 				<ul class="menu vertical">
-					<?php if ($wgUser->mId > 0) : ?> 
+					<?php if ($wgUser->mId > 0) : ?>
 						<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName)->getFullURL();?>"><?php echo $this->getMsg('your-profile');?></a></li>
 						<li><a href="<?php echo $this->getPersonalTools()['logout']['links'][0]['href']; ?>"><?php echo $this->getMsg('log-out');?></a></li>
 					<?php else : ?>
@@ -809,7 +809,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		if ( in_array($this->getThisTitle()->mNamespace, $this->translatableNamespaces) && !in_array($action, $this->untranslatableActions) ) {
 			$translationsHTML = '';
 			foreach ($this->availableLanguages as $language => $code) {
-				$translationsHTML .= Html::rawElement('li', array(), 
+				$translationsHTML .= Html::rawElement('li', array(),
 						Html::rawElement('a', array(
 								'href'		=> $this->getThisPageUrl().'/'.$code
 							),
@@ -823,7 +823,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 					'class' 	=> 'translations-list'
 					),
 				$translationsHTML);
-			$html = Html::rawElement( 
+			$html = Html::rawElement(
 				'div',
 				array( 'class' => 'translations' ),
 				Html::rawElement(
@@ -836,11 +836,11 @@ class ArchiWikiTemplate extends BaseTemplate {
 		} else {
 			$html = '';
 		}
-		
 
-		
+
+
 
 		return $html;
-		
+
 	}
 }
