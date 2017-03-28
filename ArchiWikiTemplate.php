@@ -322,6 +322,10 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private function buildToolBoxItem( $key, $item, $toolboxData ){
 		if (isset($toolboxData[$key]) && !empty($toolboxData[$key])) {
 			$itemData = $toolboxData[$key];
+			// Force disable instant switching to visual editor
+			if ($itemData['id'] == 'ca-ve-edit') {
+				$itemData['id'] = 'ca-ve-edit-noswitch';
+			}
 			return Html::rawElement(
 				'li',
 				array(
