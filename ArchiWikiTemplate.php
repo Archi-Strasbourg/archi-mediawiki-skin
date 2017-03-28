@@ -71,7 +71,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 			</div>
 			<?php endif;?>
 
-			<div class="mw-body" role="main">
+			<div class="mw-body" role="main" id="content">
 
 				<div id="loading">
 				  <img id="loading-image" src="<?php echo $this->getSkin()->getSkinStylePath( 'resources/img/ajax-loader.gif' );?>" alt="Loading..." />
@@ -101,6 +101,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 					'h1',
 					array(
 						'class' => 'firstHeading',
+						'id' => 'firstHeading',
 						'lang' => $this->get( 'pageLanguage' )
 					),
 					$this->get( 'title' )
@@ -113,7 +114,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 				);
 				?>
 
-				<div class="mw-body-content">
+				<div class="mw-body-content" id="bodyContent">
 
 					<?php echo $this->getArchiWikiToolbox(); ?>
 
