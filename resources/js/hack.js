@@ -37,7 +37,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 
 	// Wrap all content html in a nice div
-	if ($('body').is('.ns-4000, .ns-4100, .ns-4002, .ns-4004, .ns-4006') && !$('body').is('.action-edit, .action-vedit, .action-history')) {
+	if ($('body').is('.ns-4000, .ns-4100, .ns-4002, .ns-4004, .ns-4006') && !$('body').is('.action-edit, .action-vedit, .action-history') && !mw.Uri().query.veaction) {
 
 		$('.mw-body').each(function(){
 			$(this).wrapInner('<div class="mw-content-column"></div>');
