@@ -646,7 +646,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 						</form>
 					</div>
 					<div class="column large-2 end">
-						<a href="<?php echo wfAppendQuery(Title::newFromText('Spécial:Recherche')->getFullURL(), array('profile' => 'advanced')) ;?>" class="advanced-search-link"><?php echo $this->getMsg('advanced-search');?></a>
+						<a href="<?php echo Title::newFromText('Spécial:RunQuery/Recherche_avancée')->getFullURL(); ?>" class="advanced-search-link"><?php echo $this->getMsg('advanced-search');?></a>
 					</div>
 				</div>
 			</nav>
