@@ -100,4 +100,11 @@ $(document).ready(function(){
 	 	$(this).find('#mw-content-text .header-row').prepend('<div class="header-image-continer" style=""><div id="header-image" class="hide"></div></div>');
 	 	setupHeaderImage( $(this).find('#mw-content-text').find('a.image>img').first(), $(this).find('#header-image') );
 	 });
+
+	 //Force reload page after Visual Editor is closed
+	 mw.hook('ve.deactivationComplete').add(
+		 function () {
+			 window.location.reload();
+		 }
+	 );
 });
