@@ -51,6 +51,13 @@ $(document).ready(function(){
 			$(this).prependTo('.mw-info-column');
 		});
 
+		// Find infobox on Person page 
+		
+		$('#mw-content-text>table').filter('.infobox').each(function(){
+			// Move the infobox to the top of the HTML
+			$(this).prependTo('.mw-info-column');
+		});
+
 		// Move breadcrumb
 		$('#contentSub').each(function(){
 			$(this).prependTo('.mw-content-column');

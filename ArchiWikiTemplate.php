@@ -633,7 +633,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 							<div class="input-group">
 								<input type="search" class="search-input input-group-field" placeholder="<?php echo $this->getMsg('search-placeholder');?>" name="search">
 								<div class="input-group-button">
-									<a class="button" class="form-submit">
+									<a class="button form-submit">
 										<i class="material-icons">search</i>
 									</a>
 								</div>

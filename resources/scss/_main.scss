@@ -639,7 +639,7 @@ h2+.notice {
 	border-collapse: separate;
 	tr:first-child {
 		td {
-			padding: 0;
+			// padding: 0;
 			border: 0;
 
 			.maps-map {
@@ -648,7 +648,7 @@ h2+.notice {
 		}
 	}
 	tr:nth-child(2) {
-		display: none;
+		// display: none;
 	}
 	tr:last-child {
 		border-bottom:none;
@@ -697,6 +697,11 @@ h2+.notice {
 
 	ul {
 		margin: 0.5rem 0.7rem !important;
+
+		// Sub menu
+		ul {
+		    clear: both;
+		}
 		li {
 			list-style-type: none;
 			position: relative;
@@ -796,6 +801,18 @@ h1.firstHeading {
 		}
 		a {
 			font-weight: normal;
+		}
+	}
+
+	h3 {
+		border-bottom: dotted 1px $dark-peach;
+		padding-bottom: 0.3rem;
+
+	}
+
+	ul {
+		li {
+			margin-bottom:10px;
 		}
 	}
 
@@ -1191,6 +1208,10 @@ SIDEBARS & ASIDES
 		display:none;
 
 	}
+}
+.action-edit .archiwiki-toolbox {
+	right:0;
+	top: 20px;
 }
 /*********************
 FOOTER STYLES
