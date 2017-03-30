@@ -701,6 +701,7 @@ h2+.notice {
 			list-style-type: none;
 			position: relative;
 			margin: 0.25rem 0;
+			overflow:hidden;  
 			a {
 				color: $slate;
 				line-height: 1.8;
@@ -708,15 +709,17 @@ h2+.notice {
 				text-decoration:none; 
 				.tocnumber {
 					// text-decoration: underline;
-
+					float: left;
 					&::after {
 						content:'.';
 					}
 				}
 				.toctext {
 					text-decoration: underline;
-					position: absolute;
-					left: 11%;
+					position: static;
+					float: left;
+					max-width: 89%;
+					margin-left: 2%;
 				}
 				sup {
 					text-decoration: none;
