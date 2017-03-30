@@ -29,15 +29,15 @@ $(document).ready(function(){
 	if ( setupHeaderImage($('#mw-content-text').find('img').first(), $('#header-image') ) ) {
 		return;
 	} else {
-		// There is no image, add the no-image class to infobox 
+		// There is no image, add the no-image class to infobox
 		$('.infobox').addClass('no-header-image');
 	}
 });
 
 $(document).ready(function(){
-	
+
 	// Wrap all content html in a nice div
-	if ($('body').is('.ns-4000, .ns-4100, .ns-4002, .ns-4004, .ns-4006') && !$('body').is('.action-edit, .action-vedit, .action-history')) {
+	if ($('body').is('.ns-4000, .ns-4100, .ns-4002, .ns-4004, .ns-4006') && !$('body').is('.action-edit, .action-vedit, .action-history') && (mw.Uri && !mw.Uri().query.veaction)) {
 
 		$('.mw-body').each(function(){
 			$(this).wrapInner('<div class="mw-content-column"></div>');
@@ -69,10 +69,10 @@ $(document).ready(function(){
 			$(this).appendTo('.mw-info-column');
 		});
 
-			
+
 	}
 
-	// Remove all empty 'hr' from table in infobox 
+	// Remove all empty 'hr' from table in infobox
 	$('.infobox tr').each(function(){
 		if ($(this).find('td').html() == '<hr>') {
 			$(this).prev().addClass('end-section');
@@ -80,7 +80,7 @@ $(document).ready(function(){
 		}
 	});
 
-	// Move comments form to bottom of comments rather than top 
+	// Move comments form to bottom of comments rather than top
 	$('.comments-body form[name="commentForm"]')
 		.appendTo('.comments-body')
 		.wrap('<div class="comment-form"></div>').each(function(){
@@ -93,7 +93,7 @@ $(document).ready(function(){
 	});
 
 	/**
-	 * HOMEPAGE things 
+	 * HOMEPAGE things
 	 */
 	// Setup header image on Latest-changes
 	 $('.latest-changes .latest-changes-recent-change').each(function(){
@@ -105,6 +105,13 @@ $(document).ready(function(){
 
 	 $('.mw-special-ArchiHome').each(function(){
 	 	$(this).find('#mw-content-text .header-row').prepend('<div class="header-image-continer" style=""><div id="header-image" class="hide"></div></div>');
-	 	setupHeaderImage( $(this).find('#mw-content-text').find('a.image>img').first(), $(this).find('#header-image') ); 
+	 	setupHeaderImage( $(this).find('#mw-content-text').find('a.image>img').first(), $(this).find('#header-image') );
 	 });
+
+	 //Force reload page after Visual Editor is closed
+	 mw.hook('ve.deactivationComplete').add(
+		 function () {
+			 window.location.reload();
+		 }
+	 );
 });
