@@ -44,6 +44,29 @@ input:not([type]) {
 	font-weight: $global-weight-bold;
 	text-transform: uppercase;
 }
+
+//Needed by ULS hack
+@media screen and (min-width: 64em) {
+	.site-header .hide-for-large {
+		display: none !important;
+	}
+}
+.uls-mobile {
+	left: 2.5% !important;
+	&.uls-wide,
+	&.grid .row {
+		min-width: 0;
+	}
+	&.grid .columns {
+		float: none;
+		padding: 0;
+	}
+	#uls-settings-block div.display-settings-block,
+	#uls-settings-block div.input-settings-block {
+		display: none;
+	}
+}
+
 /*********************
 LINK STYLES
 *********************/
@@ -711,7 +734,7 @@ h2+.notice {
 			list-style-type: none;
 			position: relative;
 			margin: 0.25rem 0;
-			overflow:hidden;  
+			overflow:hidden;
 			a {
 				color: $slate;
 				line-height: 1.8;

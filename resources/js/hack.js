@@ -51,8 +51,8 @@ $(document).ready(function(){
 			$(this).prependTo('.mw-info-column');
 		});
 
-		// Find infobox on Person page 
-		
+		// Find infobox on Person page
+
 		$('#mw-content-text>table').filter('.infobox').each(function(){
 			// Move the infobox to the top of the HTML
 			$(this).prependTo('.mw-info-column');
@@ -114,4 +114,11 @@ $(document).ready(function(){
 			 window.location.reload();
 		 }
 	 );
+
+	 //Force ULS mobile mode
+	 mw.hook('mw.uls.settings.open').add(function () {
+		 setTimeout(function () {
+			 $('.uls-menu').addClass('uls-mobile');
+		 }, 500);
+	 });
 });
