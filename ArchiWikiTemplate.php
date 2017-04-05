@@ -23,6 +23,13 @@ class ArchiWikiTemplate extends BaseTemplate {
 			4004,
 			4006
 		);
+	private $columnLayoutNamespaces = array(
+			4000,
+			4100,
+			4002,
+			4004,
+			4006
+		);
 	private $untranslatableActions = array(
 		'edit',
 		'vedit',
@@ -67,9 +74,14 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 			<!-- Header image is inserted with Javascript -->
 			<?php if ($this->getThisTitle()->mNamespace !== -1) : ?>
-			<div class="header-image-continer hide" id="header-image" style="">
-			</div>
-			<?php //dump($this->data['content_navigation']); ?>
+				<div class="header-image-continer hide" id="header-image" style="">
+					<?php if ($this->isColumnLayout()) echo $this->getTabs(); ?>
+				</div>
+				<?php if (!$this->isColumnLayout()) : ?>
+				<div class="row column prelative">
+					<?php echo $this->getTabs(); ?>
+				</div>
+				<?php endif;?>
 			<?php endif;?>
 
 			<div class="mw-body" role="main" id="content">
@@ -318,6 +330,10 @@ class ArchiWikiTemplate extends BaseTemplate {
 		}
 
 		return $html;
+	}
+
+	private function isColumnLayout() {
+		return in_array($this->getThisTitle()->mNamespace, $this->columnLayoutNamespaces);
 	}
 
 	private function buildToolBoxItem( $key, $item, $toolboxData ){
@@ -629,6 +645,14 @@ class ArchiWikiTemplate extends BaseTemplate {
 		<?php
 	}
 
+	private function getTabs() {
+		$html = '';
+		foreach ( $this->data['content_navigation']['namespaces'] as $tab) {
+			$html .= '<li class="'.$tab['class'].'"><a href="'.$tab['href'].'">'.$tab['text'].'</a></li>';
+		}
+		$html = sprintf('<div class="article-tabs"><ul class="menu show-for-medium">%s</ul></div>', $html);
+		return $html;
+	}
 	private function getSearchModal( $startHidden = true ) {
 
 		global $wgOut;
