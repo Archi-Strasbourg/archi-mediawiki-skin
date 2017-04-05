@@ -711,7 +711,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 			<?php if ( in_array( 'createpage', $wgUser->mRights )) :?>
 				<li><a href="<?php echo Title::newFromText('Spécial:AjouterPage')->getFullURL(); ?>"><?php echo $this->getMsg('create-page');?></a></li>
 			<?php endif;?>
-			<?php if ( in_array( 'createpage', $wgUser->mRights )) :?>
+			<?php if ( in_array( 'edit', $wgUser->mRights )) :?>
 				<li><a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['veaction'=>'edit']) ?>"><?php echo $this->getMsg('edit-page');?></a></li>
 				<li><a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['action'=>'edit']) ?>"><?php echo $this->getMsg('edit-page-code');?></a></li>
 			<?php endif;?>
