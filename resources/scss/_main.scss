@@ -331,6 +331,22 @@ $menu-breakpoint: large;
 				color: $charcoal-grey;
 			}
 		}
+		ul.menu.submenu {
+			background-color: $white;
+			top:70%;
+			&>li {
+				height:auto;
+				&>a {
+					padding: $menu-item-padding;
+					padding-left: 0.7rem;
+					padding-right:0.7rem;
+				}
+				&.menu-text {
+					padding-left: 1.4rem;
+					padding-right: 1.4rem;
+				}
+			}
+		}
 	}
 	.top-bar-right {
 		// Search and menu buttons
@@ -559,7 +575,8 @@ CONTENT STYLES
 		@include grid-column;
 		padding: 0 1rem;
 		@include breakpoint(medium) {
-			@include grid-column(8);
+			@include grid-column(7);
+			@include grid-column-end;
 		}
 	}
 	.mw-body-content {
@@ -628,7 +645,6 @@ h2+.notice {
 	font-size: 0.778rem;
 	margin-top:-35px;
 	@include breakpoint(medium) {
-		margin-top: -150px;
 		&.no-header-image {
 			margin-top: 0;
 		}
@@ -677,8 +693,14 @@ h2+.notice {
 			td, th {border-bottom-width: 1px; border-bottom-color: $greyish;}
 		}
 	}
+}
 
-
+.ns-4000 {
+	.infobox {
+		@include breakpoint(medium) {
+			margin-top: -150px;
+		}
+	}
 }
 
 .infobox-actu {
@@ -1138,7 +1160,7 @@ SIDEBARS & ASIDES
 .archiwiki-toolbox {
 	margin:0;
 	position:absolute;
-	right:-15px;
+	right:-123px;
 	z-index:999;
 	@include breakpoint(medium down) {
 		right: 0px;

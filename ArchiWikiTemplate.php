@@ -69,6 +69,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 			<?php if ($this->getThisTitle()->mNamespace !== -1) : ?>
 			<div class="header-image-continer hide" id="header-image" style="">
 			</div>
+			<?php //dump($this->data['content_navigation']); ?>
 			<?php endif;?>
 
 			<div class="mw-body" role="main" id="content">
@@ -487,16 +488,27 @@ class ArchiWikiTemplate extends BaseTemplate {
 		return $other_languages;
 	}
 
+	private function getLanguageName() {
+		$language = array_filter($this->availableLanguages, function($value){
+			return $value == $this->data['lang'];
+		});
+		return array_keys($language)[0];
+	}
+
 	/**
 	 * Displays the language menu chooser <li> items
 	 * @return string html
 	 */
 	private function getLanguageMenuItems() {
 		$html = '';
+		$currentLangCode = $this->data['lang'];
+		$currentLangName = $this->getLanguageName( $this->data['lang'] );
+		$html .= '<li class="menu-text current-language">'.$currentLangName.'</li>';
 		foreach ($this->getOtherLanguages() as $language_name => $language_code) {
 			$url = wfAppendQuery($this->getThisPageUrl(), array( 'uselang' => $language_code ) );
 			$html .= "<li><a href='$url' data-set-language='$language_code'>$language_name</a></li>";
 		}
+		$html = sprintf('<li><a href="#">%s</a><ul class="menu">%s</ul></li>', $this->getMsg('languages'), $html );
 
 		return $html;
 	}
@@ -532,7 +544,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 							</div>
 						</div>
 						<div class="top-bar-left">
-							<ul class="menu">
+							<ul class="menu dropdown" data-dropdown-menu>
 								<?php echo $wgOut->parse('{{MenuQuickLinks}}'); ?>
 								<?php echo $this->getLanguageMenuItems();?>
 							</ul>
