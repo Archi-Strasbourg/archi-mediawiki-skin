@@ -569,10 +569,10 @@ HEADER STYLES
 	}
 }
 
-.ns-4000, .ns-4100, .ns-4002, .ns-4004, .ns-4006 {
+.ns-4000, .ns-4100, .ns-4002, .ns-4004, .ns-4006, .ns--1 {
 	.site-header {
 		border:none;
-		margin-bottom: none;
+		margin-bottom: 0;
 	}
 }
 
@@ -626,6 +626,11 @@ CONTENT STYLES
 	@include breakpoint(large) {
 		@include grid-column(9);
 		@include grid-column-position(center);
+	} 
+}
+.ns--1 {
+	.mw-body {
+		@include grid-column-row();
 	}
 }
 
@@ -1400,6 +1405,7 @@ HOMEPAGE
 						margin-top:-70px;
 						background-color: $white;
 						padding: 15px;
+						position: relative;
 						@include breakpoint(medium) {
 							padding-top:0px;
 							height:400px;
