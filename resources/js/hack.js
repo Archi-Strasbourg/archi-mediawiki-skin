@@ -26,7 +26,7 @@ function setupHeaderImage( $featuredImage, $container ) {
 // Set up header image
 $(document).ready(function(){
 	// Generic article page
-	if ( setupHeaderImage($('#mw-content-text').find('img').first(), $('#header-image') ) ) {
+	if ( setupHeaderImage($('#mw-content-text').find('img.main-image').first(), $('#header-image') ) ) {
 		return;
 	} else {
 		// There is no image, add the no-image class to infobox

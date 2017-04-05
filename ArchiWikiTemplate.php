@@ -257,6 +257,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 		$showOnNamespaces = array(
 			4000, // Address
+			10, // Modèle
 			4100, // Address News
 			4004, // News
 			4006 // Person
