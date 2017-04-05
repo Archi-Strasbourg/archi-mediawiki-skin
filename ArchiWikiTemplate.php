@@ -17,18 +17,18 @@ class ArchiWikiTemplate extends BaseTemplate {
 		);
 
 	private $translatableNamespaces = array(
-			4000,
-			4100,
-			4002,
-			4004,
-			4006
+			NS_ADDRESS,
+			NS_ADDRESS_NEWS,
+			NS_SOURCE,
+			NS_SOURCE,
+			NS_PERSON
 		);
 	private $columnLayoutNamespaces = array(
-			4000,
-			4100,
-			4002,
-			4004,
-			4006
+			NS_ADDRESS,
+			NS_ADDRESS_NEWS,
+			NS_SOURCE,
+			NS_SOURCE,
+			NS_PERSON
 		);
 	private $untranslatableActions = array(
 		'edit',
@@ -256,11 +256,11 @@ class ArchiWikiTemplate extends BaseTemplate {
 	private function getArchiWikiToolbox() {
 
 		$showOnNamespaces = array(
-			4000, // Address
-			10, // Modèle
-			4100, // Address News
-			4004, // News
-			4006 // Person
+			NS_ADDRESS,
+			NS_TEMPLATE,
+			NS_ADDRESS_NEWS,
+			NS_SOURCE,
+			NS_PERSON
 		);
 
 		if ( !in_array($this->getThisTitle()->mNamespace, $showOnNamespaces) ) {
