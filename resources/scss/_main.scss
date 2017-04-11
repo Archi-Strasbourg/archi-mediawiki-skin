@@ -582,10 +582,14 @@ HEADER STYLES
 	height: 190px;
 	background-size: cover;
 	background-position: center center;
+    margin-left: -1rem;
+    margin-right: -1rem;
 
 	@include breakpoint(medium) {
 		height: 300px;
 		border-bottom: 2px solid $dark-peach;
+		margin-left:0;
+		margin-right:0;
 		@include breakpoint(large){
 			height: 550px;
 		}
@@ -631,6 +635,10 @@ CONTENT STYLES
 .ns--1 {
 	.mw-body {
 		@include grid-column-row();
+		@include breakpoint(small only) {
+			padding-left:0;
+			padding-right:0;
+		}
 	}
 }
 
@@ -692,6 +700,10 @@ h2+.notice {
 	font-size: 0.778rem;
 	margin-top:-35px;
 	position:relative;
+	&.no-header-image {
+		margin-top: 15px;
+	}
+
 	@include breakpoint(medium) {
 		&.no-header-image {
 			margin-top: 0;
@@ -747,6 +759,9 @@ h2+.notice {
 	.infobox {
 		@include breakpoint(medium) {
 			margin-top: -150px;
+			&.no-header-image {
+				margin-top:0;
+			}
 		}
 	}
 }
@@ -961,7 +976,7 @@ REFERENCES
 *********************/
 .mw-content-ltr ol.references, .mw-content-rtl .mw-content-ltr ol.references {
 	@include breakpoint(small only) {
-		margin-left:1rem;
+		margin-left:2rem;
 	}
 }
 
@@ -1208,7 +1223,7 @@ SIDEBARS & ASIDES
 .archiwiki-toolbox {
 	margin:0;
 	position:absolute;
-	right:-118px;
+	right:-90px;
 	z-index:999;
 	@include breakpoint(medium down) {
 		right: 0px;
@@ -1816,7 +1831,7 @@ PLUGIN STYLES
 }
 
 /********************
-Full width movile namespaces
+Full width mobile namespaces
 **********************/
 
 .ns--1,
@@ -1825,4 +1840,27 @@ Full width movile namespaces
 	.wrapper {
 		@include grid-column-collapse();
 	}
+}
+
+.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
+	height: 2.875em;
+}
+
+// Full Width editor namespaces 
+.ve-activated {
+	.ns-4000,
+	.ns-4006 {
+		.mw-body {
+			@include grid-column-row();
+		}
+	}
+}
+
+
+
+/********************
+// Language popup
+************************/
+.oo-ui-popupWidget {
+	display:none !important;
 }
