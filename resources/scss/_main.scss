@@ -540,8 +540,8 @@ HEADER STYLES
 
 .site-header {
 	@include breakpoint(medium) {
-		border-bottom: 2px solid $dark-peach; 
-		margin-bottom: 60px; 
+		border-bottom: 2px solid $dark-peach;
+		margin-bottom: 60px;
 	}
 
 	// Specifics for search-modal when in top-bar
@@ -626,7 +626,7 @@ CONTENT STYLES
 	}
 }
 .mw-body:not(.has-archi-columns) {
-	position:relative;	
+	position:relative;
 	@include breakpoint(large) {
 		@include grid-column(9);
 		@include grid-column-position(center);
@@ -1602,9 +1602,9 @@ HOMEPAGE
 }
 .header-image-continer {
 	position:relative;
-	.article-tabs { 
+	.article-tabs {
 		bottom:0;
-		top:auto; 
+		top:auto;
 		right:10px;
 	}
 
