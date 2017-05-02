@@ -261,7 +261,8 @@ class ArchiWikiTemplate extends BaseTemplate {
 			NS_ADDRESS_NEWS,
 			NS_SOURCE,
 			NS_PERSON,
-			NS_IMAGE
+			NS_IMAGE,
+			NS_MEDIAWIKI
 		);
 
 		if ( !in_array($this->getThisTitle()->mNamespace, $showOnNamespaces) ) {
