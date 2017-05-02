@@ -21,7 +21,7 @@
 			"position": "top",
 			"styles": {
 				"dist/css/style.css": {
-					"media": "screen"
+					"media": ""
 				},
 				"dist/css/print.css": {
 					"media": "print"
