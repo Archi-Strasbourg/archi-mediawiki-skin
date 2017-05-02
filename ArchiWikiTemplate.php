@@ -736,7 +736,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 		?>
 		<ul class="menu vertical">
 			<?php if ( in_array( 'createpage', $wgUser->mRights )) :?>
-				<li><a href="<?php echo Title::newFromText('Spécial:AjouterPage')->getFullURL(); ?>"><?php echo $this->getMsg('create-page');?></a></li>
+				<li><a href="<?php echo Title::newFromText('Nouvelle page')->getFullURL(); ?>"><?php echo $this->getMsg('create-page');?></a></li>
 			<?php endif;?>
 			<?php if ( in_array( 'edit', $wgUser->mRights )) :?>
 				<li><a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['veaction'=>'edit']) ?>"><?php echo $this->getMsg('edit-page');?></a></li>
