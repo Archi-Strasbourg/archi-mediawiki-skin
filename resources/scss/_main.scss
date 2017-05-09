@@ -755,6 +755,11 @@ h2+.notice {
 	}
 }
 
+/*Workaround bug in Leaflet.GridLayer.GoogleMutant: https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant/issues/44 */
+.leaflet-container {
+	text-align: left;
+}
+
 .ns-4000 {
 	.infobox {
 		@include breakpoint(medium) {
