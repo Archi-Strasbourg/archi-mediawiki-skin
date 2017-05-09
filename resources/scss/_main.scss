@@ -630,7 +630,7 @@ CONTENT STYLES
 	@include breakpoint(large) {
 		@include grid-column(9);
 		@include grid-column-position(center);
-	} 
+	}
 }
 .ns--1 {
 	.mw-body {
@@ -1846,7 +1846,7 @@ Full width mobile namespaces
 	height: 2.875em;
 }
 
-// Full Width editor namespaces 
+// Full Width editor namespaces
 .ve-activated {
 	.ns-4000,
 	.ns-4006 {
