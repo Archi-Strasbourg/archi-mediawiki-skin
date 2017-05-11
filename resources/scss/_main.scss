@@ -557,6 +557,8 @@ HEADER STYLES
 	.search-modal {
 		position: absolute;
 		z-index: 9999;
+		left: 0;
+		right: 0;
 	}
 	// Specifics for mega-menu when in top-bar
 	.mega-menu {
@@ -1459,11 +1461,6 @@ HOMEPAGE
 						}
 						p:last-of-type {
 							margin-bottom:0;
-							a {
-								&::after {
-									content: ' >';
-								}
-							}
 						}
 					}
 				}
