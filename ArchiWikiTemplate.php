@@ -262,7 +262,8 @@ class ArchiWikiTemplate extends BaseTemplate {
 			NS_SOURCE,
 			NS_PERSON,
 			NS_IMAGE,
-			NS_MEDIAWIKI
+			NS_MEDIAWIKI,
+			NS_CATEGORY
 		);
 
 		if ( !in_array($this->getThisTitle()->mNamespace, $showOnNamespaces) ) {
@@ -285,6 +286,9 @@ class ArchiWikiTemplate extends BaseTemplate {
 				),
 				'print' => array(
 					'icon'	=> '<i class="material-icons">print</i>'
+				),
+				'delete' => array(
+					'icon'	=> '<i class="material-icons">delete</i>'
 				)
 			)
 		);
