@@ -856,13 +856,25 @@ class ArchiWikiTemplate extends BaseTemplate {
 		}
 		if ( in_array($this->getThisTitle()->mNamespace, $this->translatableNamespaces) && !in_array($action, $this->untranslatableActions) ) {
 			$translationsHTML = '';
+			$curCode = $this->getThisTitle()->getSubpageText();
+			if ($curCode == $this->getThisTitle()->getBaseText()) {
+				$curCode = 'fr';
+			}
 			foreach ($this->availableLanguages as $language => $code) {
-				$translationsHTML .= Html::rawElement('li', array(),
-						Html::rawElement('a', array(
-								'href'		=> $this->getThisPageUrl().'/'.$code
-							),
-							$language)
-					);
+				if ($code != $curCode) {
+					if ($code == 'fr') {
+						$subpage = '';
+					} else {
+						$subpage = '/'.$code;
+					}
+					$title = Title::newFromText($this->getThisTitle()->getNsText().':'.$this->getThisTitle()->getBaseText().$subpage);
+					$translationsHTML .= Html::rawElement('li', array(),
+							Html::rawElement('a', array(
+									'href'		=> $title->getFullURL()
+								),
+								$language)
+						);
+				}
 			}
 			// echo $translationsHTML;
 			$listHTML = Html::rawElement(
