@@ -788,6 +788,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 			<?php endif; ?>
 				<ul class="menu vertical">
 					<?php if ($wgUser->mId > 0) : ?>
+						<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName)->getFullURL(); ?>"><b><?php echo $wgUser->getName(); ?></b></a></li>
 						<li><a href="<?php echo Title::newFromText('Utilisateur:'.$wgUser->mName)->getFullURL();?>"><?php echo $this->getMsg('your-profile');?></a></li>
 						<li><a href="<?php echo $this->getPersonalTools()['logout']['links'][0]['href']; ?>"><?php echo $this->getMsg('log-out');?></a></li>
 					<?php else : ?>
