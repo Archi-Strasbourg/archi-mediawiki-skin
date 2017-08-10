@@ -8,7 +8,7 @@ $(document).foundation();
  */
 $('select.change-navigate').change(function(){
     var $this = $(this);
-    window.location.href = $(this).find(':selected').attr('data-href');  
+    window.location.href = $(this).find(':selected').attr('data-href');
 });
 
 /**
@@ -22,7 +22,7 @@ $('form').each(function(){
 });
 
 /**
- * Toolbox 
+ * Toolbox
  */
 $(document).ready(function(){
 	$('.archiwiki-toolbox #archiwiki-toolbox-more').click(function(e){
@@ -39,9 +39,8 @@ $(window).click(function(){
 });
 
 /**
- * Loader 
+ * Loader
  */
 $(window).load(function(){
 	$('#loading').fadeOut(800);
 });
-
