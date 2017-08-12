@@ -749,6 +749,9 @@ class ArchiWikiTemplate extends BaseTemplate {
 			<li><a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['action'=>'history']) ?>"><?php echo $this->getMsg('get-page-history');?></a></li>
 			<?php $contribution_title = Title::newFromText('Aide à la contribution');?>
 			<li><a href="<?php echo $contribution_title->getFullURL();?>"><?php echo $contribution_title->getText();?></a></li>
+			<?php if(in_array('sysop', $wgUser->getGroups())):; ?>
+				<li><a href="<?php echo Title::newFromText('Aide:AdminAW')->getFullURL();?>">Administration</a></li>
+			<?php endif;?>
 		</ul>
 
 		<?php
