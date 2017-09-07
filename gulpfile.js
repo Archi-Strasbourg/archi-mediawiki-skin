@@ -12,6 +12,8 @@ var gulp  = require('gulp'),
     plumber = require('gulp-plumber'),
     bower = require('gulp-bower'),
     babel = require('gulp-babel');
+
+
 // Compile Sass, Autoprefix and minify
 gulp.task('styles', function() {
     return gulp.src('./resources/scss/**/*.scss')
@@ -95,6 +97,9 @@ gulp.task('bower', function() {
   return bower({ cmd: 'update'})
     .pipe(gulp.dest('vendor/'))
 });  
+
+
+
 
 // Watch files for changes (without Browser-Sync)
 gulp.task('watch', function() {

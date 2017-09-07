@@ -1,13 +1,26 @@
 {
-	"name": "archi-strasbourg/archi-wiki-skin",
-	"description": "MediaWiki skin used on arhci-wiki.org",
-	"type": "mediawiki-skin",
-	"require-dev": {
-		"jakub-onderka/php-parallel-lint": "0.9"
-	},
-	"scripts": {
-		"test": [
-			"parallel-lint . --exclude vendor"
-		]
-	}
+  "name": "archi-strasbourg/archi-wiki-skin",
+  "description": "MediaWiki skin used on archi-wiki.org",
+  "type": "mediawiki-skin",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Damien Senger",
+      "homepage": "http://raccoon.studio/",
+      "role": "Designer"
+    },
+    {
+      "name": "Mark Nightingale",
+      "homepage": "http://www.marknightingale.net/",
+      "role": "Developer"
+    }
+  ],
+  "require-dev": {
+    "jakub-onderka/php-parallel-lint": "0.9"
+  },
+  "scripts": {
+    "test": [
+      "parallel-lint . --exclude vendor"
+    ]
+  }
 }

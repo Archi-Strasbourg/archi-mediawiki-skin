@@ -59,4 +59,57 @@ CSS3 GRADIENTS.
 	background-image: linear-gradient(to bottom, $from, $to);
 }
 
+/***************************
+COLOR PANELS
+****************************/
 
+
+@mixin color-panel($name, $color, $lightdark:dark){
+	&.color-panel-#{$name} {
+		background-color: $color; 
+	
+		@if $lightdark == 'light' {
+			color: $body-font-color;
+			label, p, h1, h2, h3, h4, h5, h6 {
+				color: $body-font-color;
+			}
+		} @else {
+
+			button, a.button {
+				color: $color;
+				background-color: $white;
+				&:hover {
+					background-color: mix($color, $white, 15%);
+				}
+			}
+			a {
+				color: $white;
+			}
+			label, p {
+				color: $white;
+			}
+			h1, h2, h3, h4, h5, h6 {
+				color:$white;
+			}
+		}	
+	}
+}
+
+
+@mixin placeholder {
+	::-webkit-input-placeholder {
+	   @content;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	   @content;  
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	   @content; 
+	}
+
+	:-ms-input-placeholder {  
+	   @content;
+	}
+}

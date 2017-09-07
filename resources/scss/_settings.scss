@@ -45,7 +45,7 @@
 // 1. Global
 // ---------
 
-$global-font-size: 112.5%;
+$global-font-size: 100%;
 $smaller-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.68;
@@ -142,12 +142,12 @@ $header-sizes: (
     'h6': 16,
   ),
   medium: (
-    'h1': 48,
-    'h2': 40,
-    'h3': 31,
-    'h4': 25,
-    'h5': 20,
-    'h6': 16,
+    'h1': 30,
+    'h2': 25,
+    'h3': 16,
+    'h4': 16,
+    'h5': 14,
+    'h6': 13,
   ),
 );
 $header-color: inherit;

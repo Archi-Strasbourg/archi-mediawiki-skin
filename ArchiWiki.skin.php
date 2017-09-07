@@ -5,7 +5,7 @@
  * @ingroup Skins
  */
 class SkinArchiWiki extends SkinTemplate {
-	public $skinname = 'archiwiki', $stylename = 'ArchiWiki',
+	public $skinname = 'archiwiki', $stylename = 'archi-wiki',
 		$template = 'ArchiWikiTemplate', $useHeadElement = true;
 
 	/**
@@ -15,6 +15,8 @@ class SkinArchiWiki extends SkinTemplate {
 	 */
 	public function initPage( OutputPage $out ) {
 
+		global $wgScriptPath;
+
 		$out->addMeta( 'viewport', 'width=device-width, initial-scale=1.0' );
 
 		$out->addModuleStyles( array(
@@ -22,8 +24,17 @@ class SkinArchiWiki extends SkinTemplate {
 			// 'mediawiki.skinning.content.externallinks',
 			'skins.archiwiki'
 		) );
+		// Google Fonts
 		$out->addStyle( "//fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,400i,600" );
-		$out->addModules( array(
+		$out->addStyle( "//fonts.googleapis.com/icon?family=Material+Icons" );
+		$out->addStyle( "//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" );
+
+		//Manually load ULS mobile style
+		$out->addStyle(
+			$wgScriptPath.'/extensions/UniversalLanguageSelector/lib/jquery.uls/css/jquery.uls.mobile.css'
+		);
+
+		$out->addModuleScripts( array(
 			'skins.archiwiki.js'
 		) );
 	}

@@ -1,14 +1,14 @@
 {
-  "name": "ArchiWiki",
+  "name": "archi-wiki-skin",
   "description": "Theme for ArchiWiki",
   "main": "",
   "authors": [
     "Mark Nightingale <hello@marknightingale.net>"
   ],
-  "license": "MIT",
+  "license": "GPL-3.0",
   "homepage": "",
   "private": true,
   "dependencies": {
-    "foundation-sites": "^6.2.4"
+    "foundation-sites": "~6.2"
   }
 }
