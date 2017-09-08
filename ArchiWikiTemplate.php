@@ -150,6 +150,13 @@ class ArchiWikiTemplate extends BaseTemplate {
 					);
 					echo Html::closeElement( 'div' );
 
+					/**
+					 * À retirer au bout d'un mois
+					 */
+					if ($wgOut->getTitle()->getFullText() == 'Spécial:Connexion') {
+						echo '<b>Si vous aviez déjà un compte sur l\'ancien site Archi-Wiki et que c\'est votre première connexion sur le nouveau site, vous devez cliquez sur <a href="http://www.archi-wiki.org/Sp%C3%A9cial:R%C3%A9initialisation_du_mot_de_passe">Mot de passe oublié</a> pour régénérer votre mot de passe</b>.';
+					}
+
 					$this->html( 'bodycontent' );
 					$this->clear();
 					echo Html::rawElement(
