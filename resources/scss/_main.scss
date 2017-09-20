@@ -670,6 +670,8 @@ h2+.notice {
 	background-color: $white;
 	overflow: hidden;
 	margin-top: 16px;
+	position: relative;
+
 	a, a.new {
 		color: $slate;
 		text-decoration:underline;
