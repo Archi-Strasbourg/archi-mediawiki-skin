@@ -98,7 +98,8 @@ $(document).ready(function(){
 	// Setup header image on Latest-changes
 	 $('.latest-changes .latest-changes-recent-change').each(function(){
 	 	var $headerImage = $(this).find('a.image>img').first();
-	 	$(this).prepend('<div class="header-image hide"></div>').find('.header-image').each(function(){
+		var url = $(this).find('p > a').attr('href');
+		$(this).prepend('<a href="' + url + '"><div class="header-image hide"></div></a>').find('.header-image').each(function(){
 	 		setupHeaderImage($headerImage, $(this));
 	 	});
 	 });
