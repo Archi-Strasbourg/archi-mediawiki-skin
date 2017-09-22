@@ -989,6 +989,13 @@ REFERENCES
 	}
 }
 
+#mw-content-text {
+	& .mw-cite-backlink a,
+	& .reference a {
+		text-decoration: none;
+	}
+}
+
 /*********************
 CATEGORIES
 *********************/
