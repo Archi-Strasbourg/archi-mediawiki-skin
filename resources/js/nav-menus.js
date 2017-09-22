@@ -1,7 +1,7 @@
 /**
  * JS for navigation menus
  */
- 
+
  jQuery(document).ready(function($){
 
  	// Openclose function
@@ -47,7 +47,7 @@
 		return false;
  	});
 
- 	// Submit search form 
+ 	// Submit search form
  	$('.form-submit').click(function(){
  		$(this).closest('form').submit();
  	});
