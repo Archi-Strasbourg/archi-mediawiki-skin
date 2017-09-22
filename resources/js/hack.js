@@ -63,7 +63,7 @@ $(document).ready(function(){
 			$(this).prependTo('.mw-content-column');
 		});
 
-		// Move eleemnts to infobox row
+		// Move elements to infobox row
 		var $elementsToMove = $('#toc, .translations');
 		$elementsToMove.each(function(){
 			$(this).appendTo('.mw-info-column');
