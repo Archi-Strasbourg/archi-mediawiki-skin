@@ -1764,7 +1764,7 @@ HOMEPAGE
 			}
 			font-size: 109px;
 			transform: rotate(-4deg) scaleX(-1);
-
+			pointer-events: none;
 		}
 		h3 {
 			@include breakpoint(medium) {
