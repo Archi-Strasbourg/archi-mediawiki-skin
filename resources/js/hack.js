@@ -82,7 +82,7 @@ $(document).ready(function(){
 
 	// Move comments form to bottom of comments rather than top
 	$('.comments-body form[name="commentForm"]')
-		.appendTo('.comments-body')
+		.prependTo('.comments-body')
 		.wrap('<div class="comment-form"></div>').each(function(){
 			var $commentForm = $(this).closest('.comment-form');
 			$commentForm.before('<a href="javascript:void(0);" class="showhide-comments">' + $(this).find('.c-form-title').text() + '</a>');

@@ -1151,7 +1151,8 @@ Comments
 		display:block;
 		text-align:center;
 		font-size:rem-calc(14px);
-		margin-bottom:2rem;
+		margin-bottom:1rem;
+		margin-top:2rem;
 
 		&::before {
 			content: '+';
