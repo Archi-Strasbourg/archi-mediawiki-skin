@@ -984,6 +984,7 @@ li.gallerybox {
 REFERENCES
 *********************/
 .mw-content-ltr ol.references, .mw-content-rtl .mw-content-ltr ol.references {
+    font-size: 85%;
 	@include breakpoint(small only) {
 		margin-left:2rem;
 	}
@@ -994,6 +995,14 @@ REFERENCES
 	& .reference a {
 		text-decoration: none;
 	}
+}
+
+/*********************
+CAPTIONS
+*********************/
+
+.thumbcaption {
+    font-size: 94%;
 }
 
 /*********************
