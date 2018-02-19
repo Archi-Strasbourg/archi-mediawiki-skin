@@ -784,6 +784,11 @@ h2+.notice {
 	display:none !important;
 }
 
+//Hide empty paragraphs
+p > br:only-child {
+	display: none;
+}
+
 // Summary / TOC
 #toc {
 	@extend .columnbox;
