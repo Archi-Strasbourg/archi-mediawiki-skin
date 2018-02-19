@@ -686,7 +686,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 					<div class="column large-7 large-offset-2">
 						<form action="<?php echo $this->get( 'wgScript' ) ?>">
 							<div class="input-group">
-								<input type="search" class="search-input input-group-field" placeholder="<?php echo $this->getMsg('search-placeholder');?>" name="search">
+								<input type="search" id="searchInput" class="search-input input-group-field" placeholder="<?php echo $this->getMsg('search-placeholder');?>" name="search">
 								<div class="input-group-button">
 									<a class="button form-submit">
 										<i class="material-icons">search</i>
