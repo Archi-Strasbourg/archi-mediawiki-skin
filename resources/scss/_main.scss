@@ -1868,3 +1868,52 @@ Full width mobile namespaces
 .oo-ui-popupWidget {
 	display:none !important;
 }
+
+
+/********************
+// INSITE #21819
+************************/
+.mw-ui-icon.mw-ui-icon-spinner.mw-ui-icon-element.spinner.loading {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	&:before {
+		content: '';
+		display: inline-block;
+		width: 2rem;
+		height: 2rem;
+		background-size: contain;
+	}
+	&.hidden {
+		display: none;
+	}
+}
+
+#mw-mf-nearby {
+	.page-list {
+		margin-left: 0;
+		li.page-summary {
+			padding-left: 85px;
+			padding-bottom: 2rem;
+			min-height: 9rem;
+			padding-top: 0;
+			@media screen and (min-width: 400px) {
+				padding-top: .5rem;
+				padding-left: 155px;
+			}
+		}
+		.list-thumb {
+			@include aspect-ratio(70px, 70px);
+			position: absolute;
+			height: auto;
+			@media screen and (min-width: 400px) {
+				width: 140px;
+				@include aspect-ratio(70px, 70px);
+				position: absolute;
+			}
+		}
+	}
+}
+//.page-list.thumbs.actionable {
+//
+//}
