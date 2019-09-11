@@ -1901,6 +1901,9 @@ Full width mobile namespaces
 				padding-top: .5rem;
 				padding-left: 155px;
 			}
+			.wikidata-description {
+				font-size: .85rem;
+			}
 		}
 		.list-thumb {
 			@include aspect-ratio(70px, 70px);
