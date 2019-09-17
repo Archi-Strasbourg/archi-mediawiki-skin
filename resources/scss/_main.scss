@@ -586,7 +586,10 @@ HEADER STYLES
 	background-position: center center;
     margin-left: -1rem;
     margin-right: -1rem;
-
+	&.header-image-center {
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
 	@include breakpoint(medium) {
 		height: 300px;
 		border-bottom: 2px solid $dark-peach;
