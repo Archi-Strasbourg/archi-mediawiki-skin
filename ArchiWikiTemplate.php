@@ -62,7 +62,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 	 */
 	public function execute() {
 
-		global $wgOut;
+      global $wgOut, $wgRequest;
 
 		$this->html( 'headelement' );
 		?>
@@ -74,7 +74,24 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 			<!-- Header image is inserted with Javascript -->
 			<?php if ($this->getThisTitle()->mNamespace !== -1) : ?>
-				<div class="header-image-continer hide" id="header-image" style="">
+              <?php
+              $pageTitle = $this->getThisTitle()->getFullText();
+              $api = new ApiMain(
+                new DerivativeRequest(
+                  $wgRequest,
+                  [
+                    'action' => 'ask',
+                    'query' => '[[' . $pageTitle . ']]|?Image principale centrée',
+                  ]
+                )
+              );
+              $api->execute();
+              $results = $api->getResult()->getResultData();
+              if ($results['query']['results'][$pageTitle]['printouts']['Image principale centrée'][0] == 't') {
+                $classes = 'header-image-center';
+              }
+              ?>
+                <div class="header-image-continer hide <?php echo $classes; ?>" id="header-image" style="">
 					<?php if ($this->isColumnLayout()) echo $this->getTabs(); ?>
 				</div>
 				<?php if (!$this->isColumnLayout()) : ?>
