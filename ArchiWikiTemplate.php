@@ -251,10 +251,7 @@ class ArchiWikiTemplate extends BaseTemplate {
 					} ?>
 				</div>
 				<div class="small-12 medium-12 large-6 text-center columns">
-					<h2><?php echo $this->getMsg('partner-contributions-title'); ?></h2>
-					<div class="partners">
-						<?php echo $wgOut->parse('{{Partenaire_logos}}'); ?>
-					</div>
+					<?php echo $wgOut->parse('{{Partenaire_logos}}'); ?>
 
 				</div>
 				<div class="small-12 medium-12 large-3 columns">
