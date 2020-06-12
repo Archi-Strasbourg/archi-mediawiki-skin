@@ -1625,6 +1625,10 @@ HOMEPAGE
 	p {
 		font-size:16px;
 	}
+
+	li > sup {
+		display: none;
+	}
 }
 .latest-news {
 	@extend .archiwiki-intro;
