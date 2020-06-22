@@ -1927,3 +1927,37 @@ Full width mobile namespaces
 //.page-list.thumbs.actionable {
 //
 //}
+.sitedir-ltr .mw-dismissable-notice-body {
+	margin: 0;
+	padding: 2rem 3rem;
+	#localNotice p:last-child {
+		margin-bottom: 0;
+	}
+}
+#siteNotice {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #FFF;
+	z-index: 5;
+	max-width: 100%;
+	width: 990px;
+	left: 50%;
+	transform: translateX(-50%);
+	box-shadow: 0 5px 5px #D7D7D7;
+}
+
+.mw-dismissable-notice-close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	font-size: 0;
+	a {
+		display: block;
+		width: 25px;
+		height: 25px;
+		background-image: url(/skins/archi-wiki/resources/img/collapse-close.svg);
+		background-size: contain;
+	}
+}
