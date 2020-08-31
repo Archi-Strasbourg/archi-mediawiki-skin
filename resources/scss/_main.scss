@@ -883,6 +883,12 @@ h1.firstHeading {
 		display: none;
 	}
 
+	.wikitable {
+		hr {
+			display: block;
+		}
+	}
+
 	a {
 		text-decoration: underline;
 	}
