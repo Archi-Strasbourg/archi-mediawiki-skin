@@ -597,6 +597,14 @@ class ArchiWikiTemplate extends BaseTemplate {
 
 							<ul class="menu">
 								<li><a class="search-button" data-openclose data-target="#search-modal" data-openclose-colorchange="true"><i class="material-icons">search</i></a></li>
+                                <?php
+                                global $wgUser;
+                                if (in_array('sysop', $wgUser->getEffectiveGroups())) {
+                                    $tools = $this->getPersonalTools();
+                                    echo $this->makeListItem('notifications-alert', $tools['notifications-alert']);
+                                    echo $this->makeListItem('notifications-notice', $tools['notifications-notice']);
+                                }
+                                ?>
 								<li><a class="menu-button" data-openclose data-target="#main-navigation" data-openclose-colorchange="true"><i class="material-icons">menu</i><?php echo $this->getMsg( 'menu' ); ?></a></li>
 							</ul>
 						</div>
