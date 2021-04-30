@@ -114,10 +114,10 @@ gulp.task('watch', function() {
   // Watch foundation-js files
   gulp.watch('./vendor/foundation-sites/js/*.js', ['foundation-js']);
 
-}); 
+});
 
 
 // Run styles, site-js and foundation-js
-gulp.task('default', function() {
-  gulp.start('styles', 'site-js','foundation-js', 'js-deps');
-});
+gulp.task('default', gulp.series('styles', 'site-js', 'foundation-js', 'js-deps', function (done) {
+    done();
+}));
