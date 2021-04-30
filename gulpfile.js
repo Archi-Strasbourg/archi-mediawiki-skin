@@ -1,6 +1,5 @@
 // Grab our gulp packages
 var gulp  = require('gulp'),
-    gutil = require('gulp-util'),
     sass = require('gulp-sass'),
     cleanCSS = require('gulp-clean-css'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -17,7 +16,7 @@ var gulp  = require('gulp'),
 gulp.task('styles', function() {
     return gulp.src('./resources/scss/**/*.scss')
         .pipe(plumber(function(error) {
-            gutil.log(gutil.colors.red(error.message));
+            console.error(error.message);
             this.emit('end');
         }))
         .pipe(sass())
