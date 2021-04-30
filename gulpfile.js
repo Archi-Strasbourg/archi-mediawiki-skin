@@ -10,7 +10,6 @@ var gulp  = require('gulp'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     plumber = require('gulp-plumber'),
-    bower = require('gulp-bower'),
     babel = require('gulp-babel');
 
 
@@ -91,12 +90,6 @@ gulp.task('js-deps', function(){
   ])
     .pipe(gulp.dest('./dist/js'));
 });
-
-// Update Foundation with Bower and save to /vendor
-gulp.task('bower', function() {
-  return bower({ cmd: 'update'})
-    .pipe(gulp.dest('vendor/'))
-});  
 
 
 
