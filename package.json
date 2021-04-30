@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "deploy": "bower install && gulp"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
