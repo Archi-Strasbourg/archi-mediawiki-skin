@@ -3,13 +3,9 @@
 // Grab our gulp packages
 var gulp  = require('gulp'),
     sass = require('gulp-sass'),
-    cleanCSS = require('gulp-clean-css'),
     autoprefixer = require('gulp-autoprefixer'),
-    sourcemaps = require('gulp-sourcemaps'),
     jshint = require('gulp-jshint'),
-    stylish = require('jshint-stylish'),
     concat = require('gulp-concat'),
-    rename = require('gulp-rename'),
     plumber = require('gulp-plumber'),
     babel = require('gulp-babel');
 
