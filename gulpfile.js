@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 // Grab our gulp packages
 var gulp  = require('gulp'),
     sass = require('gulp-sass'),
