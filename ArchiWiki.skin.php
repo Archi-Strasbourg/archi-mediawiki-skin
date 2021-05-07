@@ -34,7 +34,7 @@ class SkinArchiWiki extends SkinTemplate {
 			$wgScriptPath.'/extensions/UniversalLanguageSelector/lib/jquery.uls/css/jquery.uls.mobile.css'
 		);
 
-		$out->addModuleScripts( array(
+		$out->addModules( array(
 			'skins.archiwiki.js'
 		) );
 	}
