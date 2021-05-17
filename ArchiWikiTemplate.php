@@ -61,6 +61,7 @@ class ArchiWikiTemplate extends BaseTemplate
 
     /**
      * Outputs the entire contents of the page
+     * @throws MWException
      */
     public function execute()
     {
@@ -90,7 +91,9 @@ class ArchiWikiTemplate extends BaseTemplate
                 );
                 $api->execute();
                 $results = $api->getResult()->getResultData();
-                if ($results['query']['results'][$pageTitle]['printouts']['Image principale centrée'][0] == 't') {
+                if (isset($results['query']['results'][$pageTitle]['printouts']['Image principale centrée'][0])
+                    && $results['query']['results'][$pageTitle]['printouts']['Image principale centrée'][0] == 't'
+                ) {
                     $classes = 'header-image-center';
                 }
                 ?>
@@ -254,7 +257,7 @@ class ArchiWikiTemplate extends BaseTemplate
                     } ?>
                 </div>
                 <div class="small-12 medium-12 large-6 text-center columns">
-                    <?php echo $wgOut->parse('{{Partenaire_logos}}'); ?>
+                    <?php echo $wgOut->parseAsInterface('{{Partenaire_logos}}'); ?>
 
                 </div>
                 <div class="small-12 medium-12 large-3 columns">
@@ -579,6 +582,7 @@ class ArchiWikiTemplate extends BaseTemplate
     /**
      * Generates the top header bar
      * @return string html
+     * @throws MWException
      */
     private function getHeaderBar()
     {
@@ -612,7 +616,7 @@ class ArchiWikiTemplate extends BaseTemplate
                         </div>
                         <div class="top-bar-left">
                             <ul class="menu dropdown" data-dropdown-menu>
-                                <?php echo $wgOut->parse('{{MenuQuickLinks}}'); ?>
+                                <?php echo $wgOut->parseAsInterface('{{MenuQuickLinks}}'); ?>
                                 <?php echo $this->getLanguageMenuItems(); ?>
                             </ul>
                         </div>
@@ -648,6 +652,9 @@ class ArchiWikiTemplate extends BaseTemplate
         <?php
     }
 
+    /**
+     * @throws MWException
+     */
     private function getNavigation($mobile = false)
     {
 
@@ -665,7 +672,7 @@ class ArchiWikiTemplate extends BaseTemplate
                     <ul class="menu vertical" <?php echo($mobile ? 'data-accordion-menu' : ''); ?> >
                         <li>
                             <a href="#"><?php echo $this->getMsg('association'); ?></a>
-                            <?php echo $wgOut->parse('{{MenuAssociation}}'); ?>
+                            <?php echo $wgOut->parseAsInterface('{{MenuAssociation}}'); ?>
                         </li>
                     </ul>
                 </div>
@@ -757,6 +764,9 @@ class ArchiWikiTemplate extends BaseTemplate
         return $html;
     }
 
+    /**
+     * @throws MWException
+     */
     private function getSearchModal($startHidden = true)
     {
 
@@ -770,7 +780,7 @@ class ArchiWikiTemplate extends BaseTemplate
             <div class="row">
                 <div class="column">
                     <h3 class="text-center search-title">
-                        <?php printf($this->getMsg('search-title'), strip_tags($wgOut->parse('{{PAGESINNAMESPACE:' . NS_ADDRESS . '}}')), strip_tags($wgOut->parse('{{PAGESINNAMESPACE:6}}'))); ?>
+                        <?php printf($this->getMsg('search-title'), strip_tags($wgOut->parseAsInterface('{{PAGESINNAMESPACE:' . NS_ADDRESS . '}}')), strip_tags($wgOut->parseAsInterface('{{PAGESINNAMESPACE:6}}'))); ?>
                     </h3>
                 </div>
             </div>
