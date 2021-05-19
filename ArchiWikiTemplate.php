@@ -290,7 +290,7 @@ class ArchiWikiTemplate extends BaseTemplate
             NS_ADDRESS_NEWS,
             NS_SOURCE,
             NS_PERSON,
-            NS_IMAGE,
+            NS_FILE,
             NS_MEDIAWIKI,
             NS_CATEGORY
         );
