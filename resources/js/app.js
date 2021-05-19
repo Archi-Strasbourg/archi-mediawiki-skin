@@ -41,7 +41,7 @@ $(window).click(function(){
 /**
  * Loader
  */
-$(window).load(function(){
+$(document).ready(function(){
 	$('#loading').fadeOut(800);
 });
 
