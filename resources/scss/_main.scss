@@ -796,7 +796,7 @@ p > br:only-child {
 #toc {
 	@extend .columnbox;
 
-	#toctitle {
+	.toctitle {
 		h2 {
 			@extend .columnbox-title;
 		}
@@ -871,6 +871,7 @@ h1.firstHeading {
 	display: none;
 }
 
+#toc .toctogglespan,
 .mw-pt-translate-header {
 	display:none;
 }
