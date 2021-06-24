@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 
 /**
  * HACKY THINGS
@@ -44,16 +45,17 @@ $(document).ready(function(){
 			$(this).prepend('<div class="mw-info-column"></div>');
 		});
 		$('.mw-body').addClass('has-archi-columns');
+
+		const $tables = $('#mw-content-text > .mw-parser-output > table')
 		// Add infobox class to infobox table on load
-		$('#mw-content-text>table').has('#map_leaflet_1').each(function(){
+		$tables.has('#map_leaflet_1').each(function(){
 			$(this).addClass('infobox');
 			// Move the infobox to the top of the HTML
 			$(this).prependTo('.mw-info-column');
 		});
 
 		// Find infobox on Person page
-
-		$('#mw-content-text>table').filter('.infobox').each(function(){
+		$tables.filter('.infobox').each(function(){
 			// Move the infobox to the top of the HTML
 			$(this).prependTo('.mw-info-column');
 		});
