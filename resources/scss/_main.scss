@@ -1877,6 +1877,14 @@ Full width mobile namespaces
 
 
 /********************
+// Language popup
+************************/
+.oo-ui-popupWidget {
+	display:none !important;
+}
+
+
+/********************
 // INSITE #21819
 ************************/
 .mw-ui-icon.mw-ui-icon-spinner.mw-ui-icon-element.spinner.loading {
