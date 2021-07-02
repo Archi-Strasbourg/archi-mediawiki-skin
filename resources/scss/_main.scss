@@ -1960,3 +1960,19 @@ Full width mobile namespaces
 		background-size: contain;
 	}
 }
+
+
+/********************
+// INSITE #26862
+************************/
+.ve-ce-surface {
+	.main-image {
+		width: auto;
+		float: none;
+		margin: 0 2rem 2rem 0;
+		display: block;
+		a, img {
+			display: block;
+		}
+	}
+}
