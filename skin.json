@@ -29,6 +29,10 @@
 			}
 		},
 		"skins.archiwiki.js": {
+			"targets": [
+				"mobile",
+				"desktop"
+			],
 			"position": "bottom",
 			"scripts": [
 				"dist/js/foundation.js",
