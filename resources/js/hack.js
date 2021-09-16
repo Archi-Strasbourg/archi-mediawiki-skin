@@ -46,7 +46,7 @@ $(document).ready(function(){
 		});
 		$('.mw-body').addClass('has-archi-columns');
 
-		const $tables = $('#mw-content-text > .mw-parser-output > table')
+		const $tables = $('#mw-content-text > .mw-parser-output > table, #mw-content-text > table')
 		// Add infobox class to infobox table on load
 		$tables.has('#map_leaflet_1').each(function(){
 			$(this).addClass('infobox');
