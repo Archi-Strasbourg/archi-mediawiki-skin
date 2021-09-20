@@ -1995,3 +1995,12 @@ Full width mobile namespaces
 	@extend .clearfix;
 	margin-bottom: 2rem;
 }
+
+/********************
+// INSITE #27947
+************************/
+.mw-body-content span.select-sfs select:not([multiple]) {
+	margin-bottom: 0;
+	padding-bottom: 3px;
+	height: 29px;
+}
