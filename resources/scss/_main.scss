@@ -1987,3 +1987,11 @@ Full width mobile namespaces
 .mw-editform textarea {
 	font-size: 16px;
 }
+
+/********************
+// INSITE #28295
+************************/
+.mw-body-content #mw-data-after-content .noexcerpt {
+	@extend .clearfix;
+	margin-bottom: 2rem;
+}
