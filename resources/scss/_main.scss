@@ -2004,3 +2004,18 @@ Full width mobile namespaces
 	padding-bottom: 3px;
 	height: 29px;
 }
+
+/********************
+// INSITE #27969
+************************/
+#wikiEditor-ui-toolbar #wikiEditor-section-advanced .label {
+	background-color: transparent;
+}
+#wikiEditor-ui-toolbar #wikiEditor-section-advanced span.label {
+	background-color: transparent;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+#wikiEditor-ui-toolbar .tabs span.tab a {
+	color: #222;
+}
