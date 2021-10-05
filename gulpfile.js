@@ -2,7 +2,7 @@
 
 // Grab our gulp packages
 var gulp  = require('gulp'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('node-sass')),
     autoprefixer = require('gulp-autoprefixer'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
