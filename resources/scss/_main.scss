@@ -2019,3 +2019,42 @@ Full width mobile namespaces
 #wikiEditor-ui-toolbar .tabs span.tab a {
 	color: #222;
 }
+
+/********************
+// INSITE #27995
+************************/
+
+@include breakpoint(small down) {
+	h2.collapsible-heading {
+		position: relative;
+		padding-left: 3rem;
+		outline: 1px dotted #8a8a8a;
+		.mw-ui-icon.mw-ui-icon-element {
+			position: absolute;
+			left: 0;
+			top: 40%;
+			transform: translateY(-50%);
+			width: 2em;
+			min-width: 2em;
+			background-size: contain;
+			margin: 0;
+			&:before {
+				margin: 0;
+			}
+		}
+	}
+	#mw-content-text h2 .mw-editsection {
+		margin-top: .3rem;
+		a {
+			display: inline-block;
+			text-indent: -9999px;
+			width: 20px;
+			height: 20px;
+			background-image: url(/skins/archi-wiki/resources/img/brackets.png);
+			background-size: contain;
+		}
+		a.mw-editsection-visualeditor {
+			background-image: url(/skins/archi-wiki/resources/img/edit_black.svg);
+		}
+	}
+}
