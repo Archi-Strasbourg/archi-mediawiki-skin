@@ -2043,18 +2043,26 @@ Full width mobile namespaces
 			}
 		}
 	}
-	#mw-content-text h2 .mw-editsection {
-		margin-top: .3rem;
-		a {
-			display: inline-block;
-			text-indent: -9999px;
-			width: 20px;
-			height: 20px;
-			background-image: url(/skins/archi-wiki/resources/img/brackets.png);
-			background-size: contain;
+	#mw-content-text h2 {
+		.mw-editsection {
+			margin-top: .3rem;
+			display: none;
+			a {
+				display: inline-block;
+				text-indent: -9999px;
+				width: 20px;
+				height: 20px;
+				background-image: url(/skins/archi-wiki/resources/img/brackets.png);
+				background-size: contain;
+			}
+			a.mw-editsection-visualeditor {
+				background-image: url(/skins/archi-wiki/resources/img/edit_black.svg);
+			}
 		}
-		a.mw-editsection-visualeditor {
-			background-image: url(/skins/archi-wiki/resources/img/edit_black.svg);
+		&.open-block {
+			.mw-editsection {
+				display: block;
+			}
 		}
 	}
 }
