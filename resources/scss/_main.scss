@@ -2066,3 +2066,24 @@ Full width mobile namespaces
 		}
 	}
 }
+
+/***********************
+// INSITE #27995#note-12
+************************/
+
+@include breakpoint(small down) {
+	.mw-content-column {
+		h1.firstHeading {
+			padding-right: 2rem;
+		}
+		.infobox {
+			margin-top: 0;
+		}
+		#mw-content-text {
+			padding-top: .3rem;
+		}
+		ul.archiwiki-toolbox {
+			top: -2rem;
+		}
+	}
+}
