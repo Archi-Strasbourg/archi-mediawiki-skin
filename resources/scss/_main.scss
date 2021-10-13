@@ -2072,6 +2072,9 @@ Full width mobile namespaces
 ************************/
 
 @include breakpoint(small down) {
+	.mw-body.has-archi-columns .mw-body-content {
+		position: initial;
+	}
 	.mw-content-column {
 		h1.firstHeading {
 			padding-right: 2rem;
@@ -2083,7 +2086,8 @@ Full width mobile namespaces
 			padding-top: .3rem;
 		}
 		ul.archiwiki-toolbox {
-			top: -2rem;
+			right: 1.2rem;
+			top: 5rem;
 		}
 	}
 }
