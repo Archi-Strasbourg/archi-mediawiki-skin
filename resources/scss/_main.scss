@@ -2052,11 +2052,8 @@ Full width mobile namespaces
 				text-indent: -9999px;
 				width: 20px;
 				height: 20px;
-				background-image: url(/skins/archi-wiki/resources/img/brackets.png);
-				background-size: contain;
-			}
-			a.mw-editsection-visualeditor {
 				background-image: url(/skins/archi-wiki/resources/img/edit_black.svg);
+				background-size: contain;
 			}
 		}
 		&.open-block {
@@ -2071,7 +2068,7 @@ Full width mobile namespaces
 // INSITE #27995#note-12
 ************************/
 
-@include breakpoint(small down) {
+@include breakpoint(medium down) {
 	.mw-body.has-archi-columns .mw-body-content {
 		position: initial;
 	}
@@ -2089,5 +2086,10 @@ Full width mobile namespaces
 			right: 1.2rem;
 			top: 5rem;
 		}
+	}
+	#ca-ve-edit-noswitch,
+	#mw-content-text h2 .mw-editsection span.mw-editsection-divider,
+	#mw-content-text h2 .mw-editsection a.mw-editsection-visualeditor {
+		display: none;
 	}
 }
