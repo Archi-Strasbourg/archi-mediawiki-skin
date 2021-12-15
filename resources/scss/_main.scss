@@ -2093,3 +2093,30 @@ Full width mobile namespaces
 		display: none;
 	}
 }
+
+
+/***********************
+// INSITE #28805
+************************/
+.search-box-row {
+	span.link--nearby a {
+		display: inline-flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		&:before {
+			content: "";
+			display: block;
+			position: relative;
+			top: 2px;
+			width: 16px;
+			height: 19px;
+			background-image: url(../../resources/img/map-marker.png);
+			background-size: contain;
+			background-repeat: no-repeat;
+			margin-right: .25rem;
+		}
+	}
+}
+
+
+
