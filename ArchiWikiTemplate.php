@@ -728,6 +728,7 @@ class ArchiWikiTemplate extends BaseTemplate
             return [
                 'text' => wfMessageFallback("vector-action-addsection", 'addsection')
                     ->setContext($context)->text(),
+                'class' => '',
                 'href' => $title->getLocalURL('action=edit&section=new')
             ];
         }
