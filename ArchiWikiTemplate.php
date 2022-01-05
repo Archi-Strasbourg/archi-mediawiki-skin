@@ -627,8 +627,12 @@ class ArchiWikiTemplate extends BaseTemplate
                                        data-openclose-colorchange="true"><i class="material-icons">search</i></a></li>
                                 <?php
                                 $tools = $this->getSkin()->getPersonalToolsForMakeListItem($this->get('personal_urls'));
-                                echo $this->getSkin()->makeListItem('notifications-alert', $tools['notifications-alert']);
-                                echo $this->getSkin()->makeListItem('notifications-notice', $tools['notifications-notice']);
+                                if (isset($tools['notifications-alert'])) {
+                                    echo $this->getSkin()->makeListItem('notifications-alert', $tools['notifications-alert']);
+                                }
+                                if (isset($tools['notifications-notice'])) {
+                                    echo $this->getSkin()->makeListItem('notifications-notice', $tools['notifications-notice']);
+                                }
                                 ?>
                                 <li><a class="menu-button" data-openclose data-target="#main-navigation"
                                        data-openclose-colorchange="true"><i
