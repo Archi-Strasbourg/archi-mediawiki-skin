@@ -713,41 +713,11 @@ class ArchiWikiTemplate extends BaseTemplate
     }
 
     /**
-     * @see SkinTemplate::buildContentNavigationUrls()
-     */
-    private function getNewTopicTab()
-    {
-        $context = RequestContext::getMain();
-        $out = $context->getOutput();
-
-        $title = $context->getTitle();
-
-        if (!$out->forceHideNewSectionLink()
-            && ($title->isTalkPage() || $out->showNewSectionLink())
-        ) {
-            return [
-                'text' => wfMessageFallback("vector-action-addsection", 'addsection')
-                    ->setContext($context)->text(),
-                'class' => '',
-                'href' => $title->getLocalURL('action=edit&section=new')
-            ];
-        }
-
-        return [];
-    }
-
-    /**
      * @return string
      */
     private function getTabs()
     {
         $html = '';
-
-        $newTopicTab = $this->getNewTopicTab();
-
-        if (!empty($newTopicTab)) {
-            $this->data['content_navigation']['namespaces']['addsection'] = $newTopicTab;
-        }
 
         foreach ($this->data['content_navigation']['namespaces'] as $tab) {
             $html .= '<li class="' . $tab['class'] . '"><a href="' . $tab['href'] . '">' . $tab['text'] . '</a></li>';
