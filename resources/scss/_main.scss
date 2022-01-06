@@ -2112,3 +2112,27 @@ Full width mobile namespaces
 
 
 
+
+
+/***********************
+// INSITE #26378
+************************/
+
+div.mw-echo-ui-notificationBadgeButtonPopupWidget-popup {
+	top: 112px!important;
+}
+
+li#pt-notifications-alert,
+li#pt-notifications-notice {
+	padding: 3.3rem .5rem 0;
+	a.mw-echo-notifications-badge {
+		display: inline-block;
+		height: 20px;
+		background-repeat: no-repeat;
+		padding: 0;
+		top: 7px;
+	}
+}
+
+
+
