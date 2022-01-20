@@ -91,6 +91,8 @@ class ArchiWikiTemplate extends BaseTemplate
                 );
                 $api->execute();
                 $results = $api->getResult()->getResultData();
+
+                $classes = '';
                 if (isset($results['query']['results'][$pageTitle]['printouts']['Image principale centrée'][0])
                     && $results['query']['results'][$pageTitle]['printouts']['Image principale centrée'][0] == 't'
                 ) {
@@ -542,40 +544,40 @@ class ArchiWikiTemplate extends BaseTemplate
      * Returns an array of active languages except the current language
      * @return array other languages
      */
-    private function getOtherLanguages()
+    private function getOtherLanguages(): array
     {
-        $other_languages = array_filter($this->availableLanguages, function ($value) {
+        return array_filter($this->availableLanguages, function ($value) {
             return $value !== $this->data['lang'];
         });
-
-        return $other_languages;
     }
 
-    private function getLanguageName()
+    /**
+     * @return string
+     */
+    private function getLanguageName(): string
     {
         $language = array_filter($this->availableLanguages, function ($value) {
             return $value == $this->data['lang'];
         });
-        return array_keys($language)[0];
+
+        return current(array_keys($language));
     }
 
     /**
      * Displays the language menu chooser <li> items
      * @return string html
      */
-    private function getLanguageMenuItems()
+    private function getLanguageMenuItems(): string
     {
         $html = '';
-        $currentLangCode = $this->data['lang'];
-        $currentLangName = $this->getLanguageName($this->data['lang']);
+        $currentLangName = $this->getLanguageName();
         $html .= '<li class="menu-text current-language">' . $currentLangName . '</li>';
         foreach ($this->getOtherLanguages() as $language_name => $language_code) {
             $url = wfAppendQuery($this->getThisPageUrl(), array('uselang' => $language_code));
             $html .= "<li><a href='$url' data-set-language='$language_code'>$language_name</a></li>";
         }
-        $html = sprintf('<li><a href="#">%s</a><ul class="menu">%s</ul></li>', $this->getMsg('languages'), $html);
 
-        return $html;
+        return sprintf('<li><a href="#">%s</a><ul class="menu">%s</ul></li>', $this->getMsg('languages'), $html);
     }
 
 
