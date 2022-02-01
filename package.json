@@ -13,7 +13,7 @@
     "grunt-contrib-jshint": "^3.1.1",
     "grunt-jsonlint": "^2.1.3",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^4.1.0",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.5.2",
     "gulp-jshint": "^2.1.0",
@@ -21,6 +21,10 @@
     "gulp-sass": "^5.0.0",
     "gulp-uglify": "^2.1.2",
     "jshint-stylish": "^2.2.1",
-    "node-sass": "^6.0.1"
-  }
+    "node-sass": "^7.0.1"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "iOS 8"
+  ]
 }

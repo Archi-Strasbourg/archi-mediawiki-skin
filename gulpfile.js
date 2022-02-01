@@ -19,7 +19,6 @@ gulp.task('styles', function() {
         }))
         .pipe(sass())
         .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'iOS 8'],
             cascade: false
         }))
         .pipe(gulp.dest('./dist/css/'))
