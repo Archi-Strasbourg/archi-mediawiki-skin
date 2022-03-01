@@ -21,7 +21,7 @@ gulp.task('styles', function() {
         .pipe(autoprefixer({
             cascade: false
         }))
-        .pipe(gulp.dest('./dist/css/'))
+        .pipe(gulp.dest('./dist/css/'));
 });
     
 // JSHint, concat, and minify JavaScript
@@ -36,7 +36,7 @@ gulp.task('site-js', function() {
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(concat('scripts.js'))
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(gulp.dest('./dist/js'));
 });    
 
 // JSHint, concat, and minify Foundation JavaScript
@@ -73,7 +73,7 @@ gulp.task('foundation-js', function() {
 	    compact: true
 	}))
     .pipe(concat('foundation.js'))
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(gulp.dest('./dist/js'));
 }); 
 
 // Install vendor JS deps
