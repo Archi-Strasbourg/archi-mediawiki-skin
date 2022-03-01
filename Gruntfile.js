@@ -7,7 +7,9 @@ module.exports = function ( grunt ) {
 		jshint: {
 			all: [
 				'**/*.js',
-				'!node_modules/**'
+				'!node_modules/**',
+				'!vendor/**',
+				'!dist/**'
 			]
 		},
 		banana: {
