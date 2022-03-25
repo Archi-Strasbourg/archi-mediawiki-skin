@@ -2135,4 +2135,73 @@ li#pt-notifications-notice {
 }
 
 
+/***********************
+// INSITE #29643
+************************/
+@include breakpoint(large) {
+	.map-layout {
+		#mw-content-text {
+			display: flex;
+			flex-flow: row-reverse nowrap;
+			> .mw-parser-output {
+				width: 70%;
+				flex: 0 0 70%;
+
+			}
+		}
+
+		.pf-runquery-formcontent {
+			width: 30%;
+			flex: 0 0 30%;
+			max-height: 825px;
+			overflow-y: scroll;
+			overflow-x: hidden;
+			#pfForm select {
+				width: 100%!important;
+			}
+			table.formtable {
+				tbody tr th {
+					width: 35%;
+				}
+				tbody tr td {
+					width: 65%;
+					padding: 0.6rem 0.7rem .6rem 0;
+					span.inputSpan {
+						display: block;
+						max-width: 200px;
+						input,
+						select {
+							width: 100%!important;
+							min-width: 150px!important;
+							display: block!important;
+							appearance: auto!important;
+							border-radius: 0!important;
+							padding: 10px!important;
+							height: auto;
+							border: 1px solid #D7D7D7;
+							background: none!important;
+						}
+					}
+					label.checkboxLabel {
+						width: 100%;
+					}
+					input, select {
+						max-width: 100%!important;
+						padding: 0!important;
+					}
+					input[type="checkbox"] {
+						margin: 0;
+					}
+					span.select-sfs {
+						position: relative;
+						min-width: 150px!important;
+						&:after {
+							content: none!important;
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
