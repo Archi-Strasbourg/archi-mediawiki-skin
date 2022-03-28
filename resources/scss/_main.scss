@@ -2159,6 +2159,10 @@ li#pt-notifications-notice {
 			#pfForm select {
 				width: 100%!important;
 			}
+			table.formtable tbody tr.checkboxesLine {
+				display: block;
+				width: 200%;
+			}
 			table.formtable {
 				tbody tr th {
 					width: 35%;
@@ -2205,3 +2209,33 @@ li#pt-notifications-notice {
 	}
 }
 
+.pf-runquery-formcontent table.formtable tbody tr.checkboxesLine {
+	th, td {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		margin: 0;
+	}
+	th {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: space-between;
+		&:after {
+			content: '';
+			display: block;
+			width: 1.25rem;
+			height: 1.25rem;
+			background-image: url(/skins/archi-wiki/resources/img/arrow.svg);
+			transform: rotate(180deg);
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+	}
+	td {
+		display: none;
+	}
+	&.is-open th:after {
+		transform: rotate(0deg);
+	}
+}

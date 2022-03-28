@@ -25,6 +25,24 @@ $('form').each(function(){
  * Toolbox
  */
 $(document).ready(function(){
+
+	/**
+	 * PLié/déplié courant archi
+	 */
+	var $checkboxContainer = $('.checkboxesSpan');
+	console.log('???');
+	if($checkboxContainer.length){
+		$checkboxContainer.each(function(){
+			var trLine = $(this).closest('tr');
+			trLine.addClass('checkboxesLine');
+			trLine.find('th').bind('click', function(){
+				trLine.find('td').slideToggle();
+				trLine.toggleClass('is-open');
+			});
+		});
+	}
+
+
 	$('.archiwiki-toolbox #archiwiki-toolbox-more').click(function(e){
 		$(this).closest('.archiwiki-toolbox').find(' .archiwiki-toolbox-submenu').slideToggle();
 		return false;
