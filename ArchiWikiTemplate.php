@@ -149,9 +149,18 @@ class ArchiWikiTemplate extends BaseTemplate
                     array('id' => 'siteSub'),
                     $this->getMsg('tagline')->parse()
                 );
+
+                $bodyclasses = ['mw-body-content'];
+
+                $query = $wgRequest->getQueryValuesOnly();
+                if (isset($query['Recherche_avancée']['carte']['value'])
+                    && $query['Recherche_avancée']['carte']['value'] == 1
+                ) {
+                    $bodyclasses[] = 'map-layout';
+                }
                 ?>
 
-                <div class="mw-body-content" id="bodyContent">
+                <div class="<?php echo implode(' ', $bodyclasses); ?>" id="bodyContent">
 
                     <?php echo $this->getArchiWikiToolbox(); ?>
 
