@@ -2161,7 +2161,7 @@ li#pt-notifications-notice {
 			}
 			table.formtable tbody tr.checkboxesLine {
 				display: block;
-				width: 200%;
+				width: 222%;
 			}
 			table.formtable {
 				tbody tr th {
@@ -2188,6 +2188,7 @@ li#pt-notifications-notice {
 					}
 					label.checkboxLabel {
 						width: 100%;
+						margin-right: 0!important;
 					}
 					input, select {
 						max-width: 100%!important;
@@ -2232,10 +2233,11 @@ li#pt-notifications-notice {
 			background-repeat: no-repeat;
 		}
 	}
-	td {
-		display: none;
-	}
 	&.is-open th:after {
 		transform: rotate(0deg);
 	}
+}
+
+#mw-content-text .leaflet-control-zoom a {
+	text-decoration: none;
 }
