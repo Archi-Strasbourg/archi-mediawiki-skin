@@ -1936,10 +1936,9 @@ Full width mobile namespaces
 #siteNotice {
 	position: absolute;
 	top: 0;
-	left: 0;
 	right: 0;
 	background: #FFF;
-	z-index: 5;
+	z-index: 9999;
 	max-width: 100%;
 	width: 990px;
 	left: 50%;
@@ -2240,4 +2239,22 @@ li#pt-notifications-notice {
 
 #mw-content-text .leaflet-control-zoom a {
 	text-decoration: none;
+}
+
+/***********************
+// INSITE #29643
+************************/
+.leaflet-popup {
+	.mw-parser-output {
+		margin-top: 1rem;
+		.floatnone {
+			text-align: center;
+		}
+		a {
+			display: inline-block;
+		}
+	}
+	a.leaflet-popup-close-button {
+		text-decoration: none!important;
+	}
 }
