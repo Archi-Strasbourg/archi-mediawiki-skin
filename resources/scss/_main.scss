@@ -2160,7 +2160,6 @@ li#pt-notifications-notice {
 			}
 			table.formtable tbody tr.checkboxesLine {
 				display: block;
-				width: 222%;
 			}
 			table.formtable {
 				tbody tr th {
@@ -2259,6 +2258,14 @@ li#pt-notifications-notice {
 	}
 }
 
+form#pfForm {
+	table.formtable {
+		tbody {
+			max-width: 100vw;
+			display: block;
+		}
+	}
+}
 @media (max-width: 1024px) {
 
 	form#pfForm {
@@ -2274,10 +2281,6 @@ li#pt-notifications-notice {
 			}
 			max-width: 100vw;
 			display: block;
-			tbody {
-				max-width: 100vw;
-				display: block;
-			}
 			tr {
 				display: flex;
 			}
