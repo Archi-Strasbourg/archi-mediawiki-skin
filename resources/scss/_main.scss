@@ -2266,7 +2266,12 @@ form#pfForm {
 		}
 	}
 }
+
 @media (max-width: 1024px) {
+
+	.map-layout #mw-content-text #map_leaflet_1 {
+		max-height: 45vh!important;
+	}
 
 	form#pfForm {
 		table.formtable {
