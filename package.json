@@ -7,7 +7,7 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "bower": "^1.8.8",
-    "grunt": "^1.5.2",
+    "grunt": "^1.5.3",
     "grunt-banana-checker": "0.4.0",
     "grunt-cli": "^1.4.2",
     "grunt-contrib-jshint": "^3.1.1",
