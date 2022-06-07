@@ -2149,12 +2149,15 @@ li#pt-notifications-notice {
 			}
 		}
 
+		.pf-runquery-formcontent .mw-parser-output {
+			max-height: 675px;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+
 		.pf-runquery-formcontent {
 			width: 30%;
 			flex: 0 0 30%;
-			max-height: 825px;
-			overflow-y: scroll;
-			overflow-x: hidden;
 			#pfForm select {
 				width: 100%!important;
 			}
@@ -2267,12 +2270,22 @@ form#pfForm {
 	}
 }
 
-@media (max-width: 1024px) {
+body:fullscreen .map-layout #mw-content-text #map_leaflet_1 {
+	width: 100vw!important;
+	height: 100vh!important;
+}
 
+@media (max-width: 768px) and (orientation: portrait) {
 	.map-layout #mw-content-text #map_leaflet_1 {
-		max-height: 45vh!important;
+		max-height: 65vh!important;
 	}
-
+}
+@media (max-width: 768px) and (orientation: landscape) {
+	.map-layout #mw-content-text #map_leaflet_1 {
+		max-height: 100vh!important;
+	}
+}
+@media (max-width: 768px) {
 	form#pfForm {
 		table.formtable {
 			width: 100%;
