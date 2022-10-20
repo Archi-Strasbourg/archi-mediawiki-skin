@@ -2169,7 +2169,6 @@ li#pt-notifications-notice {
 			flex: 0 0 30%;
 			#pfForm select {
 				width: 100%!important;
-				max-width: 905px!important;
 			}
 			table.formtable tbody tr.checkboxesLine {
 				display: block;
@@ -2272,6 +2271,9 @@ li#pt-notifications-notice {
 }
 
 form#pfForm {
+	select.createboxInput {
+		max-width: 905px!important;
+	}
 	table.formtable {
 		tbody {
 			max-width: 100vw;
