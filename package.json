@@ -1,12 +1,10 @@
 {
-  "private": true,
-  "scripts": {
-    "test": "grunt test",
-    "deploy": "bower install && gulp"
-  },
-  "engines": {
-    "npm": ">=8"
-  },
+  "name": "archi-wiki-skin",
+  "description": "MediaWiki skin used on archi-wiki.org",
+  "browserslist": [
+    "last 2 versions",
+    "iOS 8"
+  ],
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
     "bower": "^1.8.8",
@@ -25,8 +23,12 @@
     "jshint-stylish": "^2.2.1",
     "node-sass": "^7.0.3"
   },
-  "browserslist": [
-    "last 2 versions",
-    "iOS 8"
-  ]
+  "engines": {
+    "npm": ">=8"
+  },
+  "private": true,
+  "scripts": {
+    "deploy": "bower install && gulp",
+    "test": "grunt test"
+  }
 }
