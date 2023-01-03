@@ -69,7 +69,7 @@ gulp.task('foundation-js', function() {
           './vendor/foundation-sites/js/foundation.tooltip.js',
   ])
 	.pipe(babel({
-		presets: ['es2015'],
+		presets: ['@babel/preset-env'],
 	    compact: true
 	}))
     .pipe(concat('foundation.js'))
