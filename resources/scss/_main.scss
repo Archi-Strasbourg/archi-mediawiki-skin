@@ -10,6 +10,9 @@ GENERAL STYLES
 body {
 	overflow-x:hidden;
 }
+body.mediawiki > .wrapper {
+	@include customWrapper(1350px, 0);
+}
 .wrapper {
 	overflow:hidden;
 	@include breakpoint(medium) {
@@ -607,9 +610,9 @@ CONTENT STYLES
 
 // Left column on fiches
 .mw-body.has-archi-columns {
-	@include grid-row;
-	margin-left: -0.625rem;
-	margin-right: -0.625rem;
+	//@include grid-row;
+	//margin-left: -0.625rem;
+	//margin-right: -0.625rem;
 	.mw-info-column {
 		@include grid-column
 		padding: 0 1rem;

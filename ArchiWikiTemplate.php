@@ -70,7 +70,7 @@ class ArchiWikiTemplate extends BaseTemplate
 
         $this->html('headelement');
         ?>
-        <div class="wrapper row column">
+        <div class="wrapper column">
 
             <!-- Menu -->
 
