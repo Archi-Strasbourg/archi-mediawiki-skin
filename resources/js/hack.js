@@ -4,16 +4,22 @@
  * HACKY THINGS
  */
 
-function setupHeaderImage( $featuredImage, $container ) {
-	var $featuredThumb = $featuredImage;
-	var featuredThumbUrl = $featuredThumb.attr('src');
+/**
+ * @param $featuredImage
+ * @param $container
+ * @return {boolean}
+ */
+function setupHeaderImage($featuredImage, $container) {
+	const $featuredThumb = $featuredImage;
+	let featuredThumbUrl = $featuredThumb.attr('src');
 	if (typeof featuredThumbUrl != 'undefined') {
+		let featuredImageUrl;
 
-		if (featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('thumb') >= 0)) {
-			featuredThumbUrl = featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('/'));
-			var featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
+		if (featuredThumbUrl.substr(0, featuredThumbUrl.lastIndexOf('thumb') >= 0)) {
+			featuredThumbUrl = featuredThumbUrl.substr(0, featuredThumbUrl.lastIndexOf('/'));
+			featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
 		} else {
-			var featuredImageUrl = featuredThumbUrl;
+			featuredImageUrl = featuredThumbUrl;
 		}
 		$container.css({
 			backgroundImage: 'url(' + featuredImageUrl + ')'
@@ -46,7 +52,7 @@ $(document).ready(function(){
 		});
 		$('.mw-body').addClass('has-archi-columns');
 
-		const $tables = $('#mw-content-text > .mw-parser-output > table, #mw-content-text > table')
+		const $tables = $('#mw-content-text > .mw-parser-output > table, #mw-content-text > table');
 		// Add infobox class to infobox table on load
 		$tables.has('#map_leaflet_1').each(function(){
 			$(this).addClass('infobox');
