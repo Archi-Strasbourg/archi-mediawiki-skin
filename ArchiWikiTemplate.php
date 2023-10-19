@@ -67,8 +67,6 @@ class ArchiWikiTemplate extends BaseTemplate
     {
 
         global $wgOut, $wgRequest;
-
-        $this->html('headelement');
         ?>
         <div class="wrapper column">
 
@@ -77,7 +75,7 @@ class ArchiWikiTemplate extends BaseTemplate
             <?php $this->getHeaderBar(); ?>
 
             <!-- Header image is inserted with Javascript -->
-            <?php if ($this->getThisTitle()->mNamespace !== -1) : ?>
+            <?php if ($this->getThisTitle()->getNamespace() !== -1) : ?>
                 <?php
                 $pageTitle = $this->getThisTitle()->getFullText();
                 $api = new ApiMain(
@@ -113,7 +111,7 @@ class ArchiWikiTemplate extends BaseTemplate
 
                 <div id="loading">
                     <img id="loading-image"
-                         src="<?php echo $this->getSkin()->getSkinStylePath('resources/img/ajax-loader.gif'); ?>"
+                         src="/skins/archi-wiki/resources/img/ajax-loader.gif"
                          alt="Loading..."/>
                 </div>
 
@@ -246,12 +244,12 @@ class ArchiWikiTemplate extends BaseTemplate
             <div class="row">
                 <div class="small-12 medium-12 large-3 text-center columns">
                     <a href="<?php echo $this->getSiteUrl(); ?>"><img
-                                src="<?php echo $this->getSkin()->getSkinStylePath('resources/img/logo_archi_wiki-white.png') ?>"/></a>
+                                src="/skins/archi-wiki/resources/img/logo_archi_wiki-white.png"/></a>
                     <?php foreach ($this->getFooterLinks() as $category => $links) {
                         echo Html::openElement(
                             'ul',
                             array(
-                                'id' => 'footer-' . Sanitizer::escapeId($category),
+                                'id' => 'footer-' . Sanitizer::escapeIdForAttribute($category),
                                 'role' => 'contentinfo'
                             )
                         );
@@ -259,7 +257,7 @@ class ArchiWikiTemplate extends BaseTemplate
                             echo Html::rawElement(
                                 'li',
                                 array(
-                                    'id' => 'footer-' . Sanitizer::escapeId($category . '-' . $key)
+                                    'id' => 'footer-' . Sanitizer::escapeIdForAttribute($category . '-' . $key)
                                 ),
                                 $this->get($key)
                             );
@@ -279,10 +277,6 @@ class ArchiWikiTemplate extends BaseTemplate
                 </div>
             </div>
         </div>
-
-        <?php $this->printTrail() ?>
-        </body>
-        </html>
 
         <?php
     }
@@ -306,7 +300,7 @@ class ArchiWikiTemplate extends BaseTemplate
             NS_CATEGORY
         );
 
-        if (!in_array($this->getThisTitle()->mNamespace, $showOnNamespaces)) {
+        if (!in_array($this->getThisTitle()->getNamespace(), $showOnNamespaces)) {
             return '';
         }
 
@@ -381,7 +375,7 @@ class ArchiWikiTemplate extends BaseTemplate
 
     private function isColumnLayout()
     {
-        return in_array($this->getThisTitle()->mNamespace, $this->columnLayoutNamespaces);
+        return in_array($this->getThisTitle()->getNamespace(), $this->columnLayoutNamespaces);
     }
 
     private function buildToolBoxItem($key, $item, $toolboxData)
@@ -427,7 +421,7 @@ class ArchiWikiTemplate extends BaseTemplate
             array(
                 'role' => 'navigation',
                 'class' => 'mw-portlet',
-                'id' => Sanitizer::escapeId($box['id'])
+                'id' => Sanitizer::escapeIdForAttribute($box['id'])
             ) + Linker::tooltipAndAccesskeyAttribs($box['id'])
         );
         $html .= Html::element(
@@ -603,7 +597,7 @@ class ArchiWikiTemplate extends BaseTemplate
             <!-- Title Bar -->
             <div class="title-bar" data-responsive-toggle="main-navigation-mobile" data-hide-for="large">
                 <div class="title-bar-title title-bar-logo"><a href="<?php echo $this->getSiteUrl(); ?>"><img
-                                src="<?php echo $this->getSkin()->getSkinStylePath('resources/img/logo_archi_wiki-white.png') ?>"/></a>
+                                src="/skins/archi-wiki/resources/img/logo_archi_wiki-white.png"/></a>
                 </div>
                 <button class="" type="button" data-toggle><i
                             class="material-icons">menu</i><?php echo $this->getMsg('menu'); ?></button>
@@ -621,7 +615,7 @@ class ArchiWikiTemplate extends BaseTemplate
                         <div class="top-bar-left">
                             <div class="site-logo">
                                 <a href="<?php echo $this->getSiteUrl(); ?>"><img
-                                            src="<?php echo $this->getSkin()->getSkinStylePath('resources/img/logo_archi_wiki.png') ?>"/></a>
+                                            src="/skins/archi-wiki/resources/img/logo_archi_wiki.png"/></a>
                                 <p class="site-slogan"><?php echo $this->getMsg('site-slogan'); ?></p>
                             </div>
                         </div>
@@ -671,8 +665,7 @@ class ArchiWikiTemplate extends BaseTemplate
     {
 
         global $wgOut;
-        global $wgUser;
-        global $wgTitle;
+        $user = RequestContext::getMain()->getUser();
 
         ?>
 
@@ -697,7 +690,7 @@ class ArchiWikiTemplate extends BaseTemplate
                     </ul>
                 </div>
                 <div class="column small-12 large-3">
-                    <?php if ($wgUser->mId > 0) : ?>
+                    <?php if ($user->mId > 0) : ?>
                         <ul class="menu vertical" <?php echo($mobile ? 'data-accordion-menu' : ''); ?> >
                             <li>
                                 <a href="#"><?php echo $this->getMsg('profile'); ?></a>
@@ -830,20 +823,18 @@ class ArchiWikiTemplate extends BaseTemplate
 
     private function getContributionMenu()
     {
-
-        global $wgOut;
-        global $wgUser;
+        $user = RequestContext::getMain()->getUser();
 
         ?>
         <ul class="menu vertical">
             <?php $about_title = Title::newFromText("Archi-Wiki, c'est quoi ?"); ?>
             <li><a href="<?php echo $about_title->getFullURL(); ?>"><?php echo $about_title->getText(); ?></a></li>
-            <?php if (in_array('createpage', $wgUser->mRights)) : ?>
+            <?php if (in_array('createpage', $user->mRights)) : ?>
                 <li>
                     <a href="<?php echo Title::newFromText('Nouvelle page')->getFullURL(); ?>"><?php echo $this->getMsg('create-page'); ?></a>
                 </li>
             <?php endif; ?>
-            <?php if (in_array('edit', $wgUser->mRights) && $this->getThisTitle()->getNamespace() != -1) : ?>
+            <?php if (in_array('edit', $user->mRights) && $this->getThisTitle()->getNamespace() != -1) : ?>
                 <li>
                     <a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['veaction' => 'edit']) ?>"><?php echo $this->getMsg('edit-page'); ?></a>
                 </li>
@@ -858,7 +849,7 @@ class ArchiWikiTemplate extends BaseTemplate
             <li>
                 <a href="<?php echo $contribution_title->getFullURL(); ?>"><?php echo $contribution_title->getText(); ?></a>
             </li>
-            <?php if (in_array('sysop', $wgUser->getGroups())):; ?>
+            <?php if (in_array('sysop', $user->getGroups())):; ?>
                 <li><a href="<?php echo Title::newFromText('Aide:AdminAW')->getFullURL(); ?>">Administration</a></li>
             <?php endif; ?>
         </ul>
@@ -868,7 +859,7 @@ class ArchiWikiTemplate extends BaseTemplate
 
     private function getProfileMenu()
     {
-        global $wgUser;
+        $user = RequestContext::getMain()->getUser();
 
         ?>
         <ul class="menu vertical">
@@ -879,10 +870,10 @@ class ArchiWikiTemplate extends BaseTemplate
                 <a href="<?php echo $this->getPersonalTools()['mycontris']['links'][0]['href']; ?>"><?php echo $this->getMsg('contribs-list'); ?></a>
             </li>
             <li>
-                <a href="<?php echo Title::newFromText('Utilisateur:' . $wgUser->mName . '/Brouillon')->getFullURL(); ?>"><?php echo $this->getMsg('user-sandbox'); ?></a>
+                <a href="<?php echo Title::newFromText('Utilisateur:' . $user->mName . '/Brouillon')->getFullURL(); ?>"><?php echo $this->getMsg('user-sandbox'); ?></a>
             </li>
             <li>
-                <a href="<?php echo Title::newFromText('Discussion_utilisateur:' . $wgUser->mName)->getFullURL(); ?>"><?php echo $this->getMsg('user-discussion'); ?></a>
+                <a href="<?php echo Title::newFromText('Discussion_utilisateur:' . $user->mName)->getFullURL(); ?>"><?php echo $this->getMsg('user-discussion'); ?></a>
             </li>
             <li>
                 <a href="<?php echo $this->getPersonalTools()['preferences']['links'][0]['href']; ?>"><?php echo $this->getMsg('your-prefs'); ?></a>
@@ -894,16 +885,15 @@ class ArchiWikiTemplate extends BaseTemplate
 
     private function getProfile()
     {
-        global $wgUser;
-        global $wgOut;
+        $user = RequestContext::getMain()->getUser();
 
         ?>
 
         <div class="profile-box">
-            <?php if ($wgUser->mId > 0) : ?>
+            <?php if ($user->mId > 0) : ?>
                 <?php $avatar_url = $this->getUserAvatar(115); ?>
                 <?php if ($avatar_url) : ?>
-                    <img src="<?php echo $avatar_url ?>" alt="Avatar <?php echo $wgUser->mRealName; ?>"/>
+                    <img src="<?php echo $avatar_url ?>" alt="Avatar <?php echo $user->mRealName; ?>"/>
                 <?php else : ?>
                     <i class="material-icons">account_circle</i>
                 <?php endif; ?>
@@ -911,12 +901,12 @@ class ArchiWikiTemplate extends BaseTemplate
                 <i class="material-icons">account_circle</i>
             <?php endif; ?>
             <ul class="menu vertical">
-                <?php if ($wgUser->mId > 0) : ?>
+                <?php if ($user->mId > 0) : ?>
                     <li>
-                        <a href="<?php echo Title::newFromText('Utilisateur:' . $wgUser->mName)->getFullURL(); ?>"><b><?php echo $wgUser->getName(); ?></b></a>
+                        <a href="<?php echo Title::newFromText('Utilisateur:' . $user->mName)->getFullURL(); ?>"><b><?php echo $user->getName(); ?></b></a>
                     </li>
                     <li>
-                        <a href="<?php echo Title::newFromText('Utilisateur:' . $wgUser->mName)->getFullURL(); ?>"><?php echo $this->getMsg('your-profile'); ?></a>
+                        <a href="<?php echo Title::newFromText('Utilisateur:' . $user->mName)->getFullURL(); ?>"><?php echo $this->getMsg('your-profile'); ?></a>
                     </li>
                     <li>
                         <a href="<?php echo $this->getPersonalTools()['logout']['links'][0]['href']; ?>"><?php echo $this->getMsg('log-out'); ?></a>
@@ -963,8 +953,10 @@ class ArchiWikiTemplate extends BaseTemplate
      */
     private function getUserAvatar($width)
     {
-        global $wgUser, $wgRequest;
-        $userPagename = 'Utilisateur:' . $wgUser->getName();
+        global $wgRequest;
+        $user = RequestContext::getMain()->getUser();
+
+        $userPagename = 'Utilisateur:' . $user->getName();
         $userTitle = Title::newFromText($userPagename);
         $api = new \ApiMain(
             new \DerivativeRequest(
@@ -993,7 +985,7 @@ class ArchiWikiTemplate extends BaseTemplate
         } else {
             $action = '';
         }
-        if (in_array($this->getThisTitle()->mNamespace, $this->translatableNamespaces) && !in_array($action, $this->untranslatableActions)) {
+        if (in_array($this->getThisTitle()->getNamespace(), $this->translatableNamespaces) && !in_array($action, $this->untranslatableActions)) {
             $translationsHTML = '';
             $curCode = $this->getThisTitle()->getSubpageText();
             if ($curCode == $this->getThisTitle()->getBaseText()) {
