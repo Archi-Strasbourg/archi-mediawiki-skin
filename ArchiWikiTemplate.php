@@ -1,5 +1,7 @@
 <?php
 
+use CategoryBreadcrumb\CategoryBreadcrumb;
+
 /**
  * BaseTemplate class for the Example skin
  *
@@ -167,6 +169,12 @@ class ArchiWikiTemplate extends BaseTemplate
                         'div',
                         array('id' => 'contentSub')
                     );
+
+                    /*
+                     * Le hook SkinTemplateOutputPageBeforeExec n'existe plus
+                     * donc on doit appeler cette méthode manuellement.
+                     */
+                    CategoryBreadcrumb::main($this->getSkin(), $this);
                     if ($this->data['subtitle']) {
                         echo Html::rawelement(
                             'p',
