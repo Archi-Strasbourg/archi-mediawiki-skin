@@ -2333,3 +2333,14 @@ body:fullscreen .map-layout #mw-content-text #map_leaflet_1 {
 textarea {
 	box-shadow: none!important;
 }
+
+
+
+// masquer prefixe personne et adresse
+// https://redmine.insite.coop/issues/31597
+.ns-4000 .mw-page-title-namespace,
+.ns-4000 #firstHeading .mw-page-title-separator,
+.ns-4006 .mw-page-title-namespace,
+.ns-4006 #firstHeading .mw-page-title-separator {
+	display: none;
+}
