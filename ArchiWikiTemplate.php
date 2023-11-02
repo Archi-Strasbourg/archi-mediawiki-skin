@@ -1,6 +1,7 @@
 <?php
 
 use CategoryBreadcrumb\CategoryBreadcrumb;
+use MediaWiki\MediaWikiServices;
 
 /**
  * BaseTemplate class for the Example skin
@@ -980,7 +981,7 @@ class ArchiWikiTemplate extends BaseTemplate
         if (isset($results['query']['results'][$userPagename]['printouts']['Avatar'][0])) {
             $avatar = $results['query']['results'][$userPagename]['printouts']['Avatar'][0];
             $avatarTitle = Title::newFromText($avatar['fulltext']);
-            $avatarFile = wfFindFile($avatarTitle->getText());
+            $avatarFile = MediaWikiServices::getInstance()->getRepoGroup()->findFile($avatarTitle->getText());
 
             return $avatarFile->createThumb($width);
         }
