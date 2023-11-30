@@ -725,9 +725,9 @@ h2+.notice {
 	border-collapse: separate;
 	tr:first-child {
 		td {
-			// padding: 0;
-			border: 0;
-
+			&.map-row {
+				border: none;
+			}
 			.maps-map {
 				width: 100% !important;
 			}
@@ -2366,4 +2366,13 @@ textarea {
 
 .printfooter {
 	display: none;
+}
+
+div.tright,
+div.floatright,
+table.floatright {
+	clear:right;
+	float:right;
+	margin-left: 20px;
+	margin-bottom: 10px;
 }
