@@ -346,7 +346,7 @@ class ArchiWikiTemplate extends BaseTemplate
         );
         $printToolBoxData = array(
             'print' => array(
-                'href' => $this->getThisPageUrl() . '&printable=yes',
+                'href' => $this->getThisPageUrl() . '?printable=yes',
                 'class' => 'archiwiki-toolbox-print',
                 'id' => 'archiwiki-toolbox-print',
                 'text' => $this->getMsg('Print')->text()
