@@ -56,8 +56,8 @@ class ArchiWikiTemplate extends BaseTemplate
             'icon' => '<i class="icon ion-social-facebook"></i>',
         ),
         "instagram" => array(
-            'handle' => 'archi_strasbourg',
-            'url' => 'https://www.instagram.com/archi_strasbourg/',
+            'handle' => 'archistrasbourg',
+            'url' => 'https://www.instagram.com/archistrasbourg/',
             'icon' => '<i class="icon ion-social-instagram"></i>',
         )
     );
@@ -100,8 +100,9 @@ class ArchiWikiTemplate extends BaseTemplate
                     $classes = 'header-image-center';
                 }
                 ?>
-                <div class="header-image-continer hide <?php echo $classes; ?>" id="header-image" style="">
+                <div class="header-image-continer hide " id="header-image" style="">
                     <?php if ($this->isColumnLayout()) echo $this->getTabs(); ?>
+                    <div id="header-image2" class="<?php echo $classes; ?>"></div>
                 </div>
                 <?php if (!$this->isColumnLayout()) : ?>
                     <div class="row column prelative">
@@ -190,12 +191,7 @@ class ArchiWikiTemplate extends BaseTemplate
                     );
                     echo Html::closeElement('div');
 
-                    /**
-                     * À retirer au bout d'un mois
-                     */
-                    if ($wgOut->getTitle()->getFullText() == 'Spécial:Connexion') {
-                        echo '<b>Si vous aviez déjà un compte sur l\'ancien site Archi-Wiki et que c\'est votre première connexion sur le nouveau site, vous devez cliquez sur <a href="http://www.archi-wiki.org/Sp%C3%A9cial:R%C3%A9initialisation_du_mot_de_passe">Mot de passe oublié</a> pour régénérer votre mot de passe</b>.';
-                    }
+                    
 
                     $this->html('bodycontent');
                     $this->clear();
@@ -787,6 +783,8 @@ class ArchiWikiTemplate extends BaseTemplate
                 <div class="column large-2 end">
                     <a href="<?php echo Title::newFromText('Spécial:RunQuery/Recherche_avancée')->getFullURL(); ?>"
                        class="advanced-search-link"><?php echo $this->getMsg('advanced-search'); ?></a>
+                    <a href="<?php echo "/Spécial:RunQueryCache/Recherche_avancée?pfRunQueryFormName=Recherche avancée&Recherche_avancée[carte][value]=1&Recherche_avancée[carte][is_checkbox]=true"; ?>" 
+                       class="advanced-search-link">recherche cartographique</a>
                 </div>
             </div>
         </nav>
