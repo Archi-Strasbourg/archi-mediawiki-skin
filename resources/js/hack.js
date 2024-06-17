@@ -101,7 +101,8 @@ $(document).ready(function(){
 				$(this).next().slideToggle();
 			});
 	});
-
+	// Put the "modifier critères" button in the right place
+	$('#modifier_criteres').appendTo('#boutons-vers-recherche');
 	/**
 	 * HOMEPAGE things
 	 */

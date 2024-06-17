@@ -8,46 +8,54 @@ Stylesheet: Main Stylesheet
 GENERAL STYLES
 *********************/
 body {
-	overflow-x:hidden;
+	overflow-x: hidden;
 }
+
 /*
 body.mediawiki > .wrapper {
 	@include customWrapper(1350px, 0);
 }*/
 .wrapper {
-	overflow:hidden;
+	overflow: hidden;
+
 	@include breakpoint(medium) {
-	    min-height: 500px
+		min-height: 500px
 	}
 }
+
 .prelative {
-	position:relative;
+	position: relative;
 }
+
 .MediaTransformError {
-	display:none !important;
+	display: none !important;
 }
+
 input[type='submit'] {
 	@extend .button;
 }
+
 input:not([type]) {
 	@extend [type='text'];
 }
 
 .cancel-global-padding {
-	margin-left:-$global-padding;
-	margin-right:-$global-padding;
+	margin-left: -$global-padding;
+	margin-right: -$global-padding;
 }
+
 .small-cancel-global-padding {
 	margin-left: -#{map_get($grid-column-gutter, 'small')/2};
 	margin-right: -#{map_get($grid-column-gutter, 'small')/2};
+
 	@include breakpoint(medium) {
-		margin-left:0;
-		margin-right:0;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
 
 .button {
-	text-decoration:none !important;
+	text-decoration: none !important;
 	font-weight: $global-weight-bold;
 	text-transform: uppercase;
 }
@@ -58,16 +66,20 @@ input:not([type]) {
 		display: none !important;
 	}
 }
+
 .uls-mobile {
 	left: 2.5% !important;
+
 	&.uls-wide,
 	&.grid .row {
 		min-width: 0;
 	}
+
 	&.grid .columns {
 		float: none;
 		padding: 0;
 	}
+
 	#uls-settings-block div.display-settings-block,
 	#uls-settings-block div.input-settings-block {
 		display: none;
@@ -77,14 +89,16 @@ input:not([type]) {
 /*********************
 LINK STYLES
 *********************/
-a, a:visited {
+a,
+a:visited {
 
 	// Mobile tap color
 	&:link {
 		//Highlight links on iOS, Similar to :hover for mobile devices.
-		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
 	}
 }
+
 .site-button {
 	@extend .button;
 }
@@ -92,7 +106,16 @@ a, a:visited {
 /*********************
 H1, H2, H3, H4, H5 P STYLES
 *********************/
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
 
 	// Removing text decoration from all headline links
 	a {
@@ -100,45 +123,40 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 	}
 }
 
-h1, .h1 {
+h1,
+.h1 {}
 
-}
+h2,
+.h2 {}
 
-h2, .h2 {
+h3,
+.h3 {}
 
-}
+h4,
+.h4 {}
 
-h3, .h3 {
-
-}
-
-h4, .h4 {
-
-}
-
-h5, .h5 {
-
-}
+h5,
+.h5 {}
 
 /********************
 LOADING
 **********************/
 #loading {
-	width:100%;
-	height:100%;
-	position:fixed;
-	top:0;
-	left:0;
-	background-color:$body-background;
-    z-index: 9000;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: $body-background;
+	z-index: 9000;
 
-    #loading-image {
-    	margin:0 auto;
-    	position:absolute;
-    	top:40%;
-    	left:0;
-    	right:0;
-    }
+	#loading-image {
+		margin: 0 auto;
+		position: absolute;
+		top: 40%;
+		left: 0;
+		right: 0;
+	}
 }
 
 
@@ -149,30 +167,37 @@ Search modal
 	// @extend .cancel-global-padding;
 
 	padding-bottom: 0 !important;
+
 	@include breakpoint(medium) {
-		padding-bottom:2rem !important;
+		padding-bottom: 2rem !important;
 	}
+
 	@include placeholder {
 		color: $slate;
 		font-style: italic;
 	}
+
 	.advanced-search-link {
 		text-decoration: underline;
 		padding-top: 0.25rem;
 		white-space: nowrap;
 	}
+
 	.search-title {
 		font-size: 1.125rem;
 		margin-bottom: 1rem;
+
 		@include breakpoint(medium) {
 			font-size: 1.7rem;
 
 		}
 	}
+
 	.input-group {
 		.search-input {
 			border: 0.125rem solid $dark-peach;
 		}
+
 		.input-group-button {
 			a {
 				height: 2.5rem;
@@ -185,6 +210,7 @@ Search modal
 			}
 		}
 	}
+
 	padding-bottom: 2rem;
 }
 
@@ -197,17 +223,30 @@ COLOR PANELS
 	padding-top: 1rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
+
 	@include breakpoint(medium) {
 		padding-top: 2rem;
 	}
+
 	overflow: hidden;
 	color: $white;
-	label, p, h1, h2, h3, h4, h5, h6 {
+
+	label,
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		color: $white;
 	}
-	button, a.button {
+
+	button,
+	a.button {
 		background-color: $white;
 		color: $primary-color;
+
 		&:hover {
 			background-color: mix($primary-color, $white, 15%);
 		}
@@ -232,12 +271,15 @@ $menu-breakpoint: large;
 // Main navigation general
 .main-navigation {
 	background-color: transparentize($slate, 0.05);
+
 	@include breakpoint($menu-breakpoint) {
 		background-color: $slate;
 	}
-	padding: 0 1rem ;
+
+	padding: 0 1rem;
+
 	ul.menu {
-		&>li{
+		&>li {
 			color: $white-three;
 			padding-left: 0.5rem;
 			padding-right: 0.5rem;
@@ -252,7 +294,8 @@ $menu-breakpoint: large;
 
 			ul.menu {
 				padding-left: 1rem;
-				&>li{
+
+				&>li {
 					border-bottom: 1px solid transparentize($white-three, .5);
 					padding-bottom: 0.7rem;
 
@@ -281,6 +324,7 @@ $menu-breakpoint: large;
 				padding-bottom: 0;
 				// padding: $menu-item-padding;
 				padding-bottom: 1rem;
+
 				&>a {
 					border-bottom: none !important;
 					padding-left: 0;
@@ -288,11 +332,13 @@ $menu-breakpoint: large;
 					padding-top: 0;
 					padding-bottom: 0;
 				}
+
 				ul.menu {
 					padding-left: 0;
 					padding-right: 0;
 					padding-top: 1.5rem;
 					margin: 0;
+
 					&>li {
 						font-weight: normal;
 						font-family: $body-font-family;
@@ -301,7 +347,9 @@ $menu-breakpoint: large;
 						padding-bottom: 0;
 						padding-left: 0;
 						padding-right: 0;
-						&>a, &>.selflink {
+
+						&>a,
+						&>.selflink {
 							padding-bottom: 0.5rem;
 							line-height: 1;
 							display: block;
@@ -316,10 +364,12 @@ $menu-breakpoint: large;
 }
 
 
-.main-navigation, .title-bar {
+.main-navigation,
+.title-bar {
 	ul.menu>li>a {
 		color: $white-three;
 	}
+
 	.is-accordion-submenu-parent {
 		a::after {
 			border-color: $white-three transparent transparent;
@@ -338,18 +388,24 @@ $menu-breakpoint: large;
 	.title-area {
 		z-index: 1;
 	}
+
 	background-color: transparent;
-	a, button {
+
+	a,
+	button {
 		color: $slate;
 	}
+
 	ul.menu {
 		background-color: transparent;
+
 		&>li {
 			text-transform: uppercase;
 			height: 9.375rem;
 			padding-left: 0.5rem;
 			padding-right: 0.5rem;
 			font-size: 0.9rem;
+
 			@include breakpoint (1058px) {
 				padding-left: 0.7rem;
 				padding-right: 0.7rem;
@@ -362,16 +418,20 @@ $menu-breakpoint: large;
 				color: $charcoal-grey;
 			}
 		}
+
 		ul.menu.submenu {
 			background-color: $white;
-			top:70%;
+			top: 70%;
+
 			&>li {
-				height:auto;
+				height: auto;
+
 				&>a {
 					padding: $menu-item-padding;
 					padding-left: 0.7rem;
-					padding-right:0.7rem;
+					padding-right: 0.7rem;
 				}
+
 				&.menu-text {
 					padding-left: 1.4rem;
 					padding-right: 1.4rem;
@@ -379,23 +439,29 @@ $menu-breakpoint: large;
 			}
 		}
 	}
+
 	.top-bar-right {
+
 		// Search and menu buttons
 		ul.menu {
 			&>li {
 				padding: 0;
 				display: inline-block;
+
 				&>a {
 					height: 100%;
 					padding-top: 3.3rem;
 					width: 4.7rem;
+
 					@include breakpoint(1124px) {
 						width: 5.3125rem;
+
 						@include breakpoint(1195px) {
 							width: 7.3125rem;
 						}
 
 					}
+
 					&.toggled {
 						color: $white;
 					}
@@ -412,19 +478,27 @@ $menu-breakpoint: large;
 
 	.site-logo {
 		padding: 2rem 0 1rem 1rem;
-		img {height: 63px; margin-bottom: 0.75rem;}
+
+		img {
+			height: 63px;
+			margin-bottom: 0.75rem;
+		}
+
 		.site-slogan {
 			font-size: 0.778rem;
 			color: rgba(70, 87, 99, 0.85);
 			margin-bottom: 0;
 		}
 	}
-	.menu-button, .search-button {
+
+	.menu-button,
+	.search-button {
 		i {
 			display: block;
 			margin: auto;
 			font-size: 1.9rem;
 		}
+
 		font-size: 0.9rem;
 		text-transform: uppercase;
 		text-align: center;
@@ -437,11 +511,13 @@ $menu-breakpoint: large;
 .off-canvas-list {
 	ul {
 		margin-left: 0;
+
 		li {
 			a {
 				border-bottom: 0px;
 			}
 		}
+
 		.dropdown {
 			margin-left: 20px;
 		}
@@ -452,15 +528,18 @@ $menu-breakpoint: large;
 .uls-trigger {
 	background: none !important;
 }
+
 /***
 Profile box
 	*****/
 .profile-box {
 	text-align: center;
-    margin-left: -0.5rem;
-    margin-right: -0.5rem;
+	margin-left: -0.5rem;
+	margin-right: -0.5rem;
+
 	img {
 		display: none;
+
 		@include breakpoint($menu-breakpoint) {
 			display: block;
 			margin: auto;
@@ -468,33 +547,40 @@ Profile box
 			border: 3px solid $white-three;
 		}
 	}
+
 	&>i {
 		font-size: 6rem;
 		color: $white-one;
 		border-radius: 300px;
 	}
+
 	ul.menu {
 		@include grid-row;
-	    margin-left: -0.83333333rem;
-	    margin-right: -0.83333333rem;
+		margin-left: -0.83333333rem;
+		margin-right: -0.83333333rem;
 
 		&>li {
-		    border-bottom: none !important;
+			border-bottom: none !important;
 			@include grid-column(6);
 			text-align: left;
+
 			@include breakpoint($menu-breakpoint) {
 				text-align: center;
 			}
+
 			&:last-child {
 				text-align: right;
+
 				@include breakpoint($menu-breakpoint) {
 					text-align: center;
 				}
 			}
+
 			@include breakpoint($menu-breakpoint) {
 				text-align: center;
 				@include grid-column(12);
 			}
+
 			&>a {
 				border-bottom: none !important;
 			}
@@ -502,8 +588,10 @@ Profile box
 
 		@include breakpoint($menu-breakpoint) {
 			margin-top: 0 !important;
+
 			&>li {
 				padding: 0;
+
 				&>a {
 					padding: 0 !important;
 					padding-top: 0.5rem;
@@ -526,11 +614,13 @@ HEADER STYLES
 .title-bar {
 	background-color: $slate;
 	padding: 1.2rem 2rem;
+
 	.title-bar-logo {
 		max-width: 112px;
 		height: auto;
 
 	}
+
 	&>button {
 		float: right;
 		font-size: 0.6rem;
@@ -551,62 +641,75 @@ HEADER STYLES
 
 	// Specifics for search-modal when in top-bar
 	position: relative;
+
 	@include breakpoint(medium down) {
 		margin-left: -0.625rem;
 		margin-right: -0.625rem;
+
 		@include breakpoint(medium) {
 			// margin-left: -0.9375rem;
 			// margin-right: -0.9375rem;
 		}
 	}
+
 	.search-modal {
 		position: absolute;
 		z-index: 1098;
 		left: 0;
 		right: 0;
 	}
+
 	// Specifics for mega-menu when in top-bar
 	.mega-menu {
 		@include breakpoint ($menu-breakpoint) {
 			position: absolute;
 			left: 0;
-			right:0;
+			right: 0;
 			z-index: 9999;
 		}
 	}
 }
 
-.ns-4000, .ns-4100, .ns-4002, .ns-4006, .ns--1 {
+.ns-4000,
+.ns-4100,
+.ns-4002,
+.ns-4006,
+.ns--1 {
 	.site-header {
-		border:none;
+		border: none;
 		margin-bottom: 0;
 	}
 }
 
-#header-image2{
+#header-image2 {
 
 	display: block;
 	height: 190px;
 	background-size: cover;
 	background-position: center center;
-    margin-left: -1rem;
-    margin-right: -1rem;
+	margin-left: -1rem;
+	margin-right: -1rem;
+
 	&.header-image-center {
 		background-size: contain;
 		background-repeat: no-repeat;
 	}
+
 	@include breakpoint(medium) {
 		height: 300px;
-		margin-left:0;
-		margin-right:0;
-		@include breakpoint(large){
+		margin-left: 0;
+		margin-right: 0;
+
+		@include breakpoint(large) {
 			height: 550px;
-			@media screen and (min-width: 1350px){
+
+			@media screen and (min-width: 1350px) {
 				margin: 0% 15%;
 			}
 		}
 	}
 }
+
 #header-image {
 	@include breakpoint(medium) {
 		border-bottom: 2px solid $dark-peach;
@@ -619,50 +722,57 @@ CONTENT STYLES
 
 // Left column on fiches
 .mw-body.has-archi-columns {
+
 	//@include grid-row;
 	//margin-left: -0.625rem;
 	//margin-right: -0.625rem;
 	.mw-info-column {
-		@include grid-column
-		padding: 0 1rem;
+		@include grid-column padding: 0 1rem;
 
 		@include breakpoint(medium) {
 			@include grid-column(4);
-			@media screen and (min-width: 1350px)
-			{
+
+			@media screen and (min-width: 1350px) {
 				width: 27.5%;
 			}
 		}
 	}
+
 	.mw-content-column {
 		@include grid-column;
 		padding: 0 1rem;
+
 		@include breakpoint(medium) {
 			@include grid-column(7);
 			@include grid-column-end;
-			@media screen and (min-width: 1350px)
-			{
+
+			@media screen and (min-width: 1350px) {
 				width: 65%;
 			}
 		}
 	}
+
 	.mw-body-content {
-		position:relative;
+		position: relative;
 	}
 }
+
 .mw-body:not(.has-archi-columns) {
-	position:relative;
+	position: relative;
+
 	@include breakpoint(large) {
 		@include grid-column(9);
 		@include grid-column-position(center);
 	}
 }
+
 .ns--1 {
 	.mw-body {
 		@include grid-column-row();
+
 		@include breakpoint(small only) {
-			padding-left:0;
-			padding-right:0;
+			padding-left: 0;
+			padding-right: 0;
 		}
 	}
 }
@@ -672,21 +782,24 @@ CONTENT STYLES
 // General notice styles
 .notice {
 	margin-top: 0;
-	margin-bottom:1rem;
+	margin-bottom: 1rem;
 	background-color: transparentize($primary-color, 0.8);
-	padding-left:1em;
-	padding-right:1em;
-	padding-top:1em;
-	padding-bottom:1em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 1em;
+	padding-bottom: 1em;
 	font-size: rem-calc(14px);
+
 	i.material-icons {
 		font-size: 1rem;
-		color:$dark-peach;
+		color: $dark-peach;
 	}
 }
+
 h2+.notice {
-	margin-top:-19px;
+	margin-top: -19px;
 }
+
 // General infobox styling
 .columnbox {
 	background-color: $white;
@@ -696,9 +809,10 @@ h2+.notice {
 	margin-top: 16px;
 	position: relative;
 
-	a, a.new {
+	a,
+	a.new {
 		color: $slate;
-		text-decoration:underline;
+		text-decoration: underline;
 	}
 
 	.columnbox-title {
@@ -709,12 +823,13 @@ h2+.notice {
 	}
 
 	ul {
-		margin-top:11px;
-		margin-left:11px;
-		margin-bottom:11px;
+		margin-top: 11px;
+		margin-left: 11px;
+		margin-bottom: 11px;
+
 		li {
-			list-style:none;
-			margin-bottom:5px;
+			list-style: none;
+			margin-bottom: 5px;
 		}
 	}
 
@@ -726,8 +841,9 @@ h2+.notice {
 	@extend .columnbox;
 
 	font-size: 0.778rem;
-	margin-top:-35px;
-	position:relative;
+	margin-top: -35px;
+	position: relative;
+
 	&.no-header-image {
 		margin-top: 15px;
 	}
@@ -737,50 +853,64 @@ h2+.notice {
 			margin-top: 0;
 		}
 	}
-	a, a.new {
-		text-decoration:none;
+
+	a,
+	a.new {
+		text-decoration: none;
 	}
+
 	border-collapse: separate;
+
 	tr:first-child {
 		td {
 			&.map-row {
 				border: none;
 			}
+
 			.maps-map {
 				width: 100% !important;
 			}
 		}
 	}
+
 	tr:nth-child(2) {
 		// display: none;
 	}
+
 	tr:last-child {
-		border-bottom:none;
+		border-bottom: none;
 	}
 
-	tr{
+	tr {
 
 		&>th {
 			width: 50% !important;
 			text-align: left;
 			font-weight: normal;
 		}
+
 		&>td {
 			text-align: right;
 			font-weight: $global-weight-bold;
 			font-size: 0.8rem;
 
 			&[colspan="2"] {
-				text-align:center;
+				text-align: center;
 			}
 
 
 		}
 
 		&.end-section {
-			td, th {border-bottom-width: 1px; border-bottom-color: $greyish;}
+
+			td,
+			th {
+				border-bottom-width: 1px;
+				border-bottom-color: $greyish;
+			}
 		}
 	}
+
 	.columnbox-title {
 		border-bottom: 0px;
 		padding: 0.6rem 0.7rem 0rem;
@@ -789,18 +919,20 @@ h2+.notice {
 
 //new infobox titles
 
-td>h1{
+td>h1 {
 	font-size: 1.5em;
 	background-color: #d96e5d;
 	color: #FFFFFF;
 	padding: 0.2em 0em;
 }
-td>h2{
+
+td>h2 {
 	font-size: 1em;
 	background-color: #d96e5d;
 	color: #FFFFFF;
 	padding: 0.1em 0em;
 }
+
 td>h3 {
 	font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
 	font-weight: bold;
@@ -808,7 +940,8 @@ td>h3 {
 	padding: 0.1em 0em;
 	margin-bottom: 0em;
 }
-td>p{
+
+td>p {
 	font-weight: normal;
 	margin-bottom: 0px;
 }
@@ -823,8 +956,9 @@ td>p{
 	.infobox {
 		@include breakpoint(medium) {
 			margin-top: -150px;
+
 			&.no-header-image {
-				margin-top:0;
+				margin-top: 0;
 			}
 		}
 	}
@@ -836,11 +970,11 @@ td>p{
 }
 
 .smwtticon.warning {
-	display:none !important;
+	display: none !important;
 }
 
 //Hide empty paragraphs
-p > br:only-child {
+p>br:only-child {
 	display: none;
 }
 
@@ -859,25 +993,30 @@ p > br:only-child {
 
 		// Sub menu
 		ul {
-		    clear: both;
+			clear: both;
 		}
+
 		li {
 			list-style-type: none;
 			position: relative;
 			margin: 0.25rem 0;
-			overflow:hidden;
+			overflow: hidden;
+
 			a {
 				color: $slate;
 				line-height: 1.8;
 				font-size: 0.9rem;
-				text-decoration:none;
+				text-decoration: none;
+
 				.tocnumber {
 					// text-decoration: underline;
 					float: left;
+
 					&::after {
-						content:'.';
+						content: '.';
 					}
 				}
+
 				.toctext {
 					text-decoration: underline;
 					position: static;
@@ -885,6 +1024,7 @@ p > br:only-child {
 					max-width: 89%;
 					margin-left: 2%;
 				}
+
 				sup {
 					text-decoration: none;
 				}
@@ -909,6 +1049,7 @@ p > br:only-child {
 // Breadcrumb
 #category-bread-crumbs {
 	font-size: 0.778rem;
+
 	a {
 		text-decoration: underline;
 		padding: 0 0.4rem;
@@ -925,13 +1066,14 @@ h1.firstHeading {
 
 #toc .toctogglespan,
 .mw-pt-translate-header {
-	display:none;
+	display: none;
 }
 
 #mw-content-text {
 
 	padding-top: 1rem;
 	padding-bottom: 2rem;
+
 	hr {
 		display: none;
 	}
@@ -950,7 +1092,7 @@ h1.firstHeading {
 		padding-bottom: 0.5rem;
 		margin-bottom: 1.2rem;
 		border-bottom: 3px solid $dark-peach;
-		clear:both;
+		clear: both;
 
 		.mw-editsection {
 			float: right;
@@ -961,10 +1103,12 @@ h1.firstHeading {
 			.mw-editsection-bracket {
 				display: none;
 			}
+
 			a {
-				text-decoration:none;
+				text-decoration: none;
 			}
 		}
+
 		a {
 			font-weight: normal;
 		}
@@ -978,7 +1122,7 @@ h1.firstHeading {
 
 	ul {
 		li {
-			margin-bottom:10px;
+			margin-bottom: 10px;
 		}
 	}
 
@@ -1002,16 +1146,22 @@ h1.firstHeading {
 
 table {
 	border-top: 3px solid $dark-peach;
+
 	tbody {
 		tr {
 			background-color: white !important;
-			th, td {
+
+			th,
+			td {
 				padding: 0.4rem 0.7rem;
 				border-bottom: 1px solid transparentize($greyish, 0.7);
 			}
-			th:first-child, td:first-child {
+
+			th:first-child,
+			td:first-child {
 				margin-left: 10px;
 			}
+
 			td:last-child {
 				margin-right: 10px;
 			}
@@ -1022,7 +1172,9 @@ table {
 table:not(.infobox):not(.infobox-actu) {
 	tbody {
 		tr {
-			th, td {
+
+			th,
+			td {
 				&:not(:last-child) {
 					border-right: 1px solid transparentize($greyish, 0.7);
 				}
@@ -1035,6 +1187,7 @@ table:not(.infobox):not(.infobox-actu) {
 	margin: 0 !important;
 	text-align: center;
 }
+
 // Gallery boxes
 li.gallerybox {
 	background-color: $white;
@@ -1042,23 +1195,28 @@ li.gallerybox {
 	border-bottom: 1px solid $dark-peach;
 	width: 180px;
 	margin: 1rem;
+
 	&>* {
 		width: 100% !important;
 	}
+
 	div.thumb {
 		border: 0;
 		background-color: $white;
 		width: 100% !important;
 		margin: 0;
+
 		&>div {
 			margin: 0 !important;
 		}
 	}
+
 	.gallerytext {
 		text-align: center;
 		padding: 0;
 		color: $slate;
 		font-size: 0.9rem;
+
 		p {
 			margin: 0.5rem 0.3rem;
 		}
@@ -1068,14 +1226,17 @@ li.gallerybox {
 /*********************
 REFERENCES
 *********************/
-.mw-content-ltr ol.references, .mw-content-rtl .mw-content-ltr ol.references {
-    font-size: 85%;
+.mw-content-ltr ol.references,
+.mw-content-rtl .mw-content-ltr ol.references {
+	font-size: 85%;
+
 	@include breakpoint(small only) {
-		margin-left:2rem;
+		margin-left: 2rem;
 	}
 }
 
 #mw-content-text {
+
 	& .mw-cite-backlink a,
 	& .reference a {
 		text-decoration: none;
@@ -1087,7 +1248,7 @@ CAPTIONS
 *********************/
 
 .thumbcaption {
-    font-size: 94%;
+	font-size: 94%;
 }
 
 /*********************
@@ -1098,10 +1259,11 @@ CATEGORIES
 	padding: 10px 15px;
 	border: 1px solid $white-one;
 	font-size: 16px;
-	 a {
-	 	color: $charcoal-grey;
-	 	text-decoration: underline;
-	 }
+
+	a {
+		color: $charcoal-grey;
+		text-decoration: underline;
+	}
 }
 
 /*********************
@@ -1109,18 +1271,20 @@ ARTICLE PRE-COMMENTS FOOTER
 *********************/
 
 #mw-data-after-content {
+
 	// Contribuer line
 	&>p:first-child {
 		text-align: center;
 		font-size: rem-calc(14px);
-		padding:2rem 0;
+		padding: 2rem 0;
+
 		a {
 			color: $slate;
 
 			&::before {
 				content: '+';
-				margin-right:1rem;
-				border:1px solid $slate;
+				margin-right: 1rem;
+				border: 1px solid $slate;
 				border-radius: 500px;
 				width: 20px;
 				display: inline-block;
@@ -1133,6 +1297,7 @@ ARTICLE PRE-COMMENTS FOOTER
 	// Prev / Next line
 	&>div.noexcerpt {
 		font-size: 0.5rem;
+
 		a {
 			font-size: rem-calc(14px);
 			text-decoration: underline;
@@ -1150,20 +1315,24 @@ Comments
 #mw-data-after-content {
 	&>div.noexcerpt+h2 {
 		border-bottom: 3px solid $greeny-blue;
-		padding-bottom:5px;
+		padding-bottom: 5px;
+
 		#Commentaires {
-			& + .mw-editsection {
-				display:none;
+			&+.mw-editsection {
+				display: none;
 			}
 		}
 	}
+
 	.comments-body {
 		.c-order {
-			display:none;
+			display: none;
 		}
+
 		a {
 			color: $sea;
 		}
+
 		// Comment
 		.c-item {
 			@include grid-row(12);
@@ -1174,10 +1343,11 @@ Comments
 			.c-avatar {
 				@include grid-column(2);
 				text-align: center;
+
 				&>img {
-					width:80px;
-					height:auto;
-					border-radius:100px;
+					width: 80px;
+					height: auto;
+					border-radius: 100px;
 					border: 3px solid $greeny-blue;
 				}
 			}
@@ -1186,53 +1356,62 @@ Comments
 				@include grid-column(10);
 
 				.c-user {
-					overflow:hidden;
+					overflow: hidden;
 					margin-bottom: 10px;
+
 					p {
-						font-weight:bold;
-						float:left;
-						margin-bottom:0;
+						font-weight: bold;
+						float: left;
+						margin-bottom: 0;
 					}
+
 					.c-time {
-						float:left;
+						float: left;
 						color: $sea;
-						font-style:italic;
-						margin-left:10px;
+						font-style: italic;
+						margin-left: 10px;
 						font-size: rem-calc(14px);
 
 					}
+
 					.c-score {
-						display:none;
+						display: none;
 					}
 				}
+
 				.c-comment {
-					margin-bottom:10px;
+					margin-bottom: 10px;
 				}
+
 				.c-actions {
 					font-size: rem-calc(14px);
+
 					p {
 						display: flex;
 						flex-direction: row-reverse;
 						justify-content: flex-end;
 						visibility: hidden;
 					}
+
 					a {
-						visibility:visible;
-						font-style:italic;
+						visibility: visible;
+						font-style: italic;
 						color: $greyish;
 
 						&.comments-reply-to {
 							color: $sea;
-							font-style:normal;
+							font-style: normal;
 						}
 					}
 				}
 			}
+
 			&.reply {
 				.c-avatar {
 					@include grid-column(2);
 					@include grid-column-offset(2);
 				}
+
 				.c-container {
 					@include grid-column(8);
 				}
@@ -1242,16 +1421,16 @@ Comments
 
 	.showhide-comments {
 		color: $slate !important;
-		display:block;
-		text-align:center;
-		font-size:rem-calc(14px);
-		margin-bottom:1rem;
-		margin-top:2rem;
+		display: block;
+		text-align: center;
+		font-size: rem-calc(14px);
+		margin-bottom: 1rem;
+		margin-top: 2rem;
 
 		&::before {
 			content: '+';
-			margin-right:1rem;
-			border:1px solid $slate;
+			margin-right: 1rem;
+			border: 1px solid $slate;
 			border-radius: 500px;
 			width: 20px;
 			display: inline-block;
@@ -1270,12 +1449,15 @@ Comments
 			font-size: 1.3rem;
 			margin-bottom: 0.5rem;
 		}
+
 		textarea {
 			margin-top: 0.5rem;
 			margin-bottom: 0.5rem;
 		}
+
 		.site-button {
 			background-color: $greeny-blue;
+
 			&:hover {
 				background-color: darken($greeny-blue, 5%);
 			}
@@ -1283,7 +1465,7 @@ Comments
 	}
 
 	.comment-form {
-		display:none;
+		display: none;
 	}
 }
 
@@ -1302,14 +1484,11 @@ PAGE NAVI STYLES
 /*********************
 SIDEBARS & ASIDES
 *********************/
-.sidebar {
-}
+.sidebar {}
 
-#searchsubmit {
-}
+#searchsubmit {}
 
-.widgettitle {
-}
+.widgettitle {}
 
 .widget {
 	ul {
@@ -1332,54 +1511,58 @@ SIDEBARS & ASIDES
 }
 
 .archiwiki-toolbox {
-	margin:0;
-	position:absolute;
-	right:-90px;
-	z-index:999;
+	margin: 0;
+	position: absolute;
+	right: -90px;
+	z-index: 999;
+
 	@include breakpoint(medium down) {
 		right: 0px;
-	    top: 10px;
+		top: 10px;
 
 	}
+
 	li.archiwiki-toolbox-item {
-		list-style:none;
-		text-align:right;
-		position:relative;
+		list-style: none;
+		text-align: right;
+		position: relative;
+
 		&>a {
-			border:1px solid $greyish;
-			display:inline-block;
-			border-radius:50px;
+			border: 1px solid $greyish;
+			display: inline-block;
+			border-radius: 50px;
 			background-color: $body-background;
-			font-size:16px;
-			position:relative;
-			height:30px;
+			font-size: 16px;
+			position: relative;
+			height: 30px;
 			white-space: nowrap;
-			min-width:30px;
+			min-width: 30px;
 			padding-left: 0;
-			padding-right:28px;
+			padding-right: 28px;
 			transition: padding 0.3s;
 			color: $slate;
 
 
-			&>span{
-				display:inline-block;
-				max-width:0;
-				transition:max-width 0.3s;
-				overflow:hidden;
+			&>span {
+				display: inline-block;
+				max-width: 0;
+				transition: max-width 0.3s;
+				overflow: hidden;
 				white-space: nowrap;
 
 
 			}
+
 			&>.material-icons {
-				font-size:18px;
-				height:30px;
-				width:30px;
-				border:1px solid $greyish;
-				border-radius:50px;
-			    text-align: center;
-			    line-height: 30px;
-			    position:absolute;
-				right:-1px;
+				font-size: 18px;
+				height: 30px;
+				width: 30px;
+				border: 1px solid $greyish;
+				border-radius: 50px;
+				text-align: center;
+				line-height: 30px;
+				position: absolute;
+				right: -1px;
 				top: -1px;
 				transition: border-color 0.5s;
 				color: $slate;
@@ -1389,31 +1572,35 @@ SIDEBARS & ASIDES
 		&:hover {
 			&>a {
 				max-width: none;
-				border:1px solid $greyish;
+				border: 1px solid $greyish;
 				padding-left: 15px;
-			    padding-right: 35px;
+				padding-right: 35px;
 
 				&>span {
-					max-width:300px;
+					max-width: 300px;
 				}
+
 				&>.material-icons {
 					border-color: $primary-color;
-					color:$primary-color;
+					color: $primary-color;
 				}
 
 			}
 		}
 
 	}
+
 	ul.archiwiki-toolbox-submenu {
-		display:none;
+		display: none;
 
 	}
 }
+
 .action-edit .archiwiki-toolbox {
-	right:0;
+	right: 0;
 	top: 20px;
 }
+
 /*********************
 FOOTER STYLES
 *********************/
@@ -1423,40 +1610,46 @@ FOOTER STYLES
 	padding: 3rem 0;
 	background-color: $charcoal-grey;
 	color: $white;
+
 	a {
 		color: $white;
 	}
+
 	ul {
-		margin:0;
+		margin: 0;
 		margin-top: 15px;
 		font-size: rem-calc(14px);
+
 		li {
 			list-style: none;
 			margin-bottom: 10px;
 		}
 	}
+
 	h2 {
 		font-size: rem-calc(12px);
 		font-weight: bold;
-		margin-top:30px;
+		margin-top: 30px;
 	}
 
 	.partners {
 		a {
-			display:inline-block;
-			margin-left:15px;
+			display: inline-block;
+			margin-left: 15px;
 			margin-bottom: 20px;
 		}
 
 	}
+
 	.button.hollow {
-		border-width:3px;
-		border-color:$white;
+		border-width: 3px;
+		border-color: $white;
 		font-weight: $global-weight-bold;
-		position:relative;
-		text-transform:none;
+		position: relative;
+		text-transform: none;
+
 		i.icon {
-			font-size:1.6em;
+			font-size: 1.6em;
 			margin-top: -1rem;
 			display: inline-block;
 			position: relative;
@@ -1477,15 +1670,21 @@ HOMEPAGE
 
 .mw-special-ArchiHome {
 	.firstHeading {
-		display:none;
+		display: none;
 	}
+
 	.mw-body-content {
 
 		#mw-content-text {
 
-			h2, h3, h4, h5, h6 {
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
 				border-bottom: none !important;
 			}
+
 			.header-row {
 				@include grid-row();
 
@@ -1495,122 +1694,145 @@ HOMEPAGE
 					margin-top: -2rem;
 					width: auto;
 					float: none;
+
 					@include breakpoint(medium) {
 						@include grid-column(7);
-						margin-left:0;
-						margin-right:0;
+						margin-left: 0;
+						margin-right: 0;
 						margin-top: 0;
-						padding-right:0 !important;
+						padding-right: 0 !important;
 					}
+
 					#header-image2 {
 						width: auto;
 						float: none;
 						margin: 0%;
-						
+
 					}
 
 				}
+
 				.spotlight-container {
 					@include grid-column(12);
+
 					@include breakpoint(medium) {
 						@include grid-column(5);
-						padding-left:0 !important;
+						padding-left: 0 !important;
 
 						p {
 							font-size: 16px;
 						}
 
 					}
+
 					.spotlight-on {
 						@include breakpoint(medium) {
-							margin-top:0;
+							margin-top: 0;
 						}
+
 						margin-bottom: 50px;
 						margin-top:-70px;
 						background-color: $white;
 						padding: 15px;
 						position: relative;
+
 						@include breakpoint(medium) {
-							padding-top:0px;
-							height:400px;
-							margin-bottom:0;
+							padding-top: 0px;
+							height: 400px;
+							margin-bottom: 0;
 						}
+
 						font-size: rem-calc(14px);
+
 						.spotlight-header {
 							@include breakpoint(medium) {
 								width: auto;
-							    background-color: $white;
-							    padding: 30px;
-							    margin-left: -110px;
+								background-color: $white;
+								padding: 30px;
+								margin-left: -110px;
 							}
 						}
+
 						h2 {
 							border-bottom: none !important;
 							font-size: rem-calc(12px);
+
 							@include breakpoint(medium) {
 								font-size: rem-calc(16px);
 							}
+
 							margin-bottom: 0 !important;
 							padding-bottom: 0 !important;
 						}
+
 						h3 {
 							border-bottom: none !important;
 							margin-bottom: 0 !important;
+
 							@include breakpoint(medium) {
 								font-size: rem-calc(25px);
 							}
 
 						}
+
 						.breadcrumb {
 							font-size: rem-calc(12px);
 							margin-bottom: 5px;
 							margin-top: 5px;
 						}
+
 						p:last-of-type {
-							margin-bottom:0;
+							margin-bottom: 0;
 						}
 					}
 				}
 			}
+
 			.search-box-row {
 				@include grid-row();
 
 				.search-box-container {
-					@include grid-column(12)
-					@extend .small-cancel-global-padding;
+					@include grid-column(12) @extend .small-cancel-global-padding;
 					width: auto;
 					float: none;
+
 					@include breakpoint(medium) {
 						@include grid-column(12);
 					}
 
-					.search-box {
-					}
+					.search-box {}
 				}
 			}
 
 			.association-block {
 				@include grid-row(0);
+
 				.archiwiki-intro-holder {
 					@include grid-column(12);
+
 					@include breakpoint(medium) {
 						@include grid-column(5);
-						padding-right:0 !important;
+						padding-right: 0 !important;
 					}
 				}
+
 				.latest-news-holder {
 					@extend .archiwiki-intro-holder;
+
 					@include breakpoint(medium) {
 						@include grid-column(7);
-						padding-left:0 !important;
+						padding-left: 0 !important;
 						padding-right: $global-padding !important;
 					}
 				}
 			}
+
 			.latest-block {
 				@include grid-row();
+
 				.latest-changes-container {
 					@include grid-column(12);
+
 					@include breakpoint(medium) {
 						@include grid-column(8);
 					}
@@ -1618,24 +1840,30 @@ HOMEPAGE
 					.latest-changes {
 						@include grid-row();
 						@include grid-row-nest();
+
 						&>h2 {
 							@include grid-column(12);
 
 						}
+
 						&>p {
 							@include grid-column(12);
+
 							@include breakpoint(medium) {
 								text-align: center;
 							}
 						}
+
 						.latest-changes-recent-change-container {
 							@include grid-column(12);
 						}
+
 						@include breakpoint(medium) {
 							.latest-changes-recent-change-container {
 								@include grid-column(6);
+
 								&:nth-child(2n) {
-									clear:both;
+									clear: both;
 								}
 
 								.latest-changes-recent-change {
@@ -1646,15 +1874,17 @@ HOMEPAGE
 						}
 					}
 				}
+
 				.latest-comments-container {
 					@include breakpoint(medium) {
 						@include grid-column(4);
+
 						.latest-comments-recent-comment-container {
 							// @include grid-column(12);
 						}
 					}
-					.latest-comments {
-					}
+
+					.latest-comments {}
 				}
 			}
 		}
@@ -1663,41 +1893,43 @@ HOMEPAGE
 
 @media screen and (min-width: 40em) {
 	.mw-special-ArchiHome .mw-body-content #mw-content-text .header-row .header-image-continer #header-image2 {
-	  border-bottom: none;
-	  height: 400px;
+		border-bottom: none;
+		height: 400px;
 	}
-  
+
 	.mw-special-ArchiHome .mw-body-content #mw-content-text .header-row .header-image-continer #header-image {
-	  border-bottom: none;
-	  height: 400px;
+		border-bottom: none;
+		height: 400px;
 	}
 }
 
-.association-block {
-
-}
+.association-block {}
 
 .article-tabs {
-	position:absolute;
-	right:5px;
-	top:-60px;
+	position: absolute;
+	right: 5px;
+	top: -60px;
 	background-color: $white;
+
 	ul.menu {
 		&>li.selected {
 			background-color: $dark-peach;
+
 			&>a {
-				font-weight:$global-weight-bold;
+				font-weight: $global-weight-bold;
 				color: $white;
 			}
 		}
 	}
 }
+
 .header-image-continer {
-	position:relative;
+	position: relative;
+
 	.article-tabs {
-		bottom:0;
-		top:auto;
-		right:10px;
+		bottom: 0;
+		top: auto;
+		right: 10px;
 	}
 
 }
@@ -1707,58 +1939,69 @@ HOMEPAGE
 	@extend .color-panel-white-two;
 	@extend .small-cancel-global-padding;
 	background-color: $white-two;
+
 	p {
-		font-size:16px;
+		font-size: 16px;
 	}
 
-	li > sup {
+	li>sup {
 		display: none;
 	}
 }
+
 .latest-news {
 	@extend .archiwiki-intro;
 	background-color: $white;
-	display:flex;
-	flex-direction:column;
+	display: flex;
+	flex-direction: column;
+
 	.content-row {
-		display:flex;
-		flex-direction:column;
-		flex-grow:1;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
 		align-items: stretch;
+
 		@include breakpoint(medium) {
 			flex-wrap: nowrap;
-			margin-right:0;
+			margin-right: 0;
+
 			@include breakpoint(large) {
 				flex-direction: row;
-				margin-left:-1rem;
-				margin-right:-1rem;
+				margin-left: -1rem;
+				margin-right: -1rem;
 			}
 
 		}
 
 		&>.thumb {
 			align-self: flex-start;
-			margin-right:0.5rem;
+			margin-right: 0.5rem;
+
 			@include breakpoint(medium only) {
-				text-align:center;
+				text-align: center;
 				align-self: stretch;
+
 				.thumbinner {
-					display:inline-block;
+					display: inline-block;
 				}
 			}
+
 			@include breakpoint(small only) {
-				margin-right:0;
-				width:100%;
+				margin-right: 0;
+				width: 100%;
+
 				.thumbinner {
-					width:100%;
+					width: 100%;
+
 					img {
-						width:100%
+						width: 100%
 					}
 				}
 			}
 		}
+
 		&>.latest-news-text {
-			margin-left:0.5rem;
+			margin-left: 0.5rem;
 		}
 
 	}
@@ -1766,9 +2009,7 @@ HOMEPAGE
 }
 
 
-.latest-block {
-
-}
+.latest-block {}
 
 .header-image>#header-image2 {
 	height: 222px;
@@ -1783,30 +2024,34 @@ HOMEPAGE
 .latest-changes {
 	&>h2 {
 		font-size: 1.125rem;
-		margin-top:30px;
-		margin-bottom:20px;
-		text-align:center;
+		margin-top: 30px;
+		margin-bottom: 20px;
+		text-align: center;
+
 		@include breakpoint(medium) {
 			text-align: left;
 			font-size: 1.875rem;
 		}
 	}
+
 	&>p>a {
 		@extend .button;
 		@extend .button.hollow;
 		@extend .button.secondary;
-		margin-top:20px;
+		margin-top: 20px;
 	}
+
 	.latest-changes-recent-change {
-		position:relative;
+		position: relative;
 		@extend .small-cancel-global-padding;
 		padding-left: $global-padding;
 		padding-right: $global-padding;
 		padding-bottom: 10px;
 		background-color: $white;
 		margin-bottom: 5px;
+
 		@include breakpoint(medium) {
-			margin-bottom:30px;
+			margin-bottom: 30px;
 		}
 
 
@@ -1816,24 +2061,36 @@ HOMEPAGE
 			border-left: 30px solid transparent;
 			border-right: 30px solid transparent;
 			border-bottom: 30px solid $white;
-			width:0;
-			height:0;
+			width: 0;
+			height: 0;
 			position: absolute;
-			top:194px;
-			left:10px;
+			top: 194px;
+			left: 10px;
 		}
+
 		font-size: 14px;
+
 		p {
 			font-size: 14px;
 		}
-		p, h1, h2, h3, h4, h5, h6 {
+
+		p,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
 			color: $dark;
 		}
+
 		.header-image {
 			@extend .cancel-global-padding;
 		}
+
 		h3 {
-			margin-top:20px;
+			margin-top: 20px;
+
 			@include breakpoint(medium) {
 				font-size: 1.5625rem;
 			}
@@ -1846,16 +2103,20 @@ HOMEPAGE
 
 .latest-comments {
 	@extend .latest-changes;
+
 	&>p {
-		text-align:center;
+		text-align: center;
 		@include grid-column(12);
 	}
+
 	.latest-comments-recent-comment-container {
 		@extend .latest-changes-recent-change-container;
 	}
+
 	.latest-comments-recent-comment {
 		@extend .latest-changes-recent-change;
 		padding-top: 20px;
+
 		&::before {
 			display: none;
 		}
@@ -1863,18 +2124,21 @@ HOMEPAGE
 		&::after {
 			content: 'comment';
 			font-family: "Material Icons";
-			display:block;
+			display: block;
 			position: absolute;
 			opacity: 0.05;
 			top: 35px;
+
 			@include breakpoint(medium) {
 				top: 25px;
 
 			}
+
 			font-size: 109px;
 			transform: rotate(-4deg) scaleX(-1);
 			pointer-events: none;
 		}
+
 		h3 {
 			@include breakpoint(medium) {
 				font-size: 1.25rem;
@@ -1889,11 +2153,10 @@ HOMEPAGE
 CATEGORIES STYLES
 *********************/
 .mw-category-generated {
-	h3 {
+	h3 {}
 
-	}
 	ul {
-		margin-bottom:1rem !important;
+		margin-bottom: 1rem !important;
 	}
 }
 
@@ -1924,8 +2187,8 @@ PLUGIN STYLES
 *********************/
 // Makes Gravity Forms play nice with Foundation Form styles
 .gform_body ul {
-    list-style: none outside none;
-    margin: 0;
+	list-style: none outside none;
+	margin: 0;
 }
 
 /********************
@@ -1940,12 +2203,13 @@ Full width mobile namespaces
 	}
 }
 
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
+.oo-ui-barToolGroup>.oo-ui-toolGroup-tools>.oo-ui-tool>.oo-ui-tool-link {
 	height: 2.875em;
 }
 
 // Full Width editor namespaces
 .ve-activated {
+
 	.ns-4000,
 	.ns-4006 {
 		.mw-body {
@@ -1963,6 +2227,7 @@ Full width mobile namespaces
 	display: flex;
 	flex-flow: column;
 	align-items: center;
+
 	&:before {
 		content: '';
 		display: inline-block;
@@ -1970,6 +2235,7 @@ Full width mobile namespaces
 		height: 2rem;
 		background-size: contain;
 	}
+
 	&.hidden {
 		display: none;
 	}
@@ -1978,23 +2244,28 @@ Full width mobile namespaces
 #mw-mf-nearby {
 	.page-list {
 		margin-left: 0;
+
 		li.page-summary {
 			padding-left: 85px;
 			padding-bottom: 2rem;
 			min-height: 9rem;
 			padding-top: 0;
+
 			@media screen and (min-width: 400px) {
 				padding-top: .5rem;
 				padding-left: 155px;
 			}
+
 			.wikidata-description {
 				font-size: .85rem;
 			}
 		}
+
 		.list-thumb {
 			@include aspect-ratio(70px, 70px);
 			position: absolute;
 			height: auto;
+
 			@media screen and (min-width: 400px) {
 				width: 140px;
 				@include aspect-ratio(70px, 70px);
@@ -2003,16 +2274,19 @@ Full width mobile namespaces
 		}
 	}
 }
+
 //.page-list.thumbs.actionable {
 //
 //}
 .sitedir-ltr .mw-dismissable-notice-body {
 	margin: 0;
 	padding: 2rem 3rem;
+
 	#localNotice p:last-child {
 		margin-bottom: 0;
 	}
 }
+
 #siteNotice {
 	position: absolute;
 	top: 0;
@@ -2031,6 +2305,7 @@ Full width mobile namespaces
 	top: 1rem;
 	right: 1rem;
 	font-size: 0;
+
 	a {
 		display: block;
 		width: 25px;
@@ -2050,11 +2325,14 @@ Full width mobile namespaces
 		float: none;
 		margin: 0 2rem 2rem 0;
 		display: block;
-		a, img {
+
+		a,
+		img {
 			display: block;
 		}
 	}
 }
+
 .mw-editform textarea {
 	font-size: 16px;
 }
@@ -2082,11 +2360,13 @@ Full width mobile namespaces
 #wikiEditor-ui-toolbar #wikiEditor-section-advanced .label {
 	background-color: transparent;
 }
+
 #wikiEditor-ui-toolbar #wikiEditor-section-advanced span.label {
 	background-color: transparent;
 	padding-top: 0;
 	padding-bottom: 0;
 }
+
 #wikiEditor-ui-toolbar .tabs span.tab a {
 	color: #222;
 }
@@ -2100,6 +2380,7 @@ Full width mobile namespaces
 		position: relative;
 		padding-left: 3rem;
 		outline: 1px dotted #8a8a8a;
+
 		.mw-ui-icon.mw-ui-icon-element {
 			position: absolute;
 			left: 0;
@@ -2109,15 +2390,18 @@ Full width mobile namespaces
 			min-width: 2em;
 			background-size: contain;
 			margin: 0;
+
 			&:before {
 				margin: 0;
 			}
 		}
 	}
+
 	#mw-content-text h2 {
 		.mw-editsection {
 			margin-top: .3rem;
 			display: none;
+
 			a {
 				display: inline-block;
 				text-indent: -9999px;
@@ -2127,6 +2411,7 @@ Full width mobile namespaces
 				background-size: contain;
 			}
 		}
+
 		&.open-block {
 			.mw-editsection {
 				display: block;
@@ -2143,21 +2428,26 @@ Full width mobile namespaces
 	.mw-body.has-archi-columns .mw-body-content {
 		position: initial;
 	}
+
 	.mw-content-column {
 		h1.firstHeading {
 			padding-right: 2rem;
 		}
+
 		.infobox {
 			margin-top: 0;
 		}
+
 		#mw-content-text {
 			padding-top: .3rem;
 		}
+
 		ul.archiwiki-toolbox {
 			right: 1.2rem;
 			top: 5rem;
 		}
 	}
+
 	#ca-ve-edit-noswitch,
 	#mw-content-text h2 .mw-editsection span.mw-editsection-divider,
 	#mw-content-text h2 .mw-editsection a.mw-editsection-visualeditor {
@@ -2174,6 +2464,7 @@ Full width mobile namespaces
 		display: inline-flex;
 		flex-flow: row nowrap;
 		align-items: center;
+
 		&:before {
 			content: "";
 			display: block;
@@ -2198,12 +2489,13 @@ Full width mobile namespaces
 ************************/
 
 div.mw-echo-ui-notificationBadgeButtonPopupWidget-popup {
-	top: 112px!important;
+	top: 112px !important;
 }
 
 li#pt-notifications-alert,
 li#pt-notifications-notice {
 	padding: 3.3rem .5rem 0;
+
 	a.mw-echo-notifications-badge {
 		display: inline-block;
 		height: 20px;
@@ -2223,16 +2515,19 @@ li#pt-notifications-notice {
 			display: flex;
 			flex-flow: row nowrap;
 			align-items: flex-start;
+
 			th {
 				flex: 0 0 230px;
 			}
 		}
 	}
+
 	.map-layout {
 		#mw-content-text {
 			display: flex;
 			flex-flow: row-reverse nowrap;
-			> .mw-parser-output {
+
+			>.mw-parser-output {
 				width: 70%;
 				flex: 0 0 70%;
 
@@ -2244,54 +2539,67 @@ li#pt-notifications-notice {
 			overflow-y: scroll;
 			overflow-x: hidden;
 		}
+
 		.pf-runquery-formcontent {
 			width: 30%;
 			flex: 0 0 30%;
+
 			#pfForm select {
-				width: 100%!important;
+				width: 100% !important;
 			}
+
 			table.formtable tbody tr.checkboxesLine {
 				display: block;
 			}
+
 			table.formtable {
 				tbody tr th {
 					width: 35%;
 				}
+
 				tbody tr td {
 					width: 65%;
 					padding: 0.6rem 0.7rem .6rem 0;
+
 					span.inputSpan {
 						display: block;
 						max-width: 200px;
+
 						input,
 						select {
-							width: 100%!important;
-							min-width: 150px!important;
-							display: block!important;
-							appearance: auto!important;
-							border-radius: 0!important;
-							padding: 10px!important;
+							width: 100% !important;
+							min-width: 150px !important;
+							display: block !important;
+							appearance: auto !important;
+							border-radius: 0 !important;
+							padding: 10px !important;
 							height: auto;
 							border: 1px solid #D7D7D7;
-							background: none!important;
+							background: none !important;
 						}
 					}
+
 					label.checkboxLabel {
 						width: 100%;
-						margin-right: 0!important;
+						margin-right: 0 !important;
 					}
-					input, select {
-						max-width: 100%!important;
-						padding: 0!important;
+
+					input,
+					select {
+						max-width: 100% !important;
+						padding: 0 !important;
 					}
+
 					input[type="checkbox"] {
 						margin: 0;
 					}
+
 					span.select-sfs {
 						position: relative;
-						min-width: 150px!important;
+						min-width: 150px !important;
+
 						&:after {
-							content: none!important;
+							content: none !important;
 						}
 					}
 				}
@@ -2301,17 +2609,21 @@ li#pt-notifications-notice {
 }
 
 .pf-runquery-formcontent table.formtable tbody tr.checkboxesLine {
-	th, td {
+
+	th,
+	td {
 		display: block;
 		width: 100%;
 		padding: 10px;
 		margin: 0;
 	}
+
 	th {
 		display: flex;
 		flex-flow: row nowrap;
 		align-items: center;
 		justify-content: space-between;
+
 		&:after {
 			content: '';
 			display: block;
@@ -2323,6 +2635,7 @@ li#pt-notifications-notice {
 			background-repeat: no-repeat;
 		}
 	}
+
 	&.is-open th:after {
 		transform: rotate(0deg);
 	}
@@ -2338,22 +2651,26 @@ li#pt-notifications-notice {
 .leaflet-popup {
 	.mw-parser-output {
 		margin-top: 1rem;
+
 		.floatnone {
 			text-align: center;
 		}
+
 		a {
 			display: inline-block;
 		}
 	}
+
 	a.leaflet-popup-close-button {
-		text-decoration: none!important;
+		text-decoration: none !important;
 	}
 }
 
 form#pfForm {
 	select.createboxInput {
-		max-width: 905px!important;
+		max-width: 905px !important;
 	}
+
 	table.formtable {
 		tbody {
 			max-width: 100vw;
@@ -2363,42 +2680,50 @@ form#pfForm {
 }
 
 body:fullscreen .map-layout #mw-content-text #map_leaflet_1 {
-	width: 100vw!important;
-	height: 100vh!important;
+	width: 100vw !important;
+	height: 100vh !important;
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
 	.map-layout #mw-content-text #map_leaflet_1 {
-		max-height: 65vh!important;
+		max-height: 65vh !important;
 	}
 }
+
 @media (max-width: 768px) and (orientation: landscape) {
 	.map-layout #mw-content-text #map_leaflet_1 {
-		max-height: 100vh!important;
+		max-height: 100vh !important;
 	}
 }
+
 @media (max-width: 768px) {
 	form#pfForm {
 		table.formtable {
 			width: 100%;
+
 			span.select-sfs {
 				width: 100%;
-				min-width: auto!important;
+				min-width: auto !important;
+
 				select {
-					min-width: auto!important;
-					width: 100%!important;
+					min-width: auto !important;
+					width: 100% !important;
 				}
 			}
+
 			max-width: 100vw;
 			display: block;
+
 			tr {
 				display: flex;
 			}
+
 			th {
 				display: flex;
 				width: 40%;
 				align-items: flex-start;
 			}
+
 			td {
 				display: block;
 				width: 60%;
@@ -2409,7 +2734,7 @@ body:fullscreen .map-layout #mw-content-text #map_leaflet_1 {
 
 // FIX obscur bug : https://redmine.insite.coop/issues/31030
 textarea {
-	box-shadow: none!important;
+	box-shadow: none !important;
 }
 
 
@@ -2430,8 +2755,8 @@ textarea {
 div.tright,
 div.floatright,
 table.floatright {
-	clear:right;
-	float:right;
+	clear: right;
+	float: right;
 	margin-left: 20px;
 	margin-bottom: 10px;
 }
@@ -2453,69 +2778,76 @@ table.floatright {
 	min-width: 80%;
 	width: 0px;
 	color: pink;
-  }
-  
-  /* custom oo-ui icon styles */
-  
-  .oo-ui-image-progressive.oo-ui-icon-next.oo-ui-iconElement-icon {
+}
+
+/* custom oo-ui icon styles */
+
+.oo-ui-image-progressive.oo-ui-icon-next.oo-ui-iconElement-icon {
 	background-image: linear-gradient(transparent, transparent), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E%3Ctitle%3E next %3C/title%3E%3Cg fill=%22%23b7756a%22%3E%3Cpath d=%22M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z%22/%3E%3C/g%3E%3C/svg%3E");
-  }
-  
-  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed {
+}
+
+
+
+.oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed {
 	background-color: transparent;
-  }
-  
-  
-  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:hover,
-  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus,
-  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus-visible,
-  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus-within {
+}
+
+
+.oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:hover,
+.oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus,
+.oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus-visible,
+.oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus-within {
 	border-color: #000 !important;
-  }
-  
-  #boutons-mode-recherche .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:hover {
+}
+
+#boutons-mode-recherche .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:hover {
 	background-color: transparent;
 	border: 0px;
-  }
-  
-  #boutons-mode-recherche .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed {
+}
+
+#boutons-mode-recherche .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed {
 	border: 0px;
-  }
-  
-  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:first-child {
+}
+
+.oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:first-child {
 	color: #b7756a;
-  }
-  
-  .flex-align {
+}
+
+.flex-align {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-  }
-  
-  .bouton-normal>div {
+}
+
+.bouton-normal>div {
 	flex-direction: row-reverse;
-	margin-bottom: -17px;
-  }
-  
-  .bouton-carte>div {
+	margin-bottom: 0px;
+}
+
+.bouton-carte>div {
 	flex-direction: row-reverse;
-  }
-  
-  .flex-align>h5,
-  .flex-align>p {
+}
+
+.flex-align>h5,
+.flex-align>p {
 	margin-bottom: 0%;
-  }
-  
-  
-  .wikiEditor-ui-top>.wikiEditor-ui-toolbar {
+}
+
+
+.wikiEditor-ui-top>.wikiEditor-ui-toolbar {
 	z-index: auto;
-  }
-  
-  /* Hide the bouton we don't want to show */
-  .bouton-normal #bouton-recherche-avancée {
+}
+
+/* Hide the bouton we don't want to show */
+.bouton-normal #bouton-recherche-avancée {
 	display: none;
-  }
-  
-  .bouton-carte #bouton-recherche-avancée-carte {
+}
+
+.bouton-carte #bouton-recherche-avancée-carte {
 	display: none;
-  }
+}
+
+#boutons-mode-recherche a {
+	text-decoration: none;
+	color: #b7756a;
+}
