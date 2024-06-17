@@ -1,16 +1,12 @@
+/* jshint node: true */
+
 // Grab our gulp packages
 var gulp  = require('gulp'),
-    gutil = require('gulp-util'),
-    sass = require('gulp-sass'),
-    cleanCSS = require('gulp-clean-css'),
+    sass = require('gulp-sass')(require('node-sass')),
     autoprefixer = require('gulp-autoprefixer'),
-    sourcemaps = require('gulp-sourcemaps'),
     jshint = require('gulp-jshint'),
-    stylish = require('jshint-stylish'),
     concat = require('gulp-concat'),
-    rename = require('gulp-rename'),
     plumber = require('gulp-plumber'),
-    bower = require('gulp-bower'),
     babel = require('gulp-babel');
 
 
@@ -18,15 +14,14 @@ var gulp  = require('gulp'),
 gulp.task('styles', function() {
     return gulp.src('./resources/scss/**/*.scss')
         .pipe(plumber(function(error) {
-            gutil.log(gutil.colors.red(error.message));
+            console.error(error.message);
             this.emit('end');
         }))
         .pipe(sass())
         .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'iOS 8'],
             cascade: false
         }))
-        .pipe(gulp.dest('./dist/css/'))
+        .pipe(gulp.dest('./dist/css/'));
 });
     
 // JSHint, concat, and minify JavaScript
@@ -41,7 +36,7 @@ gulp.task('site-js', function() {
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(concat('scripts.js'))
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(gulp.dest('./dist/js'));
 });    
 
 // JSHint, concat, and minify Foundation JavaScript
@@ -74,11 +69,11 @@ gulp.task('foundation-js', function() {
           './vendor/foundation-sites/js/foundation.tooltip.js',
   ])
 	.pipe(babel({
-		presets: ['es2015'],
+		presets: ['@babel/preset-env'],
 	    compact: true
 	}))
     .pipe(concat('foundation.js'))
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(gulp.dest('./dist/js'));
 }); 
 
 // Install vendor JS deps
@@ -91,12 +86,6 @@ gulp.task('js-deps', function(){
   ])
     .pipe(gulp.dest('./dist/js'));
 });
-
-// Update Foundation with Bower and save to /vendor
-gulp.task('bower', function() {
-  return bower({ cmd: 'update'})
-    .pipe(gulp.dest('vendor/'))
-});  
 
 
 
@@ -114,10 +103,10 @@ gulp.task('watch', function() {
   // Watch foundation-js files
   gulp.watch('./vendor/foundation-sites/js/*.js', ['foundation-js']);
 
-}); 
+});
 
 
 // Run styles, site-js and foundation-js
-gulp.task('default', function() {
-  gulp.start('styles', 'site-js','foundation-js', 'js-deps');
-});
+gulp.task('default', gulp.series('styles', 'site-js', 'foundation-js', 'js-deps', function (done) {
+    done();
+}));

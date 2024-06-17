@@ -13,6 +13,10 @@ to display none.
 
 @media print {
 
+  .printfooter {
+    display: block !important;
+  }
+
   * {
     background: transparent !important;
     color: black !important;

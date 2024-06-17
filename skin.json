@@ -8,7 +8,23 @@
 	"license-name": "GPL-3.0",
 	"type": "skin",
 	"ValidSkinNames": {
-		"archiwiki": "ArchiWiki"
+		"archiwiki": {
+			"class": "SkinArchiWiki",
+			"displayname": "ArchiWiki",
+			"args": [
+				{
+					"name": "archi-wiki",
+					"bodyOnly": true,
+					"template": "ArchiWikiTemplate",
+					"styles": [
+						"skins.archiwiki"
+					],
+					"scripts": [
+						"skins.archiwiki.js"
+					]
+				}
+			]
+		}
 	},
 	"MessagesDirs": {
 		"ArchiWiki": [
@@ -29,10 +45,17 @@
 			}
 		},
 		"skins.archiwiki.js": {
+			"targets": [
+				"mobile",
+				"desktop"
+			],
 			"position": "bottom",
 			"scripts": [
 				"dist/js/foundation.js",
 				"dist/js/scripts.js"
+			],
+			"dependencies": [
+				"ext.maps.leaflet.loader"
 			]
 		}
 	},

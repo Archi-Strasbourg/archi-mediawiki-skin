@@ -10,6 +10,10 @@ GENERAL STYLES
 body {
 	overflow-x:hidden;
 }
+/*
+body.mediawiki > .wrapper {
+	@include customWrapper(1350px, 0);
+}*/
 .wrapper {
 	overflow:hidden;
 	@include breakpoint(medium) {
@@ -155,6 +159,7 @@ Search modal
 	.advanced-search-link {
 		text-decoration: underline;
 		padding-top: 0.25rem;
+		white-space: nowrap;
 	}
 	.search-title {
 		font-size: 1.125rem;
@@ -571,14 +576,14 @@ HEADER STYLES
 	}
 }
 
-.ns-4000, .ns-4100, .ns-4002, .ns-4004, .ns-4006, .ns--1 {
+.ns-4000, .ns-4100, .ns-4002, .ns-4006, .ns--1 {
 	.site-header {
 		border:none;
 		margin-bottom: 0;
 	}
 }
 
-#header-image{
+#header-image2{
 
 	display: block;
 	height: 190px;
@@ -586,15 +591,25 @@ HEADER STYLES
 	background-position: center center;
     margin-left: -1rem;
     margin-right: -1rem;
-
+	&.header-image-center {
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
 	@include breakpoint(medium) {
 		height: 300px;
-		border-bottom: 2px solid $dark-peach;
 		margin-left:0;
 		margin-right:0;
 		@include breakpoint(large){
 			height: 550px;
+			@media screen and (min-width: 1350px){
+				margin: 0% 15%;
+			}
 		}
+	}
+}
+#header-image {
+	@include breakpoint(medium) {
+		border-bottom: 2px solid $dark-peach;
 	}
 }
 
@@ -604,15 +619,19 @@ CONTENT STYLES
 
 // Left column on fiches
 .mw-body.has-archi-columns {
-	@include grid-row;
-	margin-left: -0.625rem;
-	margin-right: -0.625rem;
+	//@include grid-row;
+	//margin-left: -0.625rem;
+	//margin-right: -0.625rem;
 	.mw-info-column {
 		@include grid-column
 		padding: 0 1rem;
 
 		@include breakpoint(medium) {
 			@include grid-column(4);
+			@media screen and (min-width: 1350px)
+			{
+				width: 27.5%;
+			}
 		}
 	}
 	.mw-content-column {
@@ -621,6 +640,10 @@ CONTENT STYLES
 		@include breakpoint(medium) {
 			@include grid-column(7);
 			@include grid-column-end;
+			@media screen and (min-width: 1350px)
+			{
+				width: 65%;
+			}
 		}
 	}
 	.mw-body-content {
@@ -643,6 +666,7 @@ CONTENT STYLES
 		}
 	}
 }
+
 
 
 // General notice styles
@@ -719,9 +743,9 @@ h2+.notice {
 	border-collapse: separate;
 	tr:first-child {
 		td {
-			// padding: 0;
-			border: 0;
-
+			&.map-row {
+				border: none;
+			}
 			.maps-map {
 				width: 100% !important;
 			}
@@ -757,7 +781,38 @@ h2+.notice {
 			td, th {border-bottom-width: 1px; border-bottom-color: $greyish;}
 		}
 	}
+	.columnbox-title {
+		border-bottom: 0px;
+		padding: 0.6rem 0.7rem 0rem;
+	}
 }
+
+//new infobox titles
+
+td>h1{
+	font-size: 1.5em;
+	background-color: #d96e5d;
+	color: #FFFFFF;
+	padding: 0.2em 0em;
+}
+td>h2{
+	font-size: 1em;
+	background-color: #d96e5d;
+	color: #FFFFFF;
+	padding: 0.1em 0em;
+}
+td>h3 {
+	font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 1em;
+	padding: 0.1em 0em;
+	margin-bottom: 0em;
+}
+td>p{
+	font-weight: normal;
+	margin-bottom: 0px;
+}
+
 
 /*Workaround bug in Leaflet.GridLayer.GoogleMutant: https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant/issues/44 */
 .leaflet-container {
@@ -793,7 +848,7 @@ p > br:only-child {
 #toc {
 	@extend .columnbox;
 
-	#toctitle {
+	.toctitle {
 		h2 {
 			@extend .columnbox-title;
 		}
@@ -868,6 +923,7 @@ h1.firstHeading {
 	display: none;
 }
 
+#toc .toctogglespan,
 .mw-pt-translate-header {
 	display:none;
 }
@@ -878,6 +934,12 @@ h1.firstHeading {
 	padding-bottom: 2rem;
 	hr {
 		display: none;
+	}
+
+	.wikitable {
+		hr {
+			display: block;
+		}
 	}
 
 	a {
@@ -922,6 +984,13 @@ h1.firstHeading {
 
 }
 
+.mw-editsection {
+	font-size: small;
+	font-weight: normal;
+	margin-left: 1em;
+	vertical-align: baseline;
+	line-height: 1em;
+}
 
 
 
@@ -937,7 +1006,7 @@ table {
 		tr {
 			background-color: white !important;
 			th, td {
-				padding: 0.6rem 0.7rem 0.7rem;
+				padding: 0.4rem 0.7rem;
 				border-bottom: 1px solid transparentize($greyish, 0.7);
 			}
 			th:first-child, td:first-child {
@@ -945,6 +1014,18 @@ table {
 			}
 			td:last-child {
 				margin-right: 10px;
+			}
+		}
+	}
+}
+
+table:not(.infobox):not(.infobox-actu) {
+	tbody {
+		tr {
+			th, td {
+				&:not(:last-child) {
+					border-right: 1px solid transparentize($greyish, 0.7);
+				}
 			}
 		}
 	}
@@ -959,7 +1040,7 @@ li.gallerybox {
 	background-color: $white;
 	border: 0;
 	border-bottom: 1px solid $dark-peach;
-	width: 180px !important;
+	width: 180px;
 	margin: 1rem;
 	&>* {
 		width: 100% !important;
@@ -971,7 +1052,6 @@ li.gallerybox {
 		margin: 0;
 		&>div {
 			margin: 0 !important;
-			img {width: 100% !important;}
 		}
 	}
 	.gallerytext {
@@ -1422,13 +1502,11 @@ HOMEPAGE
 						margin-top: 0;
 						padding-right:0 !important;
 					}
-					#header-image {
+					#header-image2 {
 						width: auto;
 						float: none;
-						@include breakpoint(medium) {
-							border-bottom: none;
-							height:400px;
-						}
+						margin: 0%;
+						
 					}
 
 				}
@@ -1581,8 +1659,18 @@ HOMEPAGE
 			}
 		}
 	}
+}
 
-
+@media screen and (min-width: 40em) {
+	.mw-special-ArchiHome .mw-body-content #mw-content-text .header-row .header-image-continer #header-image2 {
+	  border-bottom: none;
+	  height: 400px;
+	}
+  
+	.mw-special-ArchiHome .mw-body-content #mw-content-text .header-row .header-image-continer #header-image {
+	  border-bottom: none;
+	  height: 400px;
+	}
 }
 
 .association-block {
@@ -1621,6 +1709,10 @@ HOMEPAGE
 	background-color: $white-two;
 	p {
 		font-size:16px;
+	}
+
+	li > sup {
+		display: none;
 	}
 }
 .latest-news {
@@ -1678,10 +1770,12 @@ HOMEPAGE
 
 }
 
-.header-image {
+.header-image>#header-image2 {
 	height: 222px;
 	background-size: cover;
 	background-position: center center;
+	border-bottom: none;
+	margin: 0px;
 	@extend .cancel-global-padding;
 
 }
@@ -1863,8 +1957,565 @@ Full width mobile namespaces
 
 
 /********************
-// Language popup
+// INSITE #21819
 ************************/
-.oo-ui-popupWidget {
-	display:none !important;
+.mw-ui-icon.mw-ui-icon-spinner.mw-ui-icon-element.spinner.loading {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	&:before {
+		content: '';
+		display: inline-block;
+		width: 2rem;
+		height: 2rem;
+		background-size: contain;
+	}
+	&.hidden {
+		display: none;
+	}
 }
+
+#mw-mf-nearby {
+	.page-list {
+		margin-left: 0;
+		li.page-summary {
+			padding-left: 85px;
+			padding-bottom: 2rem;
+			min-height: 9rem;
+			padding-top: 0;
+			@media screen and (min-width: 400px) {
+				padding-top: .5rem;
+				padding-left: 155px;
+			}
+			.wikidata-description {
+				font-size: .85rem;
+			}
+		}
+		.list-thumb {
+			@include aspect-ratio(70px, 70px);
+			position: absolute;
+			height: auto;
+			@media screen and (min-width: 400px) {
+				width: 140px;
+				@include aspect-ratio(70px, 70px);
+				position: absolute;
+			}
+		}
+	}
+}
+//.page-list.thumbs.actionable {
+//
+//}
+.sitedir-ltr .mw-dismissable-notice-body {
+	margin: 0;
+	padding: 2rem 3rem;
+	#localNotice p:last-child {
+		margin-bottom: 0;
+	}
+}
+#siteNotice {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #FFF;
+	z-index: 9999;
+	max-width: 100%;
+	width: 990px;
+	left: 50%;
+	transform: translateX(-50%);
+	box-shadow: 0 5px 5px #D7D7D7;
+}
+
+.mw-dismissable-notice-close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	font-size: 0;
+	a {
+		display: block;
+		width: 25px;
+		height: 25px;
+		background-image: url(/skins/archi-wiki/resources/img/collapse-close.svg);
+		background-size: contain;
+	}
+}
+
+
+/********************
+// INSITE #26862
+************************/
+.ve-ce-surface {
+	.main-image {
+		width: auto;
+		float: none;
+		margin: 0 2rem 2rem 0;
+		display: block;
+		a, img {
+			display: block;
+		}
+	}
+}
+.mw-editform textarea {
+	font-size: 16px;
+}
+
+/********************
+// INSITE #28295
+************************/
+.mw-body-content #mw-data-after-content .noexcerpt {
+	@extend .clearfix;
+	margin-bottom: 2rem;
+}
+
+/********************
+// INSITE #27947
+************************/
+.mw-body-content span.select-sfs select:not([multiple]) {
+	margin-bottom: 0;
+	padding-bottom: 3px;
+	height: 29px;
+}
+
+/********************
+// INSITE #27969
+************************/
+#wikiEditor-ui-toolbar #wikiEditor-section-advanced .label {
+	background-color: transparent;
+}
+#wikiEditor-ui-toolbar #wikiEditor-section-advanced span.label {
+	background-color: transparent;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+#wikiEditor-ui-toolbar .tabs span.tab a {
+	color: #222;
+}
+
+/********************
+// INSITE #27995
+************************/
+
+@include breakpoint(small down) {
+	h2.collapsible-heading {
+		position: relative;
+		padding-left: 3rem;
+		outline: 1px dotted #8a8a8a;
+		.mw-ui-icon.mw-ui-icon-element {
+			position: absolute;
+			left: 0;
+			top: 40%;
+			transform: translateY(-50%);
+			width: 2em;
+			min-width: 2em;
+			background-size: contain;
+			margin: 0;
+			&:before {
+				margin: 0;
+			}
+		}
+	}
+	#mw-content-text h2 {
+		.mw-editsection {
+			margin-top: .3rem;
+			display: none;
+			a {
+				display: inline-block;
+				text-indent: -9999px;
+				width: 20px;
+				height: 20px;
+				background-image: url(/skins/archi-wiki/resources/img/edit_black.svg);
+				background-size: contain;
+			}
+		}
+		&.open-block {
+			.mw-editsection {
+				display: block;
+			}
+		}
+	}
+}
+
+/***********************
+// INSITE #27995#note-12
+************************/
+
+@include breakpoint(medium down) {
+	.mw-body.has-archi-columns .mw-body-content {
+		position: initial;
+	}
+	.mw-content-column {
+		h1.firstHeading {
+			padding-right: 2rem;
+		}
+		.infobox {
+			margin-top: 0;
+		}
+		#mw-content-text {
+			padding-top: .3rem;
+		}
+		ul.archiwiki-toolbox {
+			right: 1.2rem;
+			top: 5rem;
+		}
+	}
+	#ca-ve-edit-noswitch,
+	#mw-content-text h2 .mw-editsection span.mw-editsection-divider,
+	#mw-content-text h2 .mw-editsection a.mw-editsection-visualeditor {
+		display: none;
+	}
+}
+
+
+/***********************
+// INSITE #28805
+************************/
+.search-box-row {
+	span.link--nearby a {
+		display: inline-flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		&:before {
+			content: "";
+			display: block;
+			position: relative;
+			top: 2px;
+			width: 16px;
+			height: 19px;
+			background-image: url(../../resources/img/map-marker.png);
+			background-size: contain;
+			background-repeat: no-repeat;
+			margin-right: .25rem;
+		}
+	}
+}
+
+
+
+
+
+/***********************
+// INSITE #26378
+************************/
+
+div.mw-echo-ui-notificationBadgeButtonPopupWidget-popup {
+	top: 112px!important;
+}
+
+li#pt-notifications-alert,
+li#pt-notifications-notice {
+	padding: 3.3rem .5rem 0;
+	a.mw-echo-notifications-badge {
+		display: inline-block;
+		height: 20px;
+		background-repeat: no-repeat;
+		padding: 0;
+		top: 7px;
+	}
+}
+
+
+/***********************
+// INSITE #29643
+************************/
+@include breakpoint(large) {
+	.mw-body-content:not(.map-layout) {
+		table.formtable tbody tr.checkboxesLine {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: flex-start;
+			th {
+				flex: 0 0 230px;
+			}
+		}
+	}
+	.map-layout {
+		#mw-content-text {
+			display: flex;
+			flex-flow: row-reverse nowrap;
+			> .mw-parser-output {
+				width: 70%;
+				flex: 0 0 70%;
+
+			}
+		}
+
+		.pf-runquery-formcontent .mw-parser-output {
+			max-height: 675px;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+		.pf-runquery-formcontent {
+			width: 30%;
+			flex: 0 0 30%;
+			#pfForm select {
+				width: 100%!important;
+			}
+			table.formtable tbody tr.checkboxesLine {
+				display: block;
+			}
+			table.formtable {
+				tbody tr th {
+					width: 35%;
+				}
+				tbody tr td {
+					width: 65%;
+					padding: 0.6rem 0.7rem .6rem 0;
+					span.inputSpan {
+						display: block;
+						max-width: 200px;
+						input,
+						select {
+							width: 100%!important;
+							min-width: 150px!important;
+							display: block!important;
+							appearance: auto!important;
+							border-radius: 0!important;
+							padding: 10px!important;
+							height: auto;
+							border: 1px solid #D7D7D7;
+							background: none!important;
+						}
+					}
+					label.checkboxLabel {
+						width: 100%;
+						margin-right: 0!important;
+					}
+					input, select {
+						max-width: 100%!important;
+						padding: 0!important;
+					}
+					input[type="checkbox"] {
+						margin: 0;
+					}
+					span.select-sfs {
+						position: relative;
+						min-width: 150px!important;
+						&:after {
+							content: none!important;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.pf-runquery-formcontent table.formtable tbody tr.checkboxesLine {
+	th, td {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		margin: 0;
+	}
+	th {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: space-between;
+		&:after {
+			content: '';
+			display: block;
+			width: 1.25rem;
+			height: 1.25rem;
+			background-image: url(/skins/archi-wiki/resources/img/arrow.svg);
+			transform: rotate(180deg);
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+	}
+	&.is-open th:after {
+		transform: rotate(0deg);
+	}
+}
+
+#mw-content-text .leaflet-control-zoom a {
+	text-decoration: none;
+}
+
+/***********************
+// INSITE #29643
+************************/
+.leaflet-popup {
+	.mw-parser-output {
+		margin-top: 1rem;
+		.floatnone {
+			text-align: center;
+		}
+		a {
+			display: inline-block;
+		}
+	}
+	a.leaflet-popup-close-button {
+		text-decoration: none!important;
+	}
+}
+
+form#pfForm {
+	select.createboxInput {
+		max-width: 905px!important;
+	}
+	table.formtable {
+		tbody {
+			max-width: 100vw;
+			display: block;
+		}
+	}
+}
+
+body:fullscreen .map-layout #mw-content-text #map_leaflet_1 {
+	width: 100vw!important;
+	height: 100vh!important;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+	.map-layout #mw-content-text #map_leaflet_1 {
+		max-height: 65vh!important;
+	}
+}
+@media (max-width: 768px) and (orientation: landscape) {
+	.map-layout #mw-content-text #map_leaflet_1 {
+		max-height: 100vh!important;
+	}
+}
+@media (max-width: 768px) {
+	form#pfForm {
+		table.formtable {
+			width: 100%;
+			span.select-sfs {
+				width: 100%;
+				min-width: auto!important;
+				select {
+					min-width: auto!important;
+					width: 100%!important;
+				}
+			}
+			max-width: 100vw;
+			display: block;
+			tr {
+				display: flex;
+			}
+			th {
+				display: flex;
+				width: 40%;
+				align-items: flex-start;
+			}
+			td {
+				display: block;
+				width: 60%;
+			}
+		}
+	}
+}
+
+// FIX obscur bug : https://redmine.insite.coop/issues/31030
+textarea {
+	box-shadow: none!important;
+}
+
+
+
+// masquer prefixe personne et adresse
+// https://redmine.insite.coop/issues/31597
+.ns-4000 #firstHeading .mw-page-title-namespace,
+.ns-4000 #firstHeading .mw-page-title-separator,
+.ns-4006 #firstHeading .mw-page-title-namespace,
+.ns-4006 #firstHeading .mw-page-title-separator {
+	display: none;
+}
+
+.printfooter {
+	display: none;
+}
+
+div.tright,
+div.floatright,
+table.floatright {
+	clear:right;
+	float:right;
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.row {
+	max-width: 100%;
+}
+
+#search-modal .large-2 {
+	max-width: min-content;
+}
+
+/*
+ * Skins for the combobox
+*/
+
+
+.comboboxSpan:first-child {
+	min-width: 80%;
+	width: 0px;
+	color: pink;
+  }
+  
+  /* custom oo-ui icon styles */
+  
+  .oo-ui-image-progressive.oo-ui-icon-next.oo-ui-iconElement-icon {
+	background-image: linear-gradient(transparent, transparent), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E%3Ctitle%3E next %3C/title%3E%3Cg fill=%22%23b7756a%22%3E%3Cpath d=%22M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z%22/%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed {
+	background-color: transparent;
+  }
+  
+  
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:hover,
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus,
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus-visible,
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus-within {
+	border-color: #000 !important;
+  }
+  
+  #boutons-mode-recherche .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:hover {
+	background-color: transparent;
+	border: 0px;
+  }
+  
+  #boutons-mode-recherche .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed {
+	border: 0px;
+  }
+  
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:first-child {
+	color: #b7756a;
+  }
+  
+  .flex-align {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+  
+  .bouton-normal>div {
+	flex-direction: row-reverse;
+	margin-bottom: -17px;
+  }
+  
+  .bouton-carte>div {
+	flex-direction: row-reverse;
+  }
+  
+  .flex-align>h5,
+  .flex-align>p {
+	margin-bottom: 0%;
+  }
+  
+  
+  .wikiEditor-ui-top>.wikiEditor-ui-toolbar {
+	z-index: auto;
+  }
+  
+  /* Hide the bouton we don't want to show */
+  .bouton-normal #bouton-recherche-avancée {
+	display: none;
+  }
+  
+  .bouton-carte #bouton-recherche-avancée-carte {
+	display: none;
+  }

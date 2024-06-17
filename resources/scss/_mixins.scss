@@ -113,3 +113,59 @@ COLOR PANELS
 	   @content;
 	}
 }
+
+// APSECT RATIO
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: ($height / $width) * 100%;
+	}
+	> .content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+/***************************
+WRAPPERS
+****************************/
+
+$containerWidth: 1024px;
+$containerPadding: 20px;
+:root {
+	--wrapper-width: calc(100% - #{$containerPadding});
+}
+@media only screen and (min-width: calc(#{$containerWidth} + #{$containerPadding})) {
+	:root {
+		--wrapper-width: #{$containerWidth};
+	}
+}
+@mixin wrapper() {
+	box-sizing: border-box;
+	width: 100%;
+	padding-left: calc(50% - var(--wrapper-width) / 2);
+	padding-right: calc(50% - var(--wrapper-width) / 2);
+}
+
+@mixin customWrapper(
+	$width: 400px,
+    $padding: 20px
+) {
+	@if $padding == 0 {
+		$padding: 0px;
+	}
+	--wrapper-width: calc(100% - #{$padding});
+	@media only screen and (min-width: calc(#{$width} + #{$padding})) {
+		--wrapper-width: #{$width};
+	}
+	box-sizing: border-box;
+	width: 100%;
+	padding-left: calc(50% - var(--wrapper-width) / 2);
+	padding-right: calc(50% - var(--wrapper-width) / 2);
+}

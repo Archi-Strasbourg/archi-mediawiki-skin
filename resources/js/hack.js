@@ -1,22 +1,31 @@
+/* jshint esversion: 6 */
 
 /**
  * HACKY THINGS
  */
 
-function setupHeaderImage( $featuredImage, $container ) {
-	var $featuredThumb = $featuredImage;
-	var featuredThumbUrl = $featuredThumb.attr('src');
+/**
+ * @param $featuredImage
+ * @param $container
+ * @return {boolean}
+ */
+function setupHeaderImage($featuredImage, $container) {
+	const $featuredThumb = $featuredImage;
+	let featuredThumbUrl = $featuredThumb.attr('src');
 	if (typeof featuredThumbUrl != 'undefined') {
+		let featuredImageUrl;
 
-		if (featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('thumb') >= 0)) {
-			featuredThumbUrl = featuredThumbUrl.substr(0,featuredThumbUrl.lastIndexOf('/'));
-			var featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
+		if (featuredThumbUrl.substr(0, featuredThumbUrl.lastIndexOf('thumb') >= 0)) {
+			featuredThumbUrl = featuredThumbUrl.substr(0, featuredThumbUrl.lastIndexOf('/'));
+			featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
 		} else {
-			var featuredImageUrl = featuredThumbUrl;
+			featuredImageUrl = featuredThumbUrl;
 		}
-		$container.css({
+		$container.removeClass('hide');
+		
+		$container.find("#header-image2").first().css({
 			backgroundImage: 'url(' + featuredImageUrl + ')'
-		}).removeClass('hide');
+		});
 		$featuredThumb.parents('.thumb').hide();
 		return true;
 	} else {
@@ -44,16 +53,17 @@ $(document).ready(function(){
 			$(this).prepend('<div class="mw-info-column"></div>');
 		});
 		$('.mw-body').addClass('has-archi-columns');
+
+		const $tables = $('#mw-content-text > .mw-parser-output > table, #mw-content-text > table');
 		// Add infobox class to infobox table on load
-		$('#mw-content-text>table').has('#map_leaflet_1').each(function(){
+		$tables.has('#map_leaflet_1').each(function(){
 			$(this).addClass('infobox');
 			// Move the infobox to the top of the HTML
 			$(this).prependTo('.mw-info-column');
 		});
 
 		// Find infobox on Person page
-
-		$('#mw-content-text>table').filter('.infobox').each(function(){
+		$tables.filter('.infobox').each(function(){
 			// Move the infobox to the top of the HTML
 			$(this).prependTo('.mw-info-column');
 		});
@@ -99,13 +109,13 @@ $(document).ready(function(){
 	 $('.latest-changes .latest-changes-recent-change').each(function(){
 	 	var $headerImage = $(this).find('a.image>img').first();
 		var url = $(this).find('p > a').attr('href');
-		$(this).prepend('<a href="' + url + '"><div class="header-image hide"></div></a>').find('.header-image').each(function(){
+		$(this).prepend('<a href="' + url + '"><div class="header-image hide"><div id="header-image2"></div></div></a>').find('.header-image').each(function(){
 	 		setupHeaderImage($headerImage, $(this));
 	 	});
 	 });
 
 	 $('.mw-special-ArchiHome').each(function(){
-	 	$(this).find('#mw-content-text .header-row').prepend('<div class="header-image-continer" style=""><div id="header-image" class="hide"></div></div>');
+	 	$(this).find('#mw-content-text .header-row').prepend('<div class="header-image-continer" style=""><div id="header-image" class="hide"><div id="header-image2"></div></div></div>');
 	 	setupHeaderImage( $(this).find('#mw-content-text').find('a.image>img').first(), $(this).find('#header-image') );
 	 });
 
