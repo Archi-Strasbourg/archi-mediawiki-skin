@@ -621,7 +621,7 @@ class ArchiWikiTemplate extends BaseTemplate
                             <div class="site-logo">
                                 <a href="<?php echo $this->getSiteUrl(); ?>"><img
                                             src="/skins/archi-wiki/resources/img/logo_archi_wiki.png"/></a>
-                                <p class="site-slogan"><?php echo "SITE DE TEST ------------------------------------"; ?></p>
+                                <p class="site-slogan"><?php echo $this->getMsg('site-slogan'); ?></p>
                             </div>
                         </div>
                         <div class="top-bar-left">
