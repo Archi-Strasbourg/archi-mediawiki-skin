@@ -10,9 +10,10 @@ GENERAL STYLES
 body {
 	overflow-x:hidden;
 }
+/*
 body.mediawiki > .wrapper {
 	@include customWrapper(1350px, 0);
-}
+}*/
 .wrapper {
 	overflow:hidden;
 	@include breakpoint(medium) {
@@ -158,6 +159,7 @@ Search modal
 	.advanced-search-link {
 		text-decoration: underline;
 		padding-top: 0.25rem;
+		white-space: nowrap;
 	}
 	.search-title {
 		font-size: 1.125rem;
@@ -581,7 +583,7 @@ HEADER STYLES
 	}
 }
 
-#header-image{
+#header-image2{
 
 	display: block;
 	height: 190px;
@@ -595,12 +597,19 @@ HEADER STYLES
 	}
 	@include breakpoint(medium) {
 		height: 300px;
-		border-bottom: 2px solid $dark-peach;
 		margin-left:0;
 		margin-right:0;
 		@include breakpoint(large){
 			height: 550px;
+			@media screen and (min-width: 1350px){
+				margin: 0% 15%;
+			}
 		}
+	}
+}
+#header-image {
+	@include breakpoint(medium) {
+		border-bottom: 2px solid $dark-peach;
 	}
 }
 
@@ -619,6 +628,10 @@ CONTENT STYLES
 
 		@include breakpoint(medium) {
 			@include grid-column(4);
+			@media screen and (min-width: 1350px)
+			{
+				width: 27.5%;
+			}
 		}
 	}
 	.mw-content-column {
@@ -627,6 +640,10 @@ CONTENT STYLES
 		@include breakpoint(medium) {
 			@include grid-column(7);
 			@include grid-column-end;
+			@media screen and (min-width: 1350px)
+			{
+				width: 65%;
+			}
 		}
 	}
 	.mw-body-content {
@@ -649,6 +666,7 @@ CONTENT STYLES
 		}
 	}
 }
+
 
 
 // General notice styles
@@ -763,7 +781,38 @@ h2+.notice {
 			td, th {border-bottom-width: 1px; border-bottom-color: $greyish;}
 		}
 	}
+	.columnbox-title {
+		border-bottom: 0px;
+		padding: 0.6rem 0.7rem 0rem;
+	}
 }
+
+//new infobox titles
+
+td>h1{
+	font-size: 1.5em;
+	background-color: #d96e5d;
+	color: #FFFFFF;
+	padding: 0.2em 0em;
+}
+td>h2{
+	font-size: 1em;
+	background-color: #d96e5d;
+	color: #FFFFFF;
+	padding: 0.1em 0em;
+}
+td>h3 {
+	font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 1em;
+	padding: 0.1em 0em;
+	margin-bottom: 0em;
+}
+td>p{
+	font-weight: normal;
+	margin-bottom: 0px;
+}
+
 
 /*Workaround bug in Leaflet.GridLayer.GoogleMutant: https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant/issues/44 */
 .leaflet-container {
@@ -957,7 +1006,7 @@ table {
 		tr {
 			background-color: white !important;
 			th, td {
-				padding: 0.6rem 0.7rem 0.7rem;
+				padding: 0.4rem 0.7rem;
 				border-bottom: 1px solid transparentize($greyish, 0.7);
 			}
 			th:first-child, td:first-child {
@@ -1453,13 +1502,11 @@ HOMEPAGE
 						margin-top: 0;
 						padding-right:0 !important;
 					}
-					#header-image {
+					#header-image2 {
 						width: auto;
 						float: none;
-						@include breakpoint(medium) {
-							border-bottom: none;
-							height:400px;
-						}
+						margin: 0%;
+						
 					}
 
 				}
@@ -1612,8 +1659,18 @@ HOMEPAGE
 			}
 		}
 	}
+}
 
-
+@media screen and (min-width: 40em) {
+	.mw-special-ArchiHome .mw-body-content #mw-content-text .header-row .header-image-continer #header-image2 {
+	  border-bottom: none;
+	  height: 400px;
+	}
+  
+	.mw-special-ArchiHome .mw-body-content #mw-content-text .header-row .header-image-continer #header-image {
+	  border-bottom: none;
+	  height: 400px;
+	}
 }
 
 .association-block {
@@ -1713,10 +1770,12 @@ HOMEPAGE
 
 }
 
-.header-image {
+.header-image>#header-image2 {
 	height: 222px;
 	background-size: cover;
 	background-position: center center;
+	border-bottom: none;
+	margin: 0px;
 	@extend .cancel-global-padding;
 
 }
@@ -2376,3 +2435,87 @@ table.floatright {
 	margin-left: 20px;
 	margin-bottom: 10px;
 }
+
+.row {
+	max-width: 100%;
+}
+
+#search-modal .large-2 {
+	max-width: min-content;
+}
+
+/*
+ * Skins for the combobox
+*/
+
+
+.comboboxSpan:first-child {
+	min-width: 80%;
+	width: 0px;
+	color: pink;
+  }
+  
+  /* custom oo-ui icon styles */
+  
+  .oo-ui-image-progressive.oo-ui-icon-next.oo-ui-iconElement-icon {
+	background-image: linear-gradient(transparent, transparent), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E%3Ctitle%3E next %3C/title%3E%3Cg fill=%22%23b7756a%22%3E%3Cpath d=%22M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z%22/%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed {
+	background-color: transparent;
+  }
+  
+  
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:hover,
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus,
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus-visible,
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:focus-within {
+	border-color: #000 !important;
+  }
+  
+  #boutons-mode-recherche .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:hover {
+	background-color: transparent;
+	border: 0px;
+  }
+  
+  #boutons-mode-recherche .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed {
+	border: 0px;
+  }
+  
+  .oo-ui-inputWidget-input.oo-ui-buttonElement-button.webfonts-changed:first-child {
+	color: #b7756a;
+  }
+  
+  .flex-align {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+  
+  .bouton-normal>div {
+	flex-direction: row-reverse;
+	margin-bottom: -17px;
+  }
+  
+  .bouton-carte>div {
+	flex-direction: row-reverse;
+  }
+  
+  .flex-align>h5,
+  .flex-align>p {
+	margin-bottom: 0%;
+  }
+  
+  
+  .wikiEditor-ui-top>.wikiEditor-ui-toolbar {
+	z-index: auto;
+  }
+  
+  /* Hide the bouton we don't want to show */
+  .bouton-normal #bouton-recherche-avancée {
+	display: none;
+  }
+  
+  .bouton-carte #bouton-recherche-avancée-carte {
+	display: none;
+  }

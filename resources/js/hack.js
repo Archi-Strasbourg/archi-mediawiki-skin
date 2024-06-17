@@ -21,9 +21,11 @@ function setupHeaderImage($featuredImage, $container) {
 		} else {
 			featuredImageUrl = featuredThumbUrl;
 		}
-		$container.css({
+		$container.removeClass('hide');
+		
+		$container.find("#header-image2").first().css({
 			backgroundImage: 'url(' + featuredImageUrl + ')'
-		}).removeClass('hide');
+		});
 		$featuredThumb.parents('.thumb').hide();
 		return true;
 	} else {
@@ -107,13 +109,13 @@ $(document).ready(function(){
 	 $('.latest-changes .latest-changes-recent-change').each(function(){
 	 	var $headerImage = $(this).find('a.image>img').first();
 		var url = $(this).find('p > a').attr('href');
-		$(this).prepend('<a href="' + url + '"><div class="header-image hide"></div></a>').find('.header-image').each(function(){
+		$(this).prepend('<a href="' + url + '"><div class="header-image hide"><div id="header-image2"></div></div></a>').find('.header-image').each(function(){
 	 		setupHeaderImage($headerImage, $(this));
 	 	});
 	 });
 
 	 $('.mw-special-ArchiHome').each(function(){
-	 	$(this).find('#mw-content-text .header-row').prepend('<div class="header-image-continer" style=""><div id="header-image" class="hide"></div></div>');
+	 	$(this).find('#mw-content-text .header-row').prepend('<div class="header-image-continer" style=""><div id="header-image" class="hide"><div id="header-image2"></div></div></div>');
 	 	setupHeaderImage( $(this).find('#mw-content-text').find('a.image>img').first(), $(this).find('#header-image') );
 	 });
 
