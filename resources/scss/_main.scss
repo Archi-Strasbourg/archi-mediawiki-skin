@@ -2865,6 +2865,12 @@ table.floatright {
 	float: none;
 }
 
-.unsortable td {
+.centered td {
 	text-align: center;
+	max-width: min-content;
+}
+
+.centered td:first-child {
+	text-align: left;
+	max-width: none;
 }
