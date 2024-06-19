@@ -2864,3 +2864,7 @@ table.floatright {
 .ns--1 .mw-body:last-child:not(:first-child){
 	float: none;
 }
+
+.unsortable td {
+	text-align: center;
+}
