@@ -133,4 +133,36 @@ $(document).ready(function(){
 			 $('.uls-menu').addClass('uls-mobile');
 		 }, 500);
 	 });
+
+	
+	
+
+	// make the "Afficher sur la carte" button work
+	if($('#Toggle-map-table-view').length > 0) {
+		setTimeout(function() {
+			$('#map-view').hide();
+		}, 500);
+
+		document.getElementById('Toggle-map-table-view').addEventListener('click', function() {
+			var tableView=document.getElementById('table-view');
+			var mapView=document.getElementById('map-view');
+			if (tableView.style.display === 'none') {
+				tableView.style.display = 'unset';
+				mapView.style.display = 'none';
+				this.innerHTML = 'Afficher sous forme de carte';
+			} else {
+				tableView.style.display = 'none';
+				mapView.style.display = 'unset';
+				this.innerHTML = 'Afficher sous forme de tableau';
+		    }
+    	});
+		$('#boutons-vers-recherche').append(document.getElementById('Toggle-map-table-view'));
+	}
+
+	
+	// Show the "Afficher sur la carte" button on the advanced research page
+	if($('#boutons-mode-recherche').is('.bouton-normal')){
+		$('#bouton-recherche-avancée-carte').show();
+	}
 });
+
