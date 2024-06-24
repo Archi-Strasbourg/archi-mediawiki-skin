@@ -2684,20 +2684,29 @@ form#pfForm {
 	}
 }
 
-body:fullscreen .map-layout #mw-content-text #map_leaflet_1 {
+body:fullscreen #map_leaflet_1 {
 	width: 100vw !important;
 	height: 100vh !important;
 }
 
+#map_leaflet_1 {
+	max-height: 90vh !important;
+}
+
 @media (max-width: 768px) and (orientation: portrait) {
-	.map-layout #mw-content-text #map_leaflet_1 {
+	#map_leaflet_1 {
 		max-height: 65vh !important;
+	}
+	#boutons-vers-recherche {
+		flex-direction: column;
+		align-items: center;
 	}
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
-	.map-layout #mw-content-text #map_leaflet_1 {
-		max-height: 100vh !important;
+	#map_leaflet_1 {
+		max-height: 90vh !important;
+		max-width: 90vw !important;
 	}
 }
 
@@ -2874,3 +2883,8 @@ table.floatright {
 	text-align: left;
 	max-width: none;
 }
+
+#Toggle-map-table-view{
+	color: #b7756a;
+}
+
