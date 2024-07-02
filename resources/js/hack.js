@@ -164,5 +164,96 @@ $(document).ready(function(){
 	if($('#boutons-mode-recherche').is('.bouton-normal')){
 		$('#bouton-recherche-avancée-carte').show();
 	}
-});
 
+	// Add a button to send a test mail to a target
+	$('#send-mail').click(function() {
+		function MyDialog(config) {
+			MyDialog.super.call(this, config);
+		}
+		OO.inheritClass(MyDialog, OO.ui.Dialog);
+		MyDialog.static.name = 'envoir mail test';
+		MyDialog.static.title = 'envoyer un mail de test';
+		var input1= new OO.ui.TextInputWidget({
+			label: 'Cible du mail',
+			placeholder: 'Renseigner qui va recevoir le mail',
+			required: true
+		});
+		var input2= new OO.ui.TextInputWidget({
+			label: 'Nom d\'utilisateur',
+			placeholder: 'Renseigner votre nom d\'utilisateur',
+			required: true
+		});
+		var input3= new OO.ui.TextInputWidget({
+			label: 'Password',
+			placeholder: 'Renseigner votre mot de pass',
+			required: true,
+			type: 'password'
+		});
+
+		
+		var sendButton = new OO.ui.ButtonWidget({
+			label: 'envoie',
+			flags: 'primary'
+		});
+		sendButton.on('click', function() {
+			if (input1.getValue()=='' || input2.getValue()=='' || input3.getValue()=='') {
+				alert("renseignez tout les champs");
+				return;
+			}
+			const target = input1.getValue();
+			const user = input2.getValue();
+			const password = input3.getValue();
+			$.ajax({
+				url: 'cli.php',
+				type: 'GET',
+				data: {
+					'groupby': 'parentheses',
+					'apiUrl' : 'https://www.archi-wiki.org/api.php',
+					'title' : '[TEST] Alerte mail hebdomadaire',
+					'username' : user,
+					'password' : password,
+					'namespaces' : '4000,4006',
+					'nsgroupby' : '4000',
+					'intro' : 'MediaWiki:Alerte mail hebdomadaire',
+					'target' : target,
+					'debug' : true
+				},
+				success: function(data) {
+					console.log(data);
+					if(data!="success"){
+						alert("erreur lors de l'envoie du mail");
+						dialog.close();
+					}
+					else{
+						alert("mail envoyé");
+						dialog.close();
+					}
+				},
+				error: function(data) {
+					console.log("error: "+data);
+					alert("erreur lors de l'envoie du mail");
+					dialog.close();
+				}
+			});
+			
+		});
+
+		var contentLayout = new OO.ui.FieldsetLayout({
+			'label': 'Envoir d\'un mail de test (échap pour fermer)'
+		});
+		contentLayout.addItems([new OO.ui.FieldLayout(input1,{align:'top'}), new OO.ui.FieldLayout(input2,{align:'top'}), new OO.ui.FieldLayout(input3,{align:'top'}), sendButton]);
+
+		MyDialog.prototype.initialize = function () {
+			MyDialog.super.prototype.initialize.call(this);
+			this.content = contentLayout;
+			this.$body.append(this.content.$element);
+		};
+		
+		
+		var dialog = new MyDialog({size: 'medium'});
+		var windowManager= new OO.ui.WindowManager();
+		$('body').append(windowManager.$element);
+		windowManager.addWindows([dialog]);
+		windowManager.openWindow(dialog);
+	});
+});
