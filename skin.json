@@ -55,7 +55,10 @@
 				"dist/js/scripts.js"
 			],
 			"dependencies": [
-				"ext.maps.leaflet.loader"
+				"ext.maps.leaflet.loader",
+				"oojs-ui-core",
+				"oojs-ui-widgets",
+				"oojs-ui-windows"
 			]
 		}
 	},
