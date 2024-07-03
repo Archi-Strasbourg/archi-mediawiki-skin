@@ -110,8 +110,15 @@ class ArchiWikiTemplate extends BaseTemplate
                     </div>
                 <?php endif; ?>
             <?php endif; ?>
-
-            <div class="mw-body" role="main" id="content">
+            <?php
+                $query = $wgRequest->getQueryValuesOnly();
+                $bodyclasses = ['mw-body'];
+                if (isset($query['Recherche_avancée']['carte']['value'])) 
+                {
+                    $bodyclasses[] = 'map-layout';
+                }
+            ?>
+            <div class="<?php echo implode(' ', $bodyclasses); ?>" role="main" id="content">
 
                 <div id="loading">
                     <img id="loading-image"
@@ -155,9 +162,8 @@ class ArchiWikiTemplate extends BaseTemplate
                 $bodyclasses = ['mw-body-content'];
 
                 $query = $wgRequest->getQueryValuesOnly();
-                if (isset($query['Recherche_avancée']['carte']['value'])
-                    && $query['Recherche_avancée']['carte']['value'] == 1
-                ) {
+                if (isset($query['Recherche_avancée']['carte']['value'])) 
+                {
                     $bodyclasses[] = 'map-layout';
                 }
                 ?>

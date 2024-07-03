@@ -2526,8 +2526,10 @@ li#pt-notifications-notice {
 			}
 		}
 	}
-
-	.map-layout {
+	#content.map-layout{
+		max-width: 95%;
+	}
+	#bodyContent.map-layout {
 		#mw-content-text {
 			display: flex;
 			flex-flow: row-reverse nowrap;
@@ -2539,6 +2541,14 @@ li#pt-notifications-notice {
 			}
 		}
 
+		.oo-ui-comboBoxInputWidget-field {
+			width: 16.5vw !important;
+		}
+		.oo-ui-comboBoxInputWidget{
+			max-width: min-content;
+			min-width: 0px !important;
+		}
+
 		.pf-runquery-formcontent .mw-parser-output {
 			max-height: 675px;
 			overflow-y: scroll;
@@ -2546,6 +2556,7 @@ li#pt-notifications-notice {
 		}
 
 		.pf-runquery-formcontent {
+			margin-right: 15px;
 			width: 30%;
 			flex: 0 0 30%;
 
@@ -2565,7 +2576,11 @@ li#pt-notifications-notice {
 				tbody tr td {
 					width: 65%;
 					padding: 0.6rem 0.7rem .6rem 0;
-
+					display: flex;
+					flex-direction: column;
+					a{
+						width: max-content;
+					}
 					span.inputSpan {
 						display: block;
 						max-width: 200px;
@@ -2573,7 +2588,7 @@ li#pt-notifications-notice {
 						input,
 						select {
 							width: 100% !important;
-							min-width: 150px !important;
+							min-width: 16vw !important;
 							display: block !important;
 							appearance: auto !important;
 							border-radius: 0 !important;
