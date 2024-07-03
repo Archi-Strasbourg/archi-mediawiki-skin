@@ -173,17 +173,17 @@ $(document).ready(function(){
 		OO.inheritClass(MyDialog, OO.ui.Dialog);
 		MyDialog.static.name = 'envoir mail test';
 		MyDialog.static.title = 'envoyer un mail de test';
-		var input1= new OO.ui.TextInputWidget({
+		var input3= new OO.ui.TextInputWidget({
 			label: 'Cible du mail',
 			placeholder: 'Renseigner qui va recevoir le mail',
 			required: true
 		});
-		var input2= new OO.ui.TextInputWidget({
+		var input1= new OO.ui.TextInputWidget({
 			label: 'Nom d\'utilisateur',
 			placeholder: 'Renseigner votre nom d\'utilisateur',
 			required: true
 		});
-		var input3= new OO.ui.TextInputWidget({
+		var input2= new OO.ui.TextInputWidget({
 			label: 'Password',
 			placeholder: 'Renseigner votre mot de pass',
 			required: true,
