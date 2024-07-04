@@ -2910,3 +2910,28 @@ table.floatright {
 .page-Fil_d_actualité #content {
 	width: 90% !important;
 }
+
+.catlinks{
+	#catlinks {
+		text-align: left;
+	}
+	ul{
+		list-style: none;
+		margin-left: 0;
+		padding: 0;
+		display: inline;
+	}
+	li:not(:first-child) {
+		border-left: 1px solid black;
+	}
+	li{
+		
+		display: inline-block;
+		padding: 0 0.5em;
+		margin: 0.125em 0;
+		line-height: 1.25em;
+		a{
+			text-decoration: none;
+		}
+	}
+}
