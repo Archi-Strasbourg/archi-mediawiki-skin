@@ -32,6 +32,127 @@ function setupHeaderImage($featuredImage, $container) {
 		return false;
 	}
 }
+
+/**
+ * Print the iframe when it is loaded
+ * @param frame should be the iframe you want to print
+ * @param elt is the loading div of the iframe displayed while the iframe is loading
+ */
+function printElt(frame,elt){
+	
+	setTimeout(function(){
+		if(elt.style.display=="none"){
+			$("#loading").hide();
+			frame.contentWindow.focus();
+			frame.contentWindow.print();
+			frame.remove();
+			console.log('found and printing');
+		}else{
+			console.log('waiting for page to load');
+			printElt(frame,elt);
+		}
+	}, 500);
+}
+
+function waitForDeferred(id){
+	let elt=document.getElementById(id);
+	setTimeout(function(){
+		if (elt.children.length > 0) {
+			printPreviewButton();
+		} else {
+			console.log('waiting for deferred');
+			console.log(elt.children);
+			waitForDeferred(id);
+		}
+	}, 200);
+}
+
+function printPreviewButton(){
+	//create the pretty preview button with icon
+	$('.preview-content').each(function(){
+		var classList = $(this).attr('class').split(' ');
+		var rowClass = classList.find(function(className) {
+			return className.startsWith('row');
+		});
+		var ul=$('<ul class="preview-content-list archiwiki-toolbox '+rowClass+'" id="preview'+$(this).attr('id')+'"></ul>');
+		var span=$('<span>'+$(this).text()+'</span>');
+		var i=$('<i class="material-icons">preview</i>');
+		var a=$('<a href="#0" onclick="return false;" class="preview-content archiwiki-toolbox-print" id="'+$(this).attr('id')+'"></a>');
+		a.append(span);
+		a.append(i);
+		ul.append($('<li class="archiwiki-toolbox-item"></li>').append(a));
+		$(this).replaceWith(ul);
+	}); 
+
+	//create the pretty print button with icon
+	$('.print-content').each(function(){
+		
+		
+		var span=$('<span>'+$(this).text()+'</span>');
+		var i=$('<i class="material-icons">print</i>');
+		var a=$('<a href="#0" onclick="return false;" class="print-content archiwiki-toolbox-print" id="'+$(this).attr('id')+'"></a>');
+		a.append(span);
+		a.append(i);
+		var classList = $(this).attr('class').split(' ');
+		var rowClass = classList.find(function(className) {
+			return className.startsWith('row');
+		});
+		console.log(rowClass);
+		if($(".preview-content-list."+rowClass).length > 0){
+			$(".preview-content-list."+rowClass).append($('<li class="archiwiki-toolbox-item"></li>').append(a));
+			$(this).remove();
+		} else{
+			var ul=$('<ul class="preview-content-list archiwiki-toolbox '+rowClass+'"></ul>');
+			ul.append($('<li class="archiwiki-toolbox-item"></li>').append(a));
+			$(this).replaceWith(ul);
+		}
+		
+	});
+	//preview-content to preview content on an iframe
+	$(".preview-content").click(function(e) {
+		
+		var url = $(this).attr('id');
+		
+		console.log(url);
+		var iframe = document.createElement('iframe');
+		iframe.src = url.replace("[[:", "/");
+		iframe.style.width="70vw";
+		iframe.style.height="100vh";
+		iframe.style.position="absolute";
+		iframe.style.border="4px solid #d96e5d";
+		iframe.style.zIndex="10";
+		iframe.style.borderRadius="0px";
+		iframe.style.left="3vw";
+		iframe.style.translate="0px -20vh";
+		var close=$('<p id="close-preview" style="position:absolute; cursor:pointer; padding:5px 10px; background-color:#d96e5d; color:white; border-radius:0px; z-index:11; translate:0px -20vh;left:3vw;">X</p>');
+		close.click(function(){
+			$('iframe').remove();
+			close.remove();
+		});
+		$(this).closest('tr').append(close);
+		$(this).closest('tr').append(iframe);
+		e.stopPropagation();
+	});
+
+	$('.print-content').click(function(e) {
+		$("#loading").show();
+		$('<iframe src="'+$(this).attr('id').replace("[[:", "/")+'" style="width:100vw; position:absolute; top:0px; left:0px;" name="frame" id="frame:'+$(this).attr('id')+'"></iframe>').appendTo('div.wrapper');	
+		
+		var iframe = document.getElementById('frame:' + $(this).attr('id'));
+		iframe.onload = function() {
+			var elmnt = iframe.contentWindow.document.getElementById("loading");
+			
+			if (elmnt) {
+				printElt(iframe,elmnt);
+			} else {
+				console.log('elt not found');
+			}
+		};
+
+		e.stopPropagation();
+	});
+}
+
 // Set up header image
 $(document).ready(function(){
 	// Generic article page
@@ -107,7 +228,7 @@ $(document).ready(function(){
 	 * HOMEPAGE things
 	 */
 	// Setup header image on Latest-changes
-	 $('.latest-changes .latest-changes-recent-change').each(function(){
+	 $('.mw-special-ArchiHome .latest-changes-recent-change').each(function(){
 	 	var $headerImage = $(this).find('a.image>img').first();
 		var url = $(this).find('p > a').attr('href');
 		$(this).prepend('<a href="' + url + '"><div class="header-image hide"><div id="header-image2"></div></div></a>').find('.header-image').each(function(){
@@ -152,6 +273,7 @@ $(document).ready(function(){
 				this.innerHTML = 'Afficher sous forme de carte';
 			} else {
 				tableView.style.display = 'none';
+				mapView.style.position ='unset';
 				mapView.style.display = 'unset';
 				this.innerHTML = 'Afficher sous forme de tableau';
 		    }
@@ -173,17 +295,17 @@ $(document).ready(function(){
 		OO.inheritClass(MyDialog, OO.ui.Dialog);
 		MyDialog.static.name = 'envoir mail test';
 		MyDialog.static.title = 'envoyer un mail de test';
-		var input3= new OO.ui.TextInputWidget({
+		var input1= new OO.ui.TextInputWidget({
 			label: 'Cible du mail',
 			placeholder: 'Renseigner qui va recevoir le mail',
 			required: true
 		});
-		var input1= new OO.ui.TextInputWidget({
+		var input2= new OO.ui.TextInputWidget({
 			label: 'Nom d\'utilisateur',
 			placeholder: 'Renseigner votre nom d\'utilisateur',
 			required: true
 		});
-		var input2= new OO.ui.TextInputWidget({
+		var input3= new OO.ui.TextInputWidget({
 			label: 'Password',
 			placeholder: 'Renseigner votre mot de pass',
 			required: true,
@@ -220,18 +342,17 @@ $(document).ready(function(){
 				},
 				success: function(data) {
 					console.log(data);
-					if(data!="success"){
-						alert("erreur lors de l'envoie du mail");
-						dialog.close();
-					}
-					else{
+					if (data.includes("success")) {
 						alert("mail envoyé");
+						dialog.close();
+					} else {
+						alert("erreur lors de l'envoie du mail");
 						dialog.close();
 					}
 				},
 				error: function(data) {
-					console.log("error: "+data);
-					alert("erreur lors de l'envoie du mail");
+					console.log('error : '+data);
+					alert("erreur serveur lors de l'envoie du mail");
 					dialog.close();
 				}
 			});
@@ -241,7 +362,7 @@ $(document).ready(function(){
 		var contentLayout = new OO.ui.FieldsetLayout({
 			'label': 'Envoir d\'un mail de test (échap pour fermer)'
 		});
-		contentLayout.addItems([new OO.ui.FieldLayout(input1,{align:'top'}), new OO.ui.FieldLayout(input2,{align:'top'}), new OO.ui.FieldLayout(input3,{align:'top'}), sendButton]);
+		contentLayout.addItems([new OO.ui.FieldLayout(input2,{align:'top'}), new OO.ui.FieldLayout(input3,{align:'top'}),new OO.ui.FieldLayout(input1,{align:'top'}), sendButton]);
 
 		MyDialog.prototype.initialize = function () {
 			MyDialog.super.prototype.initialize.call(this);
@@ -256,4 +377,56 @@ $(document).ready(function(){
 		windowManager.addWindows([dialog]);
 		windowManager.openWindow(dialog);
 	});
+
+	addEventListener("beforeprint", function() {
+		
+		var UrlImage = $('#header-image2').css('background-image').replace('url(','').replace(')','').replace(/\"/gi, "");
+		$(".infobox").wrap('<div id="infobox-div-print"></div>');
+		$("#infobox-div-print").prepend('<img src="'+UrlImage+'" id="header-image-print" style="min-width:0px; height:fit-content;">');
+		$('#firstHeading').insertBefore('.mw-info-column');
+		$('#contentSub').insertBefore('#firstHeading');
+		$('.site-logo').insertBefore('#contentSub');
+		$('.site-logo').css('width','30vw');
+		$('.site-slogan').css('font-size','small');
+		$('.site-slogan').css('margin-top','0px');
+		$('.site-slogan').css('text-wrap','nowrap');
+
+
+		console.log(UrlImage);
+	});
+	addEventListener("afterprint", function() {
+		$("#header-image-print").remove();
+		$('#firstHeading').insertBefore('#siteSub');
+		$('#contentSub').insertBefore('#firstHeading');
+		$('.top-bar-left').first().append($('.site-logo'));
+		$('.site-logo').css('width','');
+		$('.site-slogan').css('font-size','');
+		$('.site-slogan').css('margin-top','');
+		$('.site-slogan').css('text-wrap','');
+		$(".infobox").unwrap();
+
+	});
+
+	//toolbox button to print
+	$('#archiwiki-toolbox-print').click(function() {
+		window.print();
+	});
+
+	printPreviewButton();
+
+	//close iframe on click
+	$(document).on('click', function(e) {
+		$('iframe').remove();
+		$('#close-preview').remove();
+	});
+
+	if ($('#deferred-output').length > 0) {
+		console.log('deferred-output found');
+		
+		waitForDeferred('deferred-output');
+	}
+	
+	if($(".action-edit").length > 0){
+		$("#mw-data-after-content").hide();
+	} 
 });

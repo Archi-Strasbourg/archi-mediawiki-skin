@@ -12,84 +12,65 @@ to display none.
 // @import "style";
 
 @media print {
-
-  .printfooter {
-    display: block !important;
+  #site-header, .translations, #mw-data-after-content,#mw-footer,.mw-editsection,.leaflet-control,.article-tabs,.archi-wiki-toolbox {
+    display: none; }
+  a[href]:after {
+    content: "" !important; }
+  a{
+    text-decoration: underline !important;
+  }
+  .reference a {
+    text-decoration: none !important;
+  }
+  #toc{
+    page-break-inside: avoid !important;
+  }
+  a[href*="archive"],a[title*="Actualités"] {
+    display: none !important;
+  }
+  h3{
+    border-bottom-style: solid !important;
+  }
+  .infobox h3,.infobox h2, .infobox h1{
+    border-bottom-style: none !important;
   }
 
-  * {
-    background: transparent !important;
-    color: black !important;
-    text-shadow: none !important;
-    filter:none !important;
-    -ms-filter: none !important;
+  .infobox{
+    margin-top:0px !important;
   }
-
-  a, a:visited {
-    color: #444 !important;
-    text-decoration: underline;
-
-    // show links on printed pages
-    &:after {
-      content: " (" attr(href) ")";
+  @media (orientation: portrait) {
+    .infobox {
+      width: 50% !important;
+      max-width: 50% !important;
+      min-width: 50% !important;
     }
+  }
 
-    // show title too
-    abbr[title]:after {
-      content: " (" attr(title) ")";
+  @media (orientation: landscape) {
+    .infobox {
+      width: 30% !important;
+      max-width: 30% !important;
+      min-width: 30% !important;
     }
   }
-
-  .ir a:after,
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
+  #header-image{
+    margin-top: 0px !important;
+    height: 0px;
   }
-
-  pre, blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
+  #infobox-div-print{
+    display: flex;
+    flex-direction: row-reverse;
   }
-
-  thead {
-    display: table-header-group;
+  table.infobox,div.mw-info-column,div#infobox-div-print{
+    page-break-inside: unset !important;
   }
-
-  tr, img {
-    page-break-inside: avoid;
+  table.infobox-actu {
+    page-break-inside: avoid !important;
+    page-break-before: avoid !important;
   }
-
-  img {
-    max-width: 100% !important;
+  h2,h3, h2 span,h3 span, h2 span:first-child.mw-headline, h3 span:first-child.mw-headline {
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
   }
-
-    @page {
-      margin: 0.5cm;
-    }
-
-    p, h2, h3 {
-      orphans: 3;
-      widows: 3;
-    }
-
-    h2,
-    h3 {
-      page-break-after: avoid;
-    }
-
-    // Hide content people who print don't need to see
-    .sidebar,
-    .page-navigation,
-    .wp-prev-next,
-    .respond-form,
-    #off-canvas,
-    .sticky-container,
-    .title-bar,
-    .title-bar.primary,
-    nav,
-    .entry-aux-bar,
-    .divider.horizontal  {
-      display: none !important;
-    }
-    
-} // End of media query
+}
+ // End of media query

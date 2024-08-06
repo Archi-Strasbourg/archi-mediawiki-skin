@@ -1160,6 +1160,8 @@ table {
 			td {
 				padding: 0.4rem 0.7rem;
 				border-bottom: 1px solid transparentize($greyish, 0.7);
+				position:relative;
+
 			}
 
 			th:first-child,
@@ -2934,4 +2936,58 @@ table.floatright {
 			text-decoration: none;
 		}
 	}
+}
+
+.mw-special-ArchiRecentChanges,.mw-special-ArchiRecentChangesDev{
+	#content{
+		max-width: 95%;
+		width: 95%;
+	}
+	.latest-block{
+		
+		.latest-changes-recent-change-container{
+			position: absolute;
+			width: 25%;
+			height: max-content;
+			a{
+				display: inline-block;
+				
+			}
+			border-radius: 2em;
+			border-style: solid;
+			border-width: 1em;
+			border-color: #fafafa;
+			overflow: clip;
+		}
+		img{
+			width: 100%;
+		}
+	}
+	#mw-content-text{
+		height: 1000px;
+		.latest-block{
+			height: 100%;
+		}
+	}
+}
+
+.print-preview{
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	.preview-content-list.archiwiki-toolbox{
+		display: flex;
+		position: inherit;
+		li{
+			margin: 0.5em 0.5em 0px 0px;
+		}
+	}
+}
+
+#map-view{
+	position: absolute;
+	top:100%;
+	width: 100%;
+	height: 100%;
 }

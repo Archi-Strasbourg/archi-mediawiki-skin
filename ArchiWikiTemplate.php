@@ -348,7 +348,7 @@ class ArchiWikiTemplate extends BaseTemplate
         );
         $printToolBoxData = array(
             'print' => array(
-                'href' => wfAppendQuery($this->getThisPageUrl(), ['useskin' => 'vector']),
+                'href' => '#',
                 'class' => 'archiwiki-toolbox-print',
                 'id' => 'archiwiki-toolbox-print',
                 'text' => $this->getMsg('Print')->text()
