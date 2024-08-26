@@ -429,4 +429,82 @@ $(document).ready(function(){
 	if($(".action-edit").length > 0){
 		$("#mw-data-after-content").hide();
 	} 
+
+	$('#bouton-removeAlerteMail').click(function() {
+		$.ajax({
+			url: 'api.php',
+			type: 'GET',
+			data: {
+				'action': 'RemoveAlerte',
+				'user': mw.config.get('wgUserName'),
+				'format':'json'
+			},
+			success: function(data) {
+				console.log(data);
+				if(data.RemoveAlerte.status == 'ok'){
+					alert("désinscrit de l'alerte mail");
+					location.reload();
+				} else {
+					alert("erreur lors de la désinscription de l'alerte mail");
+				}
+			},
+			error: function(data) {
+				console.log('error : '+data);
+				alert("Erreur serveur lors de la désinscription de l'alerte mail");
+			}
+		});
+	});
+
+	$('#bouton-addAlerteMail').click(function() {
+		$.ajax({
+			url: 'api.php',
+			type: 'GET',
+			data: {
+				'action': 'RemoveAlerte',
+				'user': mw.config.get('wgUserName'),
+				'cancel':true,
+				'format':'json'
+			},
+			success: function(data) {
+				console.log(data);
+				if(data.RemoveAlerte.status == 'ok'){
+					alert("inscrit à l'alerte mail");
+					location.reload();
+				} else {
+					alert("erreur lors de l'inscription à l'alerte mail");
+				}
+			},
+			error: function(data) {
+				console.log('error : '+data);
+				alert("Erreur serveur lors de l'inscription à l'alerte mail");
+			}
+		});
+	});
+
+	if($('#alerteMailStatus').length > 0){
+		$.ajax({
+			url: 'api.php',
+			type: 'GET',
+			data: {
+				'action': 'query',
+				'meta': 'userinfo',
+				'uiprop': 'groups|email',
+				'format':'json'
+			},
+			success: function(data) {
+				console.log(data);
+				if(data.query.userinfo.groups.includes('noAlerteMail')){
+					$('#alerteMailStatus').text('désabonné de');
+				} else {
+					$('#alerteMailStatus').text('abonné à');
+				}
+				$('#emailAlerteMail').text(data.query.userinfo.email);
+			},
+			error: function(data) {
+				console.log('error : '+data);
+				$('#alerteMailStatus').text('Erreur serveur');
+			}
+		});
+	}
+
 });
