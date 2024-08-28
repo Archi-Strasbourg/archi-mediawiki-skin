@@ -108,7 +108,7 @@ function printPreviewButton(){
 		}
 		
 	});
-	//preview-content to preview content on an iframe
+	//implémente le bouton preview pour créer une iframe
 	$(".preview-content").click(function(e) {
 		
 		var url = $(this).attr('id');
@@ -134,6 +134,7 @@ function printPreviewButton(){
 		e.stopPropagation();
 	});
 
+	//implémente le bouton print pour créer une iframe qui permet de print une page
 	$('.print-content').click(function(e) {
 		$("#loading").show();
 		$('<iframe src="'+$(this).attr('id').replace("[[:", "/")+'" style="width:100vw; position:absolute; top:0px; left:0px;" name="frame" id="frame:'+$(this).attr('id')+'"></iframe>').appendTo('div.wrapper');	
@@ -256,10 +257,13 @@ $(document).ready(function(){
 	 });
 
 	
+
+
 	
 
-	// make the "Afficher sur la carte" button work
+	// le bouton pour afficher la carte ou le tableau sur les pages de recherche avancée ou catégorie
 	if($('#Toggle-map-table-view').length > 0) {
+		//attend que la carte se charge correctement avec la bonne taille avant de la cacher
 		setTimeout(function() {
 			$('#map-view').hide();
 		}, 500);
@@ -287,8 +291,9 @@ $(document).ready(function(){
 		$('#bouton-recherche-avancée-carte').show();
 	}
 
-	// Add a button to send a test mail to a target
+	// implémente le bouton pour envoyer un mail de test
 	$('#send-mail').click(function() {
+		//paramètre une fenêtre de dialogue avec 3 champs et un bouton pour envoyer le mail
 		function MyDialog(config) {
 			MyDialog.super.call(this, config);
 		}
@@ -317,6 +322,7 @@ $(document).ready(function(){
 			label: 'envoie',
 			flags: 'primary'
 		});
+		//implémente l'envoie du mail
 		sendButton.on('click', function() {
 			if (input1.getValue()=='' || input2.getValue()=='' || input3.getValue()=='') {
 				alert("renseignez tout les champs");
@@ -325,6 +331,7 @@ $(document).ready(function(){
 			const target = input1.getValue();
 			const user = input2.getValue();
 			const password = input3.getValue();
+			//appel cli.php avec les paramètres récupérés dans la fenêtre dialogue
 			$.ajax({
 				url: 'cli.php',
 				type: 'GET',
@@ -359,6 +366,7 @@ $(document).ready(function(){
 			
 		});
 
+		//créer la fenêtre de dialogue
 		var contentLayout = new OO.ui.FieldsetLayout({
 			'label': 'Envoir d\'un mail de test (échap pour fermer)'
 		});
@@ -370,7 +378,7 @@ $(document).ready(function(){
 			this.$body.append(this.content.$element);
 		};
 		
-		
+		//affiche la fenêtre de dialogue
 		var dialog = new MyDialog({size: 'medium'});
 		var windowManager= new OO.ui.WindowManager();
 		$('body').append(windowManager.$element);
@@ -378,6 +386,7 @@ $(document).ready(function(){
 		windowManager.openWindow(dialog);
 	});
 
+	//réorganise la page pour l'impression : mets l'infobox et l'image principale au même niveau, en juxtaposition et repositionne le logo du site
 	addEventListener("beforeprint", function() {
 		
 		var UrlImage = $('#header-image2').css('background-image').replace('url(','').replace(')','').replace(/\"/gi, "");
@@ -394,6 +403,8 @@ $(document).ready(function(){
 
 		console.log(UrlImage);
 	});
+
+	//remet la page en état après l'impression
 	addEventListener("afterprint", function() {
 		$("#header-image-print").remove();
 		$('#firstHeading').insertBefore('#siteSub');
@@ -412,6 +423,7 @@ $(document).ready(function(){
 		window.print();
 	});
 
+	//démarre le processus pour ajouter des boutons preview et print sur les lignes d'un tableau où c'est possible
 	printPreviewButton();
 
 	//close iframe on click
@@ -420,16 +432,20 @@ $(document).ready(function(){
 		$('#close-preview').remove();
 	});
 
+	//dans l'affichage de tableau avec @deferred attend que le tableau s'affiche
 	if ($('#deferred-output').length > 0) {
 		console.log('deferred-output found');
 		
 		waitForDeferred('deferred-output');
 	}
 	
+	//cache la section commentaire en mode edit
 	if($(".action-edit").length > 0){
 		$("#mw-data-after-content").hide();
 	} 
 
+
+	//implémente le bouton pour se désinscrire de l'alerte mail
 	$('#bouton-removeAlerteMail').click(function() {
 		$.ajax({
 			url: 'api.php',
@@ -455,6 +471,7 @@ $(document).ready(function(){
 		});
 	});
 
+	//implémente le bouton pour se réinscrire à l'alerte mail
 	$('#bouton-addAlerteMail').click(function() {
 		$.ajax({
 			url: 'api.php',
@@ -481,6 +498,8 @@ $(document).ready(function(){
 		});
 	});
 
+
+	//permet d'afficher sur la page DésinscriptionAlerteMail du texte qui indique si l'utilisateur est inscrit ou non à l'alerte mail
 	if($('#alerteMailStatus').length > 0){
 		$.ajax({
 			url: 'api.php',
