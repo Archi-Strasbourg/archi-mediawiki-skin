@@ -737,18 +737,29 @@ class ArchiWikiTemplate extends BaseTemplate
     }
 
     /**
+     * @param string[] $tab
      * @return string
      */
-    private function getTabs()
+    private function getTabLink(array $tab): string
+    {
+        return '<li class="' . $tab['class'] . '"><a href="' . $tab['href'] . '">' . $tab['text'] . '</a></li>';
+    }
+
+    /**
+     * @return string
+     */
+    private function getTabs(): string
     {
         $html = '';
 
         foreach ($this->data['content_navigation']['namespaces'] as $tab) {
-            $html .= '<li class="' . $tab['class'] . '"><a href="' . $tab['href'] . '">' . $tab['text'] . '</a></li>';
+            $html .= $this->getTabLink($tab);
         }
-        $html = sprintf('<div class="article-tabs"><ul class="menu show-for-medium">%s</ul></div>', $html);
+        if (isset($this->data['content_navigation']['views']['addsection'])) {
+            $html .= $this->getTabLink($this->data['content_navigation']['views']['addsection']);
+        }
 
-        return $html;
+        return sprintf('<div class="article-tabs"><ul class="menu show-for-medium">%s</ul></div>', $html);
     }
 
     /**
