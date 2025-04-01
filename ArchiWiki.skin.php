@@ -31,6 +31,12 @@ class SkinArchiWiki extends SkinTemplate
         $out->addStyle(
             $wgScriptPath . '/extensions/UniversalLanguageSelector/lib/jquery.uls/css/jquery.uls.mobile.css'
         );
+
+        /*
+         * Si pas chargé, DiscussionTools le charge en AJAX
+         * et il écrase notre CSS.
+         */
+        $out->addModuleStyles('mediawiki.skinning.interface');
     }
 
     /**
