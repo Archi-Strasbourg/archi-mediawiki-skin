@@ -99,11 +99,14 @@ a:visited {
 	}
 }
 
-a:visited,
-a.new {
-	color: inherit;
+/***********************
+// INSITE #34800
+************************/
+a.new,
+.mw-parser-output a.external,
+a:visited {
+	color: $earth;
 }
-
 .site-button {
 	@extend .button;
 }
