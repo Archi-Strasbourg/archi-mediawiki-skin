@@ -99,6 +99,11 @@ a:visited {
 	}
 }
 
+a:visited,
+a.new {
+	color: inherit;
+}
+
 .site-button {
 	@extend .button;
 }
