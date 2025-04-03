@@ -424,6 +424,9 @@ $menu-breakpoint: large;
 				padding: 0;
 				text-transform: uppercase;
 				color: $charcoal-grey;
+				&:hover {
+					text-decoration: none;
+				}
 			}
 		}
 
@@ -510,6 +513,9 @@ $menu-breakpoint: large;
 		font-size: 0.9rem;
 		text-transform: uppercase;
 		text-align: center;
+		&:hover {
+			text-decoration: none;
+		}
 	}
 
 
