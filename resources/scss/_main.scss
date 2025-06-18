@@ -1004,11 +1004,13 @@ p>br:only-child {
 	.toctitle {
 		h2 {
 			@extend .columnbox-title;
+			display: inline-block;
+			padding: 0.4rem 0.5rem;
 		}
 	}
 
 	ul {
-		margin: 0.5rem 0.7rem !important;
+		margin: 0.3rem .7rem .5rem .7rem !important;
 
 		// Sub menu
 		ul {
@@ -1026,11 +1028,11 @@ p>br:only-child {
 				line-height: 1.8;
 				font-size: 0.9rem;
 				text-decoration: none;
+				display: flex;
+				flex-flow: row nowrap;
+				align-items: center;
 
 				.tocnumber {
-					// text-decoration: underline;
-					float: left;
-
 					&::after {
 						content: '.';
 					}
@@ -1038,10 +1040,6 @@ p>br:only-child {
 
 				.toctext {
 					text-decoration: underline;
-					position: static;
-					float: left;
-					max-width: 89%;
-					margin-left: 2%;
 				}
 
 				sup {
@@ -1712,7 +1710,7 @@ HOMEPAGE
 				.header-image-continer {
 					@include grid-column(12);
 					@extend .small-cancel-global-padding;
-					margin-top: -2rem;
+					margin-top: -2.2rem;
 					width: auto;
 					float: none;
 
