@@ -26,7 +26,7 @@ function setupHeaderImage($featuredImage, $container) {
 		$container.find("#header-image2").first().css({
 			backgroundImage: 'url(' + featuredImageUrl + ')'
 		});
-		$featuredThumb.parents('.thumb').hide();
+		$featuredThumb.parents('figure').hide();
 		return true;
 	} else {
 		return false;
@@ -157,7 +157,7 @@ function printPreviewButton(){
 // Set up header image
 $(document).ready(function(){
 	// Generic article page
-	if ( setupHeaderImage($('#mw-content-text').find('img.main-image').first(), $('#header-image') ) ) {
+	if ( setupHeaderImage($('#mw-content-text').find('.main-image img').first(), $('#header-image') ) ) {
 		return;
 	} else {
 		// There is no image, add the no-image class to infobox
@@ -230,7 +230,7 @@ $(document).ready(function(){
 	 */
 	// Setup header image on Latest-changes
 	 $('.mw-special-ArchiHome .latest-changes-recent-change').each(function(){
-	 	var $headerImage = $(this).find('a.image>img').first();
+	 	var $headerImage = $(this).find('a.mw-file-description>img').first();
 		var url = $(this).find('p > a').attr('href');
 		$(this).prepend('<a href="' + url + '"><div class="header-image hide"><div id="header-image2"></div></div></a>').find('.header-image').each(function(){
 	 		setupHeaderImage($headerImage, $(this));
@@ -239,7 +239,7 @@ $(document).ready(function(){
 
 	 $('.mw-special-ArchiHome').each(function(){
 	 	$(this).find('#mw-content-text .header-row').prepend('<div class="header-image-continer" style=""><div id="header-image" class="hide"><div id="header-image2"></div></div></div>');
-	 	setupHeaderImage( $(this).find('#mw-content-text').find('a.image>img').first(), $(this).find('#header-image') );
+	 	setupHeaderImage( $(this).find('#mw-content-text').find('a.mw-file-description>img').first(), $(this).find('#header-image') );
 	 });
 
 	 //Force reload page after Visual Editor is closed
