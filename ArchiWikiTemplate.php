@@ -113,7 +113,7 @@ class ArchiWikiTemplate extends BaseTemplate
             <?php
                 $query = $wgRequest->getQueryValuesOnly();
                 $bodyclasses = ['mw-body'];
-                if (isset($query['Recherche_avancée']['carte']['value'])) 
+                if (isset($query['Recherche_avancée']['carte']['value']))
                 {
                     $bodyclasses[] = 'map-layout';
                 }
@@ -162,7 +162,7 @@ class ArchiWikiTemplate extends BaseTemplate
                 $bodyclasses = ['mw-body-content'];
 
                 $query = $wgRequest->getQueryValuesOnly();
-                if (isset($query['Recherche_avancée']['carte']['value'])) 
+                if (isset($query['Recherche_avancée']['carte']['value']))
                 {
                     $bodyclasses[] = 'map-layout';
                 }
@@ -197,7 +197,7 @@ class ArchiWikiTemplate extends BaseTemplate
                     );
                     echo Html::closeElement('div');
 
-                    
+
 
                     $this->html('bodycontent');
                     $this->clear();
@@ -800,7 +800,7 @@ class ArchiWikiTemplate extends BaseTemplate
                 <div class="column large-2 end">
                     <a href="<?php echo Title::newFromText('Spécial:RunQuery/Recherche_avancée')->getFullURL(); ?>"
                        class="advanced-search-link"><?php echo $this->getMsg('advanced-search'); ?></a>
-                    <a href="<?php echo "/Spécial:RunQueryCache/Recherche_avancée?pfRunQueryFormName=Recherche avancée&Recherche_avancée[carte][value]=1&Recherche_avancée[carte][is_checkbox]=true"; ?>" 
+                    <a href="<?php echo "/Spécial:RunQueryCache/Recherche_avancée?pfRunQueryFormName=Recherche avancée&Recherche_avancée[carte][value]=1&Recherche_avancée[carte][is_checkbox]=true"; ?>"
                        class="advanced-search-link">recherche cartographique</a>
                 </div>
             </div>
@@ -849,17 +849,18 @@ class ArchiWikiTemplate extends BaseTemplate
     private function getContributionMenu()
     {
         $user = RequestContext::getMain()->getUser();
+        $groupManager = MediaWikiServices::getInstance()->getUserGroupManager();
 
         ?>
         <ul class="menu vertical">
             <?php $about_title = Title::newFromText("Archi-Wiki, c'est quoi ?"); ?>
             <li><a href="<?php echo $about_title->getFullURL(); ?>"><?php echo $about_title->getText(); ?></a></li>
-            <?php if (in_array('createpage', $user->mRights)) : ?>
+            <?php if ($user->isAllowed('createpage')) : ?>
                 <li>
                     <a href="<?php echo Title::newFromText('Nouvelle page')->getFullURL(); ?>"><?php echo $this->getMsg('create-page'); ?></a>
                 </li>
             <?php endif; ?>
-            <?php if (in_array('edit', $user->mRights) && $this->getThisTitle()->getNamespace() != -1) : ?>
+            <?php if ($user->isAllowed('edit') && $this->getThisTitle()->getNamespace() != -1) : ?>
                 <li>
                     <a href="<?php echo wfAppendQuery($this->getThisPageUrl(), ['veaction' => 'edit']) ?>"><?php echo $this->getMsg('edit-page'); ?></a>
                 </li>
@@ -874,7 +875,7 @@ class ArchiWikiTemplate extends BaseTemplate
             <li>
                 <a href="<?php echo $contribution_title->getFullURL(); ?>"><?php echo $contribution_title->getText(); ?></a>
             </li>
-            <?php if (in_array('sysop', $user->getGroups())):; ?>
+            <?php if (in_array('sysop', $groupManager->getUserGroups($user))): ?>
                 <li><a href="<?php echo Title::newFromText('Aide:AdminAW')->getFullURL(); ?>">Administration</a></li>
             <?php endif; ?>
         </ul>

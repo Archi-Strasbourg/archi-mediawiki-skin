@@ -33,7 +33,6 @@
 	},
 	"ResourceModules": {
 		"skins.archiwiki": {
-			"class": "ResourceLoaderSkinModule",
 			"position": "top",
 			"styles": {
 				"dist/css/style.css": {
