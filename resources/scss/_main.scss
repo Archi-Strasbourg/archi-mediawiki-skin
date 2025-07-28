@@ -3024,3 +3024,19 @@ body[class*=ext-discussion] .mw-body-content dl {
 body[class*=ext-discussion] .mw-body-content dl a {
 	color: #a65447;
 }
+
+.CodeMirror-code.noime {
+	background-color: #FFF;
+	color: #000;
+}
+
+.latest-news {
+	.content-row {
+		align-items: flex-start;
+	}
+	figure {
+		width: 302px;
+		max-width: 100%;
+		flex: 0 0 302px;
+	}
+}
