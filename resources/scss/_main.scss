@@ -107,6 +107,9 @@ a.new,
 a:visited {
 	color: $earth;
 }
+.mw-parser-output a.extiw, .mw-parser-output a.external {
+	color: $earth;
+}
 .site-button {
 	@extend .button;
 }
@@ -1235,10 +1238,7 @@ li.gallerybox {
 		padding: 0;
 		color: $slate;
 		font-size: 0.9rem;
-
-		p {
-			margin: 0.5rem 0.3rem;
-		}
+		margin: 0.5rem 0.3rem;
 	}
 }
 
