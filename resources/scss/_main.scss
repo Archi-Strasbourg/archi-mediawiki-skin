@@ -100,10 +100,11 @@ a:visited {
 }
 
 /***********************
-// INSITE #34800
+// INSITE #34800 & #37947
 ************************/
 a.new,
 .mw-parser-output a.external,
+.mw-parser-output a.external:visited,
 a:visited {
 	color: $earth;
 }
@@ -112,6 +113,9 @@ a:visited {
 }
 .site-button {
 	@extend .button;
+}
+.mw-mmv-image-metadata {
+  margin-top: 0!important;
 }
 
 /*********************
