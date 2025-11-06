@@ -891,9 +891,19 @@ h2+.notice {
 		td {
 			&.map-row {
 				border: none;
+              .leaflet-popup .mw-parser-output {
+                margin-top: 0;
+              }
               .leaflet-popup-content {
                 max-height: 260px;
                 overflow: auto;
+                p {
+                  &:first-child {
+                    margin-top: 0;
+                  }
+                  font-size: 11px;
+                  margin: 8px 0;
+                }
               }
 			}
 
