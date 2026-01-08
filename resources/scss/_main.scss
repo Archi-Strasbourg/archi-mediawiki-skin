@@ -1228,6 +1228,10 @@ table:not(.infobox):not(.infobox-actu) {
 	text-align: center;
 }
 
+img[src="/assets/pin.png"] {
+	z-index: 999!important;
+}
+
 // Gallery boxes
 li.gallerybox {
 	background-color: $white;
