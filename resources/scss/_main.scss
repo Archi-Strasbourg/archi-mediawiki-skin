@@ -1299,7 +1299,8 @@ CAPTIONS
 CATEGORIES
 *********************/
 
-.mw-normal-catlinks {
+.mw-normal-catlinks,
+.mw-hidden-catlinks {
 	padding: 10px 15px;
 	border: 1px solid $white-one;
 	font-size: 16px;
@@ -1308,6 +1309,9 @@ CATEGORIES
 		color: $charcoal-grey;
 		text-decoration: underline;
 	}
+}
+.mw-hidden-catlinks {
+	margin-top: 12px;
 }
 
 /*********************
