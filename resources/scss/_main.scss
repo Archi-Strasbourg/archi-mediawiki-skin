@@ -748,7 +748,9 @@ CONTENT STYLES
 	//margin-left: -0.625rem;
 	//margin-right: -0.625rem;
 	.mw-info-column {
-		@include grid-column padding: 0 1rem;
+		@include grid-column;
+
+		padding: 0 1rem;
 
 		@include breakpoint(medium) {
 			@include grid-column(4);
@@ -1840,7 +1842,8 @@ HOMEPAGE
 				@include grid-row();
 
 				.search-box-container {
-					@include grid-column(12) @extend .small-cancel-global-padding;
+					@include grid-column(12);
+					@extend .small-cancel-global-padding;
 					width: auto;
 					float: none;
 
@@ -2084,8 +2087,8 @@ HOMEPAGE
 
 	&>p>a {
 		@extend .button;
-		@extend .button.hollow;
-		@extend .button.secondary;
+		@extend .button, .hollow;
+		@extend .button, .secondary;
 		margin-top: 20px;
 	}
 

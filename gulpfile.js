@@ -2,7 +2,7 @@
 
 // Grab our gulp packages
 var gulp  = require('gulp'),
-    sass = require('gulp-sass')(require('node-sass')),
+    sass = require('gulp-sass')(require('sass'));
     autoprefixer = require('gulp-autoprefixer'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
@@ -17,7 +17,7 @@ gulp.task('styles', function() {
             console.error(error.message);
             this.emit('end');
         }))
-        .pipe(sass())
+        .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
             cascade: false
         }))
@@ -91,17 +91,20 @@ gulp.task('js-deps', function(){
 
 
 // Watch files for changes (without Browser-Sync)
+// Watch files for changes (Gulp 4 version)
 gulp.task('watch', function() {
 
-  // Watch .scss files
-  gulp.watch('./resources/scss/**/*.scss', ['styles']);
-  gulp.watch('./vendor/foundation-sites/scss/**/*.scss', ['styles']);
+    // Watch .scss files
+    gulp.watch([
+        './resources/scss/**/*.scss',
+        './vendor/foundation-sites/scss/**/*.scss'
+    ], gulp.series('styles'));
 
-  // Watch site-js files
-  gulp.watch('./resources/js/**/*.js', ['site-js']);
-  
-  // Watch foundation-js files
-  gulp.watch('./vendor/foundation-sites/js/*.js', ['foundation-js']);
+    // Watch site-js files
+    gulp.watch('./resources/js/**/*.js', gulp.series('site-js'));
+
+    // Watch foundation-js files
+    gulp.watch('./vendor/foundation-sites/js/*.js', gulp.series('foundation-js'));
 
 });
 
