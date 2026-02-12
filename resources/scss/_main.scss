@@ -2087,9 +2087,16 @@ HOMEPAGE
 
 	&>p>a {
 		@extend .button;
-		@extend .button, .hollow;
-		@extend .button, .secondary;
 		margin-top: 20px;
+		border: 1px solid #465763;
+		color: #465763;
+		background-color: transparent;
+		&:hover {
+			border: 1px solid #232c32;
+			background-color: transparent;
+			color: #232c32;
+		}
+
 	}
 
 	.latest-changes-recent-change {
