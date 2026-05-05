@@ -8,10 +8,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
     "bower": "^1.8.8",
-    "grunt": "^1.5.3",
-    "grunt-banana-checker": "0.4.0",
-    "grunt-cli": "^1.4.2",
-    "grunt-contrib-jshint": "^3.1.1",
     "gulp": "^5.0.0",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
@@ -29,7 +25,6 @@
   },
   "private": true,
   "scripts": {
-    "deploy": "bower install && gulp",
-    "test": "grunt test"
+    "deploy": "bower install && gulp"
   }
 }
