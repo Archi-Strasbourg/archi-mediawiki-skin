@@ -26,5 +26,9 @@
   "private": true,
   "scripts": {
     "deploy": "bower install && gulp"
+  },
+  "overrides": {
+    "lodash": "^4.17.21",
+    "minimatch": "^3.1.2"
   }
 }
