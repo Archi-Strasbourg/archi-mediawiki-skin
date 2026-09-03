@@ -22,7 +22,7 @@ function setupHeaderImage($featuredImage, $container) {
 			featuredImageUrl = featuredThumbUrl;
 		}
 		$container.removeClass('hide');
-		
+
 		$container.find("#header-image2").first().css({
 			backgroundImage: 'url(' + featuredImageUrl + ')'
 		});
@@ -39,7 +39,7 @@ function setupHeaderImage($featuredImage, $container) {
  * @param elt is the loading div of the iframe displayed while the iframe is loading
  */
 function printElt(frame,elt){
-	
+
 	setTimeout(function(){
 		if(elt.style.display=="none"){
 			$("#loading").hide();
@@ -82,12 +82,12 @@ function printPreviewButton(){
 		a.append(i);
 		ul.append($('<li class="archiwiki-toolbox-item"></li>').append(a));
 		$(this).replaceWith(ul);
-	}); 
+	});
 
 	//create the pretty print button with icon
 	$('.print-content').each(function(){
-		
-		
+
+
 		var span=$('<span>'+$(this).text()+'</span>');
 		var i=$('<i class="material-icons">print</i>');
 		var a=$('<a href="#0" onclick="return false;" class="print-content archiwiki-toolbox-print" id="'+$(this).attr('id')+'"></a>');
@@ -106,13 +106,13 @@ function printPreviewButton(){
 			ul.append($('<li class="archiwiki-toolbox-item"></li>').append(a));
 			$(this).replaceWith(ul);
 		}
-		
+
 	});
 	//implémente le bouton preview pour créer une iframe
 	$(".preview-content").click(function(e) {
-		
+
 		var url = $(this).attr('id');
-		
+
 		console.log(url);
 		var iframe = document.createElement('iframe');
 		iframe.src = url.replace("[[:", "/");
@@ -137,12 +137,12 @@ function printPreviewButton(){
 	//implémente le bouton print pour créer une iframe qui permet de print une page
 	$('.print-content').click(function(e) {
 		$("#loading").show();
-		$('<iframe src="'+$(this).attr('id').replace("[[:", "/")+'" style="width:100vw; position:absolute; top:0px; left:0px;" name="frame" id="frame:'+$(this).attr('id')+'"></iframe>').appendTo('div.wrapper');	
-		
+		$('<iframe src="'+$(this).attr('id').replace("[[:", "/")+'" style="width:100vw; position:absolute; top:0px; left:0px;" name="frame" id="frame:'+$(this).attr('id')+'"></iframe>').appendTo('div.wrapper');
+
 		var iframe = document.getElementById('frame:' + $(this).attr('id'));
 		iframe.onload = function() {
 			var elmnt = iframe.contentWindow.document.getElementById("loading");
-			
+
 			if (elmnt) {
 				printElt(iframe,elmnt);
 			} else {
@@ -216,12 +216,14 @@ $(document).ready(function(){
 	$('.comments-body form[name="commentForm"]')
 		.prependTo('.comments-body')
 		.wrap('<div class="comment-form"></div>').each(function(){
-			var $commentForm = $(this).closest('.comment-form');
-			$commentForm.before('<a href="javascript:void(0);" class="showhide-comments">' + $(this).find('.c-form-title').text() + '</a>');
+			// Commenté pour retirer le bouton slide "Ajouter un commentaire"
+		  // Insite #37481
+			// var $commentForm = $(this).closest('.comment-form');
+			// $commentForm.before('<a href="javascript:void(0);" class="showhide-comments">' + $(this).find('.c-form-title').text() + '</a>');
 		}).each(function(){
-			$(this).closest('.comment-form').siblings('.showhide-comments').click(function(){
-				$(this).next().slideToggle();
-			});
+			// $(this).closest('.comment-form').siblings('.showhide-comments').click(function(){
+			// 	$(this).next().slideToggle();
+			// });
 	});
 	// Put the "modifier critères" button in the right place
 	$('#modifier_criteres').appendTo('#boutons-vers-recherche');
@@ -256,10 +258,10 @@ $(document).ready(function(){
 		 }, 500);
 	 });
 
-	
 
 
-	
+
+
 
 	// le bouton pour afficher la carte ou le tableau sur les pages de recherche avancée ou catégorie
 	if($('#Toggle-map-table-view').length > 0) {
@@ -285,7 +287,7 @@ $(document).ready(function(){
 		$('#boutons-vers-recherche').append(document.getElementById('Toggle-map-table-view'));
 	}
 
-	
+
 	// Show the "Afficher sur la carte" button on the advanced research page
 	if($('#boutons-mode-recherche').is('.bouton-normal')){
 		$('#bouton-recherche-avancée-carte').show();
@@ -317,7 +319,7 @@ $(document).ready(function(){
 			type: 'password'
 		});
 
-		
+
 		var sendButton = new OO.ui.ButtonWidget({
 			label: 'envoie',
 			flags: 'primary'
@@ -363,7 +365,7 @@ $(document).ready(function(){
 					dialog.close();
 				}
 			});
-			
+
 		});
 
 		//créer la fenêtre de dialogue
@@ -377,7 +379,7 @@ $(document).ready(function(){
 			this.content = contentLayout;
 			this.$body.append(this.content.$element);
 		};
-		
+
 		//affiche la fenêtre de dialogue
 		var dialog = new MyDialog({size: 'medium'});
 		var windowManager= new OO.ui.WindowManager();
@@ -388,7 +390,7 @@ $(document).ready(function(){
 
 	//réorganise la page pour l'impression : mets l'infobox et l'image principale au même niveau, en juxtaposition et repositionne le logo du site
 	addEventListener("beforeprint", function() {
-		
+
 		var UrlImage = $('#header-image2').css('background-image').replace('url(','').replace(')','').replace(/\"/gi, "");
 		$(".infobox").wrap('<div id="infobox-div-print"></div>');
 		$("#infobox-div-print").prepend('<img src="'+UrlImage+'" id="header-image-print" style="min-width:0px; height:fit-content;">');
@@ -435,14 +437,14 @@ $(document).ready(function(){
 	//dans l'affichage de tableau avec @deferred attend que le tableau s'affiche
 	if ($('#deferred-output').length > 0) {
 		console.log('deferred-output found');
-		
+
 		waitForDeferred('deferred-output');
 	}
-	
+
 	//cache la section commentaire en mode edit
 	if($(".action-edit").length > 0){
 		$("#mw-data-after-content").hide();
-	} 
+	}
 
 
 	//implémente le bouton pour se désinscrire de l'alerte mail
