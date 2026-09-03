@@ -2978,7 +2978,7 @@ table.floatright {
 		border-left: 1px solid black;
 	}
 	li{
-		
+
 		display: inline-block;
 		padding: 0 0.5em;
 		margin: 0.125em 0;
@@ -2995,14 +2995,14 @@ table.floatright {
 		width: 95%;
 	}
 	.latest-block{
-		
+
 		.latest-changes-recent-change-container{
 			position: absolute;
 			width: 25%;
 			height: max-content;
 			a{
 				display: inline-block;
-				
+
 			}
 			border-radius: 2em;
 			border-style: solid;
@@ -3078,4 +3078,11 @@ body[class*=ext-discussion] .mw-body-content dl a {
 		max-width: 100%;
 		flex: 0 0 302px;
 	}
+}
+/***********************
+// INSITE #40157
+************************/
+.ve-activated .ns-4000 .mw-body,
+.ve-activated .ns-4006 .mw-body {
+	max-width: 100%;
 }
