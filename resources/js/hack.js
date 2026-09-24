@@ -15,12 +15,20 @@ function setupHeaderImage($featuredImage, $container) {
 	if (typeof featuredThumbUrl != 'undefined') {
 		let featuredImageUrl;
 
-		if (featuredThumbUrl.substr(0, featuredThumbUrl.lastIndexOf('thumb') >= 0)) {
-			featuredThumbUrl = featuredThumbUrl.substr(0, featuredThumbUrl.lastIndexOf('/'));
-			featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
-		} else {
+		// Remplacement de l'URL de vignette par une image plus grande
+		if (featuredThumbUrl.includes("thumb.wikimedia.org")) {
+			// Image provenant de Wikimedia
+			// Tailles des vignettes : https://www.mediawiki.org/wiki/Common_thumbnail_sizes
+			featuredImageUrl = featuredThumbUrl.replace("330px-", "1920px-");
+		} else if (featuredThumbUrl.indexOf("/images/thumb") === 0 || featuredThumbUrl.includes("archi-wiki.org")) {
+			// Image locale ou archi-wiki.org pour l'environnement de test
+			featuredThumbUrl = featuredThumbUrl.substring(0, featuredThumbUrl.lastIndexOf('/'));
+			featuredImageUrl = featuredImageUrl = featuredThumbUrl.replace(/\/thumb/, '');
+		}  else {
+			// Autre cas (fallback)
 			featuredImageUrl = featuredThumbUrl;
 		}
+
 		$container.removeClass('hide');
 
 		$container.find("#header-image2").first().css({
