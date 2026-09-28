@@ -3082,3 +3082,9 @@ body[class*=ext-discussion] .mw-body-content dl a {
 .ve-activated .ns-4006 .mw-body {
 	max-width: 100%;
 }
+/***********************
+// INSITE #40289
+************************/
+#Commentaires + .mw-editsection {
+	display: none;
+}
